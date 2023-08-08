@@ -25,7 +25,7 @@ def seed_products():
         name = 'Cloud Computing with AWS',
         price = 7.99,
         description = 'An in-depth tutorial series on using Amazon Web Services for cloud computing and deployment.',
-        seller_id = 2,
+        seller_id = 3,
         category = 'Courses/Tutorials',
         image = 'image3.png'
     )
