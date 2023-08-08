@@ -23,10 +23,13 @@ class Product(db.Model):
     # RELATIONSHIPS
 
     # relationship to owner
+    seller = db.relationship('User', back_populates='products')
 
     # relationship to reviews
+    reviews = db.relationship('Review', backref = 'product')
 
     # relationship to cart
+    
 
     # relationship to purchases
 
