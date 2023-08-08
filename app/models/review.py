@@ -11,6 +11,7 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
     buyer_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    title = db.Column(db.String(20))
     content = db.Column(db.Text)
     rating = db.Column(db.Integer)
     # AWS setup later
