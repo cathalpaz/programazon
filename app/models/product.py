@@ -9,11 +9,11 @@ class Product(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(40), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Numeric(precision=6, scale=2), nullable=False)
     description = db.Column(db.Text)
     seller_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    category = db.Column(db.String(20))
+    category = db.Column(db.String(50))
     # AWS setup later
     image = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())

@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: 8dd5bc988c31
-Revises: 
+Revises:
 Create Date: 2023-08-08 13:00:05.480707
 
 """
@@ -30,11 +30,11 @@ def upgrade():
     )
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=40), nullable=False),
+    sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('price', sa.Numeric(precision=6, scale=2), nullable=False),
     sa.Column('description', sa.Text(), nullable=True),
     sa.Column('seller_id', sa.Integer(), nullable=False),
-    sa.Column('category', sa.String(length=20), nullable=True),
+    sa.Column('category', sa.String(length=50), nullable=True),
     sa.Column('image', sa.String(length=100), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
@@ -74,7 +74,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('buyer_id', sa.Integer(), nullable=False),
-    sa.Column('title', sa.String(length=20), nullable=True),
+    sa.Column('title', sa.String(length=40), nullable=True),
     sa.Column('content', sa.Text(), nullable=True),
     sa.Column('rating', sa.Integer(), nullable=True),
     sa.Column('image', sa.String(length=100), nullable=True),
