@@ -15,6 +15,9 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     address = db.Column(db.String(200))
 
+    # relationship to products
+    products = db.relationship('Product', back_populates='seller')
+
     @property
     def password(self):
         return self.hashed_password

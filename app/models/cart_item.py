@@ -11,7 +11,7 @@ class CartItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     buyer_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
-    quantity = db.Columb(db.Integer)
+    quantity = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
 
