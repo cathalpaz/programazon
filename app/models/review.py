@@ -23,8 +23,10 @@ class Review(db.Model):
     # RELATIONSHIPS
 
     # relationship to owner
+    buyer = db.relationship('User', back_populates='reviews')
 
     # relationship to product
+    # -no need, used backref-
 
 
     def to_dict(self):
