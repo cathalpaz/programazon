@@ -2,32 +2,30 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
 
-class CartItem(db.Model):
-    __tablename__ = 'cart_items'
+class Purchase(db.Model):
+    __tablename__ = 'purchases'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     buyer_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
-    quantity = db.Column(db.Integer)
+    total_price = db.Column(db.Numeric(precision=6, scale=2))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
 
     # RELATIONSHIPS
 
-    # relationship to owner
-    buyer = db.relationship('User', back_populates='cart_items')
+    # relationship to buyer
+    buyer = db.relationship('User', back_populates='purchases')
 
-    # relationship to products
-    product = db.relationship('Product', back_populates='cart_items')
+    # relationship to purchase items
+    purchase_items = db.relationship('PurchaseItem', back_populates='purchase')
 
 
     def to_dict(self):
         return {
             'id': self.id,
             'buyer_id': self.buyer_id,
-            'product_id': self.product_id,
-            'quantity': self.quantity
+            'total_price': self.total_price,
         }

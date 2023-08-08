@@ -22,7 +22,13 @@ class User(db.Model, UserMixin):
     products = db.relationship('Product', back_populates='seller')
 
     # relationship to reviews
-    reviews = db.relationship('Review', back_populates='buyer')
+    reviews_written = db.relationship('Review', back_populates='buyer')
+
+    # relationship to cart items
+    cart_items = db.relationship('CartItem', back_populates='buyer')
+
+    # relationship to purchases
+    purchases = db.relationship('Purchase', back_populates='buyer')
 
 
     @property

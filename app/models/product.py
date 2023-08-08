@@ -26,12 +26,13 @@ class Product(db.Model):
     seller = db.relationship('User', back_populates='products')
 
     # relationship to reviews
-    reviews = db.relationship('Review', backref = 'product')
+    reviews = db.relationship('Review', back_populates= 'product')
 
-    # relationship to cart
-    
+    # relationship to cart items
+    cart_items = db.relationship('CartItem', back_populates='product')
 
-    # relationship to purchases
+    # relationship to purchase items
+    purchase_items = db.relationship('PurchaseItem', back_populates='product')
 
 
     def to_dict(self):
@@ -42,5 +43,6 @@ class Product(db.Model):
             'description': self.description,
             'seller_id': self.seller_id,
             'category': self.category,
-            'image': self.image
+            'image': self.image,
+            'created_at': self.created_at
         }

@@ -23,10 +23,10 @@ class Review(db.Model):
     # RELATIONSHIPS
 
     # relationship to owner
-    buyer = db.relationship('User', back_populates='reviews')
+    buyer = db.relationship('User', back_populates='reviews_written')
 
     # relationship to product
-    # -no need, used backref-
+    product = db.relationship('Product', back_populates='reviews')
 
 
     def to_dict(self):
@@ -34,6 +34,7 @@ class Review(db.Model):
             'id': self.id,
             'product_id': self.product_id,
             'buyer_id': self.buyer_id,
+            'title': self.title,
             'content': self.content,
             'rating': self.rating,
             'image': self.image
