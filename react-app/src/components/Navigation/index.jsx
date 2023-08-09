@@ -6,7 +6,7 @@ import CategoryHeader from './CategoryHeader';
 import Account from './Account';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation(){
 	const sessionUser = useSelector(state => state.session.user);
 	console.log(sessionUser)
 
