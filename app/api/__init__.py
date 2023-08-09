@@ -1,5 +1,5 @@
 from flask import Blueprint
-from . import auth_routes, user_routes
+from . import auth_routes, user_routes, product_routes
 
 
 bp = Blueprint("api", __name__, url_prefix="/api")
@@ -11,3 +11,4 @@ def index():
 
 bp.register_blueprint(auth_routes.auth_routes)
 bp.register_blueprint(user_routes.user_routes)
+bp.register_blueprint(product_routes.products_routes)

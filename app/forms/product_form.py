@@ -13,3 +13,7 @@ class ProductForm(FlaskForm):
     stock_quantity = IntegerField('Stock Quantity', validators=[DataRequired(), NumberRange(min=1, max=20)])
     image = StringField('Image')
     submit = SubmitField('Submit')
+
+
+class UpdateProductForm(FlaskForm):
+    description = TextAreaField('Description')

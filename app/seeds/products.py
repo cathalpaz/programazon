@@ -11,7 +11,8 @@ def seed_products():
         description = 'An in-depth video tutorial series on JavaScript, including modern frameworks like React and Node.js.',
         seller_id = 1,
         category = 'Courses/Tutorials',
-        image = 'image1.png'
+        image = 'image1.png',
+        stock_quantity = 5
     )
     product2 = Product(
         name = 'Data Science and Machine Learning Essentials',
@@ -19,7 +20,8 @@ def seed_products():
         description = 'An online course that dives into data science concepts and machine learning algorithms.',
         seller_id = 2,
         category = 'Courses/Tutorials',
-        image = 'image2.png'
+        image = 'image2.png',
+        stock_quantity = 1
     )
     product3 = Product(
         name = 'Cloud Computing with AWS',
@@ -27,7 +29,8 @@ def seed_products():
         description = 'An in-depth tutorial series on using Amazon Web Services for cloud computing and deployment.',
         seller_id = 3,
         category = 'Courses/Tutorials',
-        image = 'image3.png'
+        image = 'image3.png',
+        stock_quantity = 3
     )
 
 

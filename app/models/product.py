@@ -14,6 +14,7 @@ class Product(db.Model):
     description = db.Column(db.Text)
     seller_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     category = db.Column(db.String(50))
+    stock_quantity = db.Column(db.Integer)
     # AWS setup later
     image = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -44,5 +45,6 @@ class Product(db.Model):
             'seller_id': self.seller_id,
             'category': self.category,
             'image': self.image,
+            'stock_quantity': self.stock_quantity,
             'created_at': self.created_at
         }
