@@ -20,7 +20,7 @@
 .nav__logo {
   color: white;
   text-decoration: none;
-  width: 200px;
+  width: 190px;
   margin-top: 12px;
 }
 
@@ -67,6 +67,7 @@
   border: none;
   outline: none;
   padding-left: 8px;
+  font-size: 14px;
 }
 
 .nav__search-bar > i {
@@ -80,4 +81,29 @@
   border-bottom-right-radius: 5px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.nav__lang {
+  width: 30px;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  height: 14px;
+}
+
+.nav__lang > img {
+  width: 70%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nav__lang > span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nav__box > span > i {
+  color: gray;
+  padding-left: 3px;
+  font-size: 12px;
 }
