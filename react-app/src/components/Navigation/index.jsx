@@ -1,18 +1,24 @@
-import React from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import CategoryHeader from './CategoryHeader';
+import Account from './Account';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 	console.log(sessionUser)
 
+	const [showComponent, setShowComponent] = useState(false);
+
+
+
 	const handleMenu = () => {
-		console.log('open menu')
+		setShowComponent(!showComponent);
 	}
 
+	console.log(showComponent)
 
 	return (
 		<div className='nav__wrapper'>
@@ -43,9 +49,10 @@ function Navigation({ isLoaded }){
 						<span>Account & Lists</span>
 					</div>
 				) : (
-					<div className='nav__box' onClick={handleMenu}>
+					<div className='nav__box account__sec' onClick={handleMenu}>
 						<p>Hello, sign in</p>
-						<span>Account & Lists <i class="fa-solid fa-caret-down"></i></span>
+						<span>Account & Lists <i className="fa-solid fa-caret-down" /></span>
+						{showComponent && <Account user={sessionUser} />}
 					</div>
 				)}
 				<div className='nav__box'>
