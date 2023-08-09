@@ -7,7 +7,8 @@ from ..forms import ProductForm, ReviewForm, UpdateProductForm
 from .error_helpers import NotFoundError, ForbiddenError
 from .auth_routes import validation_errors_to_error_messages
 
-# AWS HERE
+
+# TODO: ADD AWS TO IMAGES, POST AND PUT
 
 products_routes = Blueprint('products', __name__, url_prefix="/products")
 
@@ -68,7 +69,8 @@ def post_product():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
-# EDIT product
+# UPDATE product
+# TODO: EDIT SO MORE COLUMNS CAN BE CHANGED
 @products_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_product(id):
