@@ -93,3 +93,35 @@ def edit_product(id):
         return product.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
+
+# DELETE product
+@products_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_product(id):
+    product = Product.query.get(id)
+
+    if not product:
+        error = NotFoundError('Product Not Found')
+        return error.error_json()
+
+    if product.seller_id != current_user.id:
+        error = ForbiddenError('Not your product!')
+        return error.error_json()
+
+    db.session.delete(product)
+    db.session.commit()
+
+    return {'message': 'Successfully deleted product'}
+
+
+# GET users products
+@products_routes.route('/current')
+@login_required
+def get_my_products():
+    products = Product.query.filter(Product.seller_id == current_user.id).all()
+
+    if not products:
+        error = NotFoundError('No listed products')
+        return error.error_json()
+
+    return {'products': [product.to_dict() for product in products]}
