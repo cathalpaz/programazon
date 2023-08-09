@@ -1,10 +1,11 @@
 import React from 'react'
-import OpenModalButton from '../OpenModalButton'
-import LoginFormPage from '../LoginFormPage'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'
+import { logout } from "../../store/session";
 
 
 function Account({ user }) {
+    const dispatch = useDispatch();
     const history = useHistory()
 
     const handleLogin = () => {
@@ -13,6 +14,11 @@ function Account({ user }) {
 
     const handleSignUp = () => {
         history.push('/signup')
+    }
+
+    const handleLogOut = (e) => {
+        e.preventDefault()
+        dispatch(logout())
     }
 
     console.log(user)
@@ -33,7 +39,7 @@ function Account({ user }) {
                         <h4>Your account</h4>
                         <p>Account</p>
                         <p>Orders</p>
-                        <p>Sign Out</p>
+                        <p onClick={handleLogOut}>Sign Out</p>
                     </div>
                 </div>
             )}

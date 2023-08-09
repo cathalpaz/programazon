@@ -44,9 +44,10 @@ function Navigation({ isLoaded }){
 					<span>EN</span>
 				</div>
 				{sessionUser ? (
-					<div className='nav__box'>
+					<div className='nav__box account__sec' onClick={handleMenu}>
 						<p>Hello, {sessionUser.username}</p>
-						<span>Account & Lists</span>
+						<span>Account & Lists <i className="fa-solid fa-caret-down" /></span>
+						{showComponent && <Account user={sessionUser} />}
 					</div>
 				) : (
 					<div className='nav__box account__sec' onClick={handleMenu}>
