@@ -8,9 +8,16 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 	console.log(sessionUser)
 
+	const handleMenu = () => {
+		console.log('open menu')
+	}
+
+
 	return (
 		<div className='nav__container'>
-			<NavLink exact to="/" className='nav__logo'>Programazon</NavLink>
+			<NavLink exact to="/" className='nav__logo'>
+				<img src='/images/programazon.png'></img>
+			</NavLink>
 			<div className='nav__selling'>
 				<p>Selling items?</p>
 				{sessionUser ? <span>Click to start</span> : <span>Sign in to start</span>}
@@ -33,9 +40,9 @@ function Navigation({ isLoaded }){
 					<span>Account & Lists</span>
 				</div>
 			) : (
-				<div className='nav__box'>
+				<div className='nav__box' onClick={handleMenu}>
 					<p>Hello, sign in</p>
-					<span>Account & Lists</span>
+					<span>Account & Lists <i class="fa-solid fa-caret-down"></i></span>
 				</div>
 			)}
 			<div className='nav__box'>
@@ -46,11 +53,11 @@ function Navigation({ isLoaded }){
 				Cart
 			</div>
 
-			{isLoaded && (
+			{/* {isLoaded && (
 				<div>
 					<ProfileButton user={sessionUser} />
 				</div>
-			)}
+			)} */}
 		</div>
 	);
 }

@@ -12,13 +12,20 @@
   align-items: center;
   background-color: #131A22;
   color: white;
-  height: 60px;
+  height: 65px;
+  gap: 2.5rem;
+  padding: 0 20px;
 }
 
 .nav__logo {
   color: white;
   text-decoration: none;
-  font-size: 30px;
+  width: 200px;
+  margin-top: 12px;
+}
+
+.nav__logo > img {
+  width: 100%;
 }
 
 .nav__selling > p {
@@ -32,13 +39,14 @@
 
 .nav__selling > span, .nav__box > span {
   font-size: 14px;
+  font-weight: 600;
 }
 
 .nav__search-bar {
   display: flex;
   align-items: center;
-  height: 40px;
-  width: 45vw;
+  height: 45px;
+  flex: 1;
 }
 
 .nav__search-bar > div {
@@ -58,7 +66,7 @@
   width: 100%;
   border: none;
   outline: none;
-  padding-left: 5px;
+  padding-left: 8px;
 }
 
 .nav__search-bar > i {
@@ -70,5 +78,6 @@
   align-items: center;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  font-size: 18px;
+  font-size: 20px;
+  cursor: pointer;
 }
