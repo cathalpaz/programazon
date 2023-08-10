@@ -20,7 +20,6 @@ function Account({ user }) {
     dispatch(logout());
   };
 
-  console.log(user);
   return (
     <div>
       {!user ? (

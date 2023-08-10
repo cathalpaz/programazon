@@ -202,3 +202,19 @@
   color: #444;
   line-height: 16px;
 }
+
+.category__container {
+  background-color: #232F3E;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+.category__container > span {
+  cursor: pointer;
+}

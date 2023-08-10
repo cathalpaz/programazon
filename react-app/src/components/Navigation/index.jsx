@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
 import CategoryHeader from './CategoryHeader';
 import Account from './Account';
 import './Navigation.css';
@@ -18,16 +17,16 @@ function Navigation(){
 		}
 	};
 
+	const handleMenu = () => {
+		setShowComponent(!showComponent);
+	}
+
 	useEffect(() => {
 		document.addEventListener('click', handleClickOutside);
 		return () => {
 		document.removeEventListener('click', handleClickOutside);
 		};
 	}, []);
-
-	const handleMenu = () => {
-		setShowComponent(!showComponent);
-	}
 
 	return (
 		<div className='nav__wrapper'>
