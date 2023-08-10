@@ -14,7 +14,7 @@ function LoginFormPage() {
   const [errors, setErrors] = useState({});
 
   if (sessionUser) return <Redirect to="/" />;
-  
+
   const demoLogin = () => {
     dispatch(login('Demo', 'password'))
   }
@@ -80,7 +80,7 @@ function LoginFormPage() {
           <a href="https://github.com/cathalpaz" target="_blank" rel="noreferrer">Github</a>
           <a href="#" target="_blank" rel="noreferrer">Portfolio</a>
         </div>
-        <div className="login__copyright">©Programazon</div>
+        <div className="login__copyright">©Programazon by Cathal Paz</div>
       </div>
 
     </div>

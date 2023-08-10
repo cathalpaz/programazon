@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -8,17 +8,26 @@ import './Navigation.css';
 
 function Navigation(){
 	const sessionUser = useSelector(state => state.session.user);
-	console.log(sessionUser)
+	const componentRef = useRef(null);
 
 	const [showComponent, setShowComponent] = useState(false);
 
+	const handleClickOutside = (event) => {
+		if (componentRef.current && !componentRef.current.contains(event.target)) {
+		setShowComponent(false);
+		}
+	};
 
+	useEffect(() => {
+		document.addEventListener('click', handleClickOutside);
+		return () => {
+		document.removeEventListener('click', handleClickOutside);
+		};
+	}, []);
 
 	const handleMenu = () => {
 		setShowComponent(!showComponent);
 	}
-
-	console.log(showComponent)
 
 	return (
 		<div className='nav__wrapper'>
@@ -44,13 +53,13 @@ function Navigation(){
 					<span>EN</span>
 				</div>
 				{sessionUser ? (
-					<div className='nav__box account__sec' onClick={handleMenu}>
+					<div className='nav__box account__sec' onClick={handleMenu} ref={componentRef}>
 						<p>Hello, {sessionUser.username}</p>
 						<span>Account & Lists <i className="fa-solid fa-caret-down" /></span>
 						{showComponent && <Account user={sessionUser} />}
 					</div>
 				) : (
-					<div className='nav__box account__sec' onClick={handleMenu}>
+					<div className='nav__box account__sec' onClick={handleMenu} ref={componentRef}>
 						<p>Hello, sign in</p>
 						<span>Account & Lists <i className="fa-solid fa-caret-down" /></span>
 						{showComponent && <Account user={sessionUser} />}

@@ -123,9 +123,13 @@
   color: black;
   background-color: white;
   display: flex;
-  right: 185px;
+  right: 175px;
   border-radius: 3px;
-  gap: 1rem;
+  gap: 0.7rem;
+  /* width: 200px; */
+  justify-content: center;
+  padding: 12px 16px;
+  top: 58px;
 }
 
 .account__login-container {
@@ -137,7 +141,7 @@
   flex-direction: column;
   right: 165px;
   border-radius: 3px;
-  width: 180px;
+  width: 200px;
   justify-content: center;
   padding: 12px 16px;
   top: 55px;
@@ -153,7 +157,7 @@
 
 .account__login-container > p {
   padding-top: 8px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .account__login-container > p > span {
@@ -163,4 +167,38 @@
 
 .account__login-container > p > span:hover {
   text-decoration: underline;
+}
+
+.account__info-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.account__info > h4 {
+  padding: 8px 0;
+}
+
+.account__right {
+  border-left: 1px solid rgba(128, 128, 128, 0.39);
+  padding-left: 12px;
+}
+
+.account__info > span, .account__info-right > span {
+  font-size: 14px;
+  color: #444;
+  cursor: pointer;
+  line-height: 24px;
+
+}
+
+.account__info > span:hover, .account__info-right > span:hover {
+  text-decoration: underline;
+  color: #f5ab4a;
+}
+
+.account__info > p {
+  font-size: 12px;
+  padding-left: 4px;
+  color: #444;
+  line-height: 16px;
 }

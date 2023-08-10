@@ -131,7 +131,7 @@ function SignupFormPage() {
             Portfolio
           </a>
         </div>
-        <div className="login__copyright">©Programazon</div>
+        <div className="login__copyright">©Programazon by Cathal Paz</div>
       </div>
     </div>
   );
