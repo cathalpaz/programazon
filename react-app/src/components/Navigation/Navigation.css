@@ -130,6 +130,7 @@
   justify-content: center;
   padding: 12px 16px;
   top: 58px;
+  z-index: 999;
 }
 
 .account__login-container {
@@ -145,6 +146,7 @@
   justify-content: center;
   padding: 12px 16px;
   top: 55px;
+  z-index: 999;
 }
 
 .account__login-container > button {
