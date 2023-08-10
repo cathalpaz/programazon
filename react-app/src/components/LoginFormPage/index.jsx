@@ -11,10 +11,10 @@ function LoginFormPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   if (sessionUser) return <Redirect to="/" />;
-
+  
   const demoLogin = () => {
     dispatch(login('Demo', 'password'))
   }
@@ -30,8 +30,8 @@ function LoginFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(credential, password));
-    if (data) {
-      setErrors(data);
+    if (data && data.errors) {
+      setErrors(data.errors);
     }
   };
 
@@ -41,11 +41,7 @@ function LoginFormPage() {
       <div className="login__form">
         <span className="login__form-title">Sign in</span>
         <form onSubmit={handleSubmit}>
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
+
           <label>
             Username or email
             <input
@@ -53,8 +49,9 @@ function LoginFormPage() {
               value={credential}
               onChange={(e) => setCredential(e.target.value)}
               required
-            />
+              />
           </label>
+          {Object.values(errors).length > 0 && <p className="errors"><span> ! </span>Username/Email or password is incorrect</p>}
           <label>
             Password
             <input
@@ -79,9 +76,9 @@ function LoginFormPage() {
       </div>
       <div className="login__footer">
         <div className="login__footer-links">
-          <a href="https://www.linkedin.com/in/cathal-paz-052239263/" target="_blank">Linkedin</a>
-          <a href="https://github.com/cathalpaz" target="_blank">Github</a>
-          <a href="#" target="_blank">Portfolio</a>
+          <a href="https://www.linkedin.com/in/cathal-paz-052239263/" rel="noreferrer" target="_blank">Linkedin</a>
+          <a href="https://github.com/cathalpaz" target="_blank" rel="noreferrer">Github</a>
+          <a href="#" target="_blank" rel="noreferrer">Portfolio</a>
         </div>
         <div className="login__copyright">©Programazon</div>
       </div>
