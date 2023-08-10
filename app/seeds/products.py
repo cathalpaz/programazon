@@ -41,12 +41,42 @@ def seed_products():
         image = 'image4.png',
         stock_quantity = 5
     )
+    product5 = Product(
+        name = 'Wireless Charging Pads',
+        price = 25,
+        description = 'Convenient wireless chargers for smartphones and other devices.',
+        seller_id = 2,
+        category = 'Accessories',
+        image = 'image5.png',
+        stock_quantity = 10
+    )
+    product6 = Product(
+        name = 'Smartphone Cases',
+        price = 15,
+        description = 'Cases with built-in wallets, stands, or battery packs.',
+        seller_id = 3,
+        category = 'Accessories',
+        image = 'image6.png',
+        stock_quantity = 5
+    )
+    product7 = Product(
+        name = 'Smart Plugs and Outlets',
+        price = 10,
+        description = 'Plugs that turn regular devices into smart devices.',
+        seller_id = 3,
+        category = 'Accessories',
+        image = 'image7.png',
+        stock_quantity = 5
+    )
 
 
     db.session.add(product1)
     db.session.add(product2)
     db.session.add(product3)
     db.session.add(product4)
+    db.session.add(product5)
+    db.session.add(product6)
+    db.session.add(product7)
 
     db.session.commit()
 

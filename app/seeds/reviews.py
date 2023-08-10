@@ -42,12 +42,20 @@ def seed_reviews():
         content = "The instructor's explanations were convoluted, and the projects were overly complex for beginners. I struggled to follow along, and my AI assistant ended up a jumbled mess.",
         rating = 2,
     )
+    review6 = Review(
+        product_id = 6,
+        buyer_id = 3,
+        title = 'Strong and Durable!',
+        content = "I couldn't be happier with this smartphone case! It's not just your average case; it's a game-changer. The sleek design not only offers top-notch protection but also adds a touch of elegance to my phone.",
+        rating = 5,
+    )
 
     db.session.add(review1)
     db.session.add(review2)
     db.session.add(review3)
     db.session.add(review4)
     db.session.add(review5)
+    db.session.add(review6)
 
     db.session.commit()
 

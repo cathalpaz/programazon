@@ -5,9 +5,13 @@ import { thunkGetProducts } from "../../store/products";
 
 function LandingPage() {
     const dispatch = useDispatch()
-    const allProducts = useSelector(state => state.products)
+    const allProducts = useSelector(state => state.products.allProducts)
 
-    console.log('LOOK', allProducts)
+    const productArray = Object.values(allProducts)
+    productArray.sort((a, b) => b.avg_rating - a.avg_rating)
+    console.log('first', productArray)
+    console.log('sorted', productArray)
+
 
     useEffect(() => {
         dispatch(thunkGetProducts())
@@ -39,6 +43,9 @@ function LandingPage() {
                         <span>Shop accessories</span>
                     </div>
                 </div>
+            </div>
+            <div className="landing__trending">
+
             </div>
         </div>
     );
