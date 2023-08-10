@@ -16,7 +16,13 @@ products_routes = Blueprint('products', __name__, url_prefix="/products")
 @products_routes.route("")
 def get_products():
     products = Product.query.all()
-    return {'products': [product.to_dict() for product in products]}
+    for i in range(len(products)):
+        reviews = Review.query.filter(Review.product_id == products[i].id)
+        reviews = [review.to_dict()["rating"] for review in reviews]
+        avg_rating = sum(reviews) / len(reviews)
+        products[i] = products[i].to_dict()
+        products[i]['avg_rating'] = round(avg_rating)
+    return {'products': products}
 
 
 # GET single product
@@ -30,8 +36,12 @@ def get_single_product(id):
 
     reviews = Review.query.filter(Review.product_id == id)
     product = product.to_dict()
+    ratings = [review.to_dict()["rating"] for review in reviews]
+    avg_rating = sum(ratings) / len(ratings)
     product["reviews"] = [review.to_dict() for review in reviews]
-    return product
+    product['avg_rating'] = round(avg_rating)
+
+    return {'product': product}
 
 
 # GET product reviews
