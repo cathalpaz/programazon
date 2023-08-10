@@ -45,7 +45,7 @@ function Navigation(){
 						placeholder='Search Programazon'
 						// set up useStates
 					/>
-					<i class="fa-solid fa-magnifying-glass search-icon"></i>
+					<i className="fa-solid fa-magnifying-glass search-icon"></i>
 				</div>
 				<div className='nav__lang'>
 					<img src='/images/flag.png' />
