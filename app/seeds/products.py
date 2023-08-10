@@ -32,11 +32,21 @@ def seed_products():
         image = 'image3.png',
         stock_quantity = 3
     )
+    product4 = Product(
+        name = 'Portable Power Banks',
+        price = 10,
+        description = 'Compact power banks for charging devices on the go.',
+        seller_id = 3,
+        category = 'Accessories',
+        image = 'image4.png',
+        stock_quantity = 5
+    )
 
 
     db.session.add(product1)
     db.session.add(product2)
     db.session.add(product3)
+    db.session.add(product4)
 
     db.session.commit()
 

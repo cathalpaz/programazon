@@ -17,11 +17,19 @@ products_routes = Blueprint('products', __name__, url_prefix="/products")
 def get_products():
     products = Product.query.all()
     for i in range(len(products)):
-        reviews = Review.query.filter(Review.product_id == products[i].id)
+        reviews = Review.query.filter(Review.product_id == products[i].id).all()
+
+        if not reviews:
+            products[i] = products[i].to_dict()
+            products[i]['avg_rating'] = 0
+            continue
+
         reviews = [review.to_dict()["rating"] for review in reviews]
         avg_rating = sum(reviews) / len(reviews)
         products[i] = products[i].to_dict()
         products[i]['avg_rating'] = round(avg_rating)
+
+
     return {'products': products}
 
 
@@ -34,7 +42,13 @@ def get_single_product(id):
         error = NotFoundError('Product Not Found')
         return error.error_json()
 
-    reviews = Review.query.filter(Review.product_id == id)
+    reviews = Review.query.filter(Review.product_id == id).all()
+
+    if not reviews:
+        product = product.to_dict()
+        product['avg_rating'] = 0
+        return {'product': product}
+
     product = product.to_dict()
     ratings = [review.to_dict()["rating"] for review in reviews]
     avg_rating = sum(ratings) / len(ratings)
