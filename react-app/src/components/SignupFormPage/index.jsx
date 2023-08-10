@@ -127,7 +127,7 @@ function SignupFormPage() {
           >
             Github
           </a>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a href="https://www.amazon.com/" target="_blank" rel="noreferrer">
             Portfolio
           </a>
         </div>

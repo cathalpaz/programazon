@@ -32,7 +32,7 @@ function Navigation(){
 		<div className='nav__wrapper'>
 			<div className='nav__container'>
 				<NavLink exact to="/" className='nav__logo'>
-					<img src='/images/programazon.png'></img>
+					<img src='/images/programazon.png' alt='logo'></img>
 				</NavLink>
 				<div className='nav__selling'>
 					<p>Selling items?</p>
@@ -48,7 +48,7 @@ function Navigation(){
 					<i className="fa-solid fa-magnifying-glass search-icon"></i>
 				</div>
 				<div className='nav__lang'>
-					<img src='/images/flag.png' />
+					<img src='/images/flag.png' alt='lang'/>
 					<span>EN</span>
 				</div>
 				{sessionUser ? (

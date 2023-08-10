@@ -11,7 +11,7 @@ def seed_products():
         description = 'An in-depth video tutorial series on JavaScript, including modern frameworks like React and Node.js.',
         seller_id = 1,
         category = 'Courses/Tutorials',
-        image = 'image1.png',
+        image = 'https://m.media-amazon.com/images/I/51ihPoessmL.jpg',
         stock_quantity = 5
     )
     product2 = Product(
@@ -20,7 +20,7 @@ def seed_products():
         description = 'An online course that dives into data science concepts and machine learning algorithms.',
         seller_id = 2,
         category = 'Courses/Tutorials',
-        image = 'image2.png',
+        image = 'https://m.media-amazon.com/images/I/51ihPoessmL.jpg',
         stock_quantity = 1
     )
     product3 = Product(
@@ -29,7 +29,7 @@ def seed_products():
         description = 'An in-depth tutorial series on using Amazon Web Services for cloud computing and deployment.',
         seller_id = 3,
         category = 'Courses/Tutorials',
-        image = 'image3.png',
+        image = 'https://m.media-amazon.com/images/I/51ihPoessmL.jpg',
         stock_quantity = 3
     )
     product4 = Product(
@@ -38,7 +38,7 @@ def seed_products():
         description = 'Compact power banks for charging devices on the go.',
         seller_id = 3,
         category = 'Accessories',
-        image = 'image4.png',
+        image = 'https://m.media-amazon.com/images/I/51ihPoessmL.jpg',
         stock_quantity = 5
     )
     product5 = Product(
@@ -47,7 +47,7 @@ def seed_products():
         description = 'Convenient wireless chargers for smartphones and other devices.',
         seller_id = 2,
         category = 'Accessories',
-        image = 'image5.png',
+        image = 'https://m.media-amazon.com/images/I/51ihPoessmL.jpg',
         stock_quantity = 10
     )
     product6 = Product(
@@ -56,7 +56,7 @@ def seed_products():
         description = 'Cases with built-in wallets, stands, or battery packs.',
         seller_id = 3,
         category = 'Accessories',
-        image = 'image6.png',
+        image = 'https://m.media-amazon.com/images/I/51ihPoessmL.jpg',
         stock_quantity = 5
     )
     product7 = Product(
@@ -65,7 +65,7 @@ def seed_products():
         description = 'Plugs that turn regular devices into smart devices.',
         seller_id = 3,
         category = 'Accessories',
-        image = 'image7.png',
+        image = 'https://m.media-amazon.com/images/I/51ihPoessmL.jpg',
         stock_quantity = 5
     )
 

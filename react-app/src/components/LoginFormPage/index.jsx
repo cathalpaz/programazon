@@ -78,7 +78,7 @@ function LoginFormPage() {
         <div className="login__footer-links">
           <a href="https://www.linkedin.com/in/cathal-paz-052239263/" rel="noreferrer" target="_blank">Linkedin</a>
           <a href="https://github.com/cathalpaz" target="_blank" rel="noreferrer">Github</a>
-          <a href="#" target="_blank" rel="noreferrer">Portfolio</a>
+          <a href="https://www.amazon.com/" target="_blank" rel="noreferrer">Portfolio</a>
         </div>
         <div className="login__copyright">©Programazon by Cathal Paz</div>
       </div>
