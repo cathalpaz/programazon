@@ -20,6 +20,8 @@ function ProductInfo() {
     return <Loading />
   }
 
+  const descriptionList = product?.description.split('. ')
+
   console.log(product)
   return (
     <div className='product__container'>
@@ -35,21 +37,30 @@ function ProductInfo() {
           </div>
           <p className='product__price'><p>$</p><span>{product?.price}</span></p>
           <img src='/images/prime-logo.png' alt='prime' className='prime-logo' />
-          <span>{product?.description}</span>
+          <span className='product__returns'>FREE Returns</span>
+          <p className='product__prime-visa'>Pay <span>${(product?.price / 6).toFixed(2)} for 6 months</span>, interest-free upon approval for Programazon Prime</p>
+          <div className='product__description'>
+            <h4>About this item</h4>
+            <ul className='product__description-list'>
+              {descriptionList.map(sentence => (
+                <li>{sentence}</li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className='product__display-buy'>
-          <span>Buy new:</span>
-          <span>${product?.price}</span>
+          <span className='product__buy-title'>Buy new:</span>
+          <p className='product__price'><p>$</p><span>{product?.price}</span></p>
           <img src='/images/prime-logo.png' alt='prime' className='prime-logo' />
-          <span>FREE Returns</span>
-          <span>FREE delivery <p>Fri, February 30.</p></span>
-          <span>Order within 61 mins</span>
+          <span className='product__returns'>FREE Returns</span>
+          <p className='product__buy-delivery'>FREE delivery <span>Friday, February 30.</span></p>
+          <p className='product__buy-delivery-order'>Order within <span>61 mins</span></p>
           {currentUser ? (
-            <span><i className="fa-solid fa-location-dot"></i>Deliver to {currentUser?.username} - {currentUser?.address}</span>
+            <p className='product__buy-address'><i className="fa-solid fa-location-dot"></i><span>Deliver to {currentUser?.username} - {currentUser?.address}</span></p>
           ) : null}
           {product?.stock_quantity > 0 ? (
-            <span>In Stock <p>Only {product?.stock_quantity} left in stock.</p></span>
-          ) : <span>Out of Stock</span>}
+            <p className='product__buy-in-stock'>In Stock <span>Only {product?.stock_quantity} left in stock.</span></p>
+          ) : <p className='product_buy-no-stock'>Out of Stock</p>}
           <span>More information</span>
         </div>
       </div>

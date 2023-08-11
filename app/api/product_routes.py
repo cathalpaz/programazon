@@ -29,7 +29,7 @@ def get_products():
         avg_rating = sum(rating_reviews) / len(rating_reviews)
         products[i] = products[i].to_dict()
         products[i]['reviews'] = [review.to_dict() for review in reviews]
-        products[i]['avg_rating'] = round(avg_rating)
+        products[i]['avg_rating'] = round(avg_rating, 1)
 
 
     return {'products': products}
@@ -56,7 +56,7 @@ def get_single_product(id):
     ratings = [review.to_dict()["rating"] for review in reviews]
     avg_rating = sum(ratings) / len(ratings)
     product["reviews"] = [review.to_dict() for review in reviews]
-    product['avg_rating'] = round(avg_rating)
+    product['avg_rating'] = round(avg_rating, 1)
 
     return {'product': product}
 
