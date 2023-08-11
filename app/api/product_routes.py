@@ -22,11 +22,13 @@ def get_products():
         if not reviews:
             products[i] = products[i].to_dict()
             products[i]['avg_rating'] = 0
+            products[i]['reviews'] = []
             continue
 
-        reviews = [review.to_dict()["rating"] for review in reviews]
-        avg_rating = sum(reviews) / len(reviews)
+        rating_reviews = [review.to_dict()["rating"] for review in reviews]
+        avg_rating = sum(rating_reviews) / len(rating_reviews)
         products[i] = products[i].to_dict()
+        products[i]['reviews'] = [review.to_dict() for review in reviews]
         products[i]['avg_rating'] = round(avg_rating)
 
 
@@ -47,6 +49,7 @@ def get_single_product(id):
     if not reviews:
         product = product.to_dict()
         product['avg_rating'] = 0
+        product['reviews'] = []
         return {'product': product}
 
     product = product.to_dict()

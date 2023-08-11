@@ -1,0 +1,29 @@
+.products__container {
+
+}
+
+.products__header {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.582);
+    box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.329);
+    padding: 8px 0;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.products__header > p {
+    font-size: 14px;
+}
+
+.products__header > p > span {
+    color: #c45500;
+    font-weight: 700;
+}
+
+.products__list {
+
+}
+
+.product__img > img {
+    height: 200px;
+}
