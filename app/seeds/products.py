@@ -6,12 +6,12 @@ from sqlalchemy.sql import text
 
 def seed_products():
     product1 = Product(
-        name = 'JavaScript Masterclass',
-        price = 10,
-        description = 'An in-depth video tutorial series on JavaScript, including modern frameworks like React and Node.js.',
+        name = 'Programmable Mechanical Keyboard for Coding: Corsair K95 RGB Platinum Mechanical Gaming Keyboard',
+        price = 50,
+        description = 'The Corsair K95 RGB Platinum is a top-tier mechanical keyboard designed for intense gaming and coding sessions. It features Cherry MX mechanical key switches, which offer tactile feedback and durability. With 18 fully programmable G-keys, you can assign complex macros or commonly used code snippets for quick access. The keyboard also boasts customizable RGB backlighting with per-key lighting control, allowing you to create a personalized coding environment.',
         seller_id = 1,
-        category = 'Courses/Tutorials',
-        image = 'https://m.media-amazon.com/images/I/51ihPoessmL.jpg',
+        category = 'Accessories',
+        image = 'https://m.media-amazon.com/images/I/71PzW7vZNUL._AC_UY218_.jpg',
         stock_quantity = 5
     )
     product2 = Product(

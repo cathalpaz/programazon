@@ -5,3 +5,60 @@
 .prime-logo {
     width: 53px;
 }
+
+.product__container {
+    height: 100vh;
+}
+
+.product__display-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 0.75fr;
+    gap: 1.2rem;
+    padding: 40px 20px;
+}
+
+.product__display-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.product__name {
+    font-size: 24px;
+}
+
+.product__category {
+    font-size: 14px;
+    color: #007185;
+    cursor: pointer;
+}
+
+.product__display-reviews {
+   font-size: 14px;
+   display: flex;
+   gap: 0.3rem;
+   border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+   padding-bottom: 8px;
+}
+
+.product__stars {
+    color: gold;
+}
+
+.product__display-reviews > p {
+    padding-left: 10px;
+    color: #007185;
+}
+
+.product__price {
+    font-size: 13px;
+    display: flex;
+}
+
+.product__price > p {
+    padding-top: 5px;
+}
+
+.product__price > span {
+    font-size: 28px;
+}

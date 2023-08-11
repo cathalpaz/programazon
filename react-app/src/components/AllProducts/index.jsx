@@ -49,6 +49,7 @@ function AllProducts() {
                 </div>
                 <div className='product__right-info'>
                   <div className='product__right-info-left'>
+                    <span className='product__right-count'>1 Count (Pack of 1)</span>
                     <span className='product__right-rating'>{product?.avg_rating} stars<p>{product?.reviews?.length}</p></span>
                     <span className='product__right-price'><span>$</span><p>{product?.price}</p></span>
                   </div>

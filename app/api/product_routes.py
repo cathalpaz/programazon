@@ -154,3 +154,11 @@ def get_my_products():
         return error.error_json()
 
     return {'products': [product.to_dict() for product in products]}
+
+
+
+# REVIEWS
+
+
+# CREATE review for product
+# @products.routes

@@ -15,7 +15,7 @@ class Review(db.Model):
     content = db.Column(db.Text)
     rating = db.Column(db.Integer)
     # AWS setup later
-    image = db.Column(db.String(100))
+    image = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
