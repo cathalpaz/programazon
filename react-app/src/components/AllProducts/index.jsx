@@ -21,31 +21,39 @@ function AllProducts() {
       <div className='products__header'>
         <p>1 - 8 of {allProducts.length} results for <span>"All"</span></p>
       </div>
-      <div className='products__list'>
-        <h3>Results</h3>
-        {allProducts.map(product => (
-          <div className='products__product' key={product.id}>
-            {console.log(product)}
-            <div className='product__img'>
-              <img src={product?.image} />
-            </div>
-            <div className='product__right-container'>
-              <div className='product__right-name'>
-                <span>{product?.name}</span>
+      <div className='products__content'>
+        <div className='products__content-left'>
+          <p>Delivery</p>
+          <span>Get It by Tomorrow</span>
+          <p>Customer Reviews</p>
+          <p>Brands</p>
+        </div>
+        <div className='products__list'>
+          <h3>Results</h3>
+          {allProducts.map(product => (
+            <div className='products__product' key={product.id}>
+              {console.log(product)}
+              <div className='product__img'>
+                <img src={product?.image} />
               </div>
-              <div className='product__right-info'>
-                <div className='product__right-info-left'>
-                  <span>{product?.avg_rating}<p>{product?.reviews?.length}</p></span>
-                  <span>${product?.price}</span>
+              <div className='product__right-container'>
+                <div className='product__right-name'>
+                  <span>{product?.name}</span>
                 </div>
-                <div className='product__right-info-right'>
-                  <img src='/images/prime-logo.png' alt='prime'></img>
-                  <p>FREE delivery <span>Fri, Feb 30</span></p>
+                <div className='product__right-info'>
+                  <div className='product__right-info-left'>
+                    <span className='product__right-rating'>{product?.avg_rating} stars<p>{product?.reviews?.length}</p></span>
+                    <span className='product__right-price'>$<p>{product?.price}</p></span>
+                  </div>
+                  <div className='product__right-info-right'>
+                    <img src='/images/prime-logo.png' alt='prime'></img>
+                    <p>FREE delivery <span>Fri, Feb 30</span></p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   )
