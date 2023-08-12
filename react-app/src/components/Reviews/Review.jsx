@@ -11,9 +11,10 @@ function Review({ review }) {
         </div>
         <div className='review__subheader'>
             <p>{review?.rating} stars</p>
-            <p>{review?.title}</p>
+            <span>{review?.title}</span>
         </div>
-        <span>Reviewed on {dayjs(review?.created_at).format('MMMM D, YYYY')}</span>
+        <span>Reviewed in the United States on {dayjs(review?.created_at).format('MMMM D, YYYY')}</span>
+        <div className='review__verified'>Verified Purchase</div>
         <p>{review?.content}</p>
         {review?.image && (
             <img src={review?.image} />

@@ -34,10 +34,8 @@ function Reviews({ product }) {
                 <h4>Review this product</h4>
                 <span>Share your thoughts with other customers</span>
                 <button>Write a customer review</button>
-
             </div>
         </div>
-
         <div className='reviews__right'>
             <h4>Top reviews from customers</h4>
             {product?.reviews.map(review => {
