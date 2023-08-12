@@ -19,20 +19,23 @@ function Reviews({ product }) {
         <div className='reviews__left'>
             <h3>Customer reviews</h3>
             <div className='reviews__rating'>
-                <p>stars</p>
+                <p>gold stars</p>
                 <p>{product?.avg_rating} out of 5</p>
+            </div>
             <p>{product?.reviews?.length} global ratings</p>
             <div className='reviews__rating-percent'>
-                <span>5 star {ratingPercentage(5)}%</span>
-                <span>4 star {ratingPercentage(4)}%</span>
-                <span>3 star {ratingPercentage(3)}%</span>
-                <span>2 star {ratingPercentage(2)}%</span>
-                <span>1 star {ratingPercentage(1)}%</span>
+                <span>5 star - {ratingPercentage(5)}%</span>
+                <span>4 star - {ratingPercentage(4)}%</span>
+                <span>3 star - {ratingPercentage(3)}%</span>
+                <span>2 star - {ratingPercentage(2)}%</span>
+                <span>1 star - {ratingPercentage(1)}%</span>
             </div>
+            <div className='reviews__create-review'>
+                <h4>Review this product</h4>
+                <span>Share your thoughts with other customers</span>
+                <button>Write a customer review</button>
+
             </div>
-            <h4>Review this product</h4>
-            <span>Share your thoughts with other customers</span>
-            <button>Write a customer review</button>
         </div>
 
         <div className='reviews__right'>

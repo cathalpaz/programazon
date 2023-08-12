@@ -37,5 +37,6 @@ class Review(db.Model):
             'title': self.title,
             'content': self.content,
             'rating': self.rating,
-            'image': self.image
+            'image': self.image,
+            'created_at': self.created_at
         }

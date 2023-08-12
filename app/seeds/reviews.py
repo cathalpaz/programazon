@@ -15,9 +15,10 @@ def seed_reviews():
     review2 = Review(
         product_id = 1,
         buyer_id = 2,
-        title = 'Mind blowing course!',
-        content = "I went from knowing nothing about hacking to feeling like a true mastermind. The step-by-step tutorials are incredibly detailed, and the instructor's expertise shines through. I learned how to bypass firewalls, crack passwords, and even perform advanced cyber attacks.",
+        title = 'Mind blowing keyboard!',
+        content = "Wow, where do I even begin with the Corsair K95 RGB Platinum Mechanical Gaming Keyboard? This keyboard is so advanced that it practically codes itself! The programmable keys are like little genies granting your coding wishes, and the mechanical switches provide a tactile experience that feels like typing on clouds.",
         rating = 5,
+        image = 'https://m.media-amazon.com/images/I/716DktHch2L._SY88.jpg'
     )
     review3 = Review(
         product_id = 1,
@@ -25,7 +26,7 @@ def seed_reviews():
         title = 'Scam Alert',
         content = "Course is a complete scam. The tutorials are vague and lack any real substance. The instructor's so-called expertise is questionable at best. I didn't learn anything useful, and I feel like I've wasted my time and money. Stay far away from this rip-off.",
         rating = 1,
-        image = 'image.jpg'
+        image = 'https://9to5toys.com/wp-content/uploads/sites/5/2022/05/corsair-k70-rgb-pro-1.jpg'
     )
     review4 = Review(
         product_id = 3,
