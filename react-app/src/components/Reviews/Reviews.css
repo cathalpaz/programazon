@@ -1,0 +1,26 @@
+.reviews__container {
+    border-top: 1px solid rgba(128, 128, 128, 0.295);
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2.5rem;
+    max-width: 1500px;
+    padding: 40px 40px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.reviews__left {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.reviews__right {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews__rating-percent {
+    display: flex;
+    flex-direction: column;
+}

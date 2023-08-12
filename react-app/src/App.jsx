@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import AllProducts from "./components/AllProducts";
 import ProductInfo from "./components/ProductInfo";
+// import Reviews from "./components/Reviews";
 
 function App() {
   const dispatch = useDispatch();

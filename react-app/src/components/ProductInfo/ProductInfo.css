@@ -12,9 +12,11 @@
 }
 
 .product__container {
-    /* height: 100vh; */
+    height: 200vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 }
 
 .product__display-container {
@@ -25,6 +27,7 @@
     padding: 40px 10px;
     overflow: hidden;
     width: 100%;
+    height: 70vh;
 }
 
 .product__display-info {

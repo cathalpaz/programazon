@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { thunkGetSingleProduct } from '../../store/products'
 import Loading from '../Loading'
+import Reviews from '../Reviews'
 import './ProductInfo.css'
 
 function ProductInfo() {
@@ -10,7 +11,7 @@ function ProductInfo() {
   const { productId } = useParams()
   const product = useSelector(state => state.products.singleProduct.product)
   const currentUser = useSelector(state => state.session.user)
-  console.log(currentUser)
+  // console.log(currentUser)
 
   useEffect(() => {
     dispatch(thunkGetSingleProduct(productId))
@@ -22,7 +23,7 @@ function ProductInfo() {
 
   const descriptionList = product?.description.split('. ')
 
-  console.log(product)
+  // console.log(product)
   return (
     <div className='product__container'>
       <div className='product__display-container'>
@@ -35,22 +36,22 @@ function ProductInfo() {
             <span className='product__stars'> 1 2 3 4 5 </span>
             <p>{product?.reviews?.length} rating(s)</p>
           </div>
-          <p className='product__price'><p>$</p><span>{product?.price}</span></p>
+          <div className='product__price'><p>$</p><span>{product?.price}</span></div>
           <img src='/images/prime-logo.png' alt='prime' className='prime-logo' />
           <span className='product__returns'>FREE Returns</span>
           <p className='product__prime-visa'>Pay <span>${(product?.price / 6).toFixed(2)} for 6 months</span>, interest-free upon approval for Programazon Prime</p>
           <div className='product__description'>
             <h4>About this item</h4>
             <ul className='product__description-list'>
-              {descriptionList.map(sentence => (
-                <li>{sentence}</li>
+              {descriptionList.map((sentence, index) => (
+                <li key={index}>{sentence}</li>
               ))}
             </ul>
           </div>
         </div>
         <div className='product__display-buy'>
           <span className='product__buy-title'>Buy new:</span>
-          <p className='product__price'><p>$</p><span>{product?.price}</span></p>
+          <div className='product__price'><p>$</p><span>{product?.price}</span></div>
           <img src='/images/prime-logo.png' alt='prime' className='prime-logo' />
           <span className='product__returns'>FREE Returns</span>
           <p className='product__buy-delivery'>FREE delivery <span>Friday, February 30.</span></p>
@@ -64,6 +65,7 @@ function ProductInfo() {
           <span>More information</span>
         </div>
       </div>
+      <Reviews product={product} />
     </div>
   )
 }
