@@ -4,8 +4,10 @@ import { useSelector } from 'react-redux';
 import CategoryHeader from './CategoryHeader';
 import Account from './Account';
 import './Navigation.css';
+import { useHistory } from 'react-router-dom';
 
 function Navigation(){
+	const history = useHistory()
 	const sessionUser = useSelector(state => state.session.user);
 	const componentRef = useRef(null);
 
@@ -21,6 +23,15 @@ function Navigation(){
 		setShowComponent(!showComponent);
 	}
 
+	const sendToLogin = () => {
+		history.push('/login')
+	}
+
+	const sendToPostProduct = () => {
+		history.push('/products/new')
+	}
+
+
 	useEffect(() => {
 		document.addEventListener('click', handleClickOutside);
 		return () => {
@@ -35,8 +46,8 @@ function Navigation(){
 					<img src='/images/programazon.png' alt='logo'></img>
 				</NavLink>
 				<div className='nav__selling'>
-					<p>Selling items?</p>
-					{sessionUser ? <span>Click to start</span> : <span>Sign in to start</span>}
+					<p>Looking to sell?</p>
+					{sessionUser ? <span onClick={sendToPostProduct}>Click to start</span> : <span onClick={sendToLogin}>Sign in to start</span>}
 				</div>
 				<div className='nav__search-bar'>
 					<div>All</div>

@@ -8,7 +8,7 @@ import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import AllProducts from "./components/AllProducts";
 import ProductInfo from "./components/ProductInfo";
-// import Reviews from "./components/Reviews";
+import PostProduct from "./components/PostProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +24,10 @@ function App() {
           <Route exact path='/'>
             <Navigation />
             <LandingPage />
+          </Route>
+          <Route exact path="/products/new" >
+            <Navigation />
+            <PostProduct />
           </Route>
           <Route exact path="/products/:productId" >
             <Navigation />

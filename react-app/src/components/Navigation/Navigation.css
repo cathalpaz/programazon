@@ -35,11 +35,13 @@
 
 .nav__box > p {
   font-size: 12px;
+  cursor: pointer;
 }
 
 .nav__selling > span, .nav__box > span {
   font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .nav__search-bar {
