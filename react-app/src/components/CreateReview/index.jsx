@@ -123,7 +123,7 @@ function CreateReview() {
                     />
             </div>
             <div className='review__submit'>
-              <button type='submit'>Submit</button>
+              <button type='submit'>{review ? 'Submit Changes' : 'Submit'}</button>
             </div>
         </form>
 

@@ -1,0 +1,44 @@
+.delete__container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.delete__container > h2 {
+    padding: 12px 10px 0 10px;
+}
+
+.delete__container > span {
+    padding: 8px 10px;
+    font-size: 16px;
+}
+
+.delete__btns {
+    background-color: #e4fbff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 12px 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    font-size: 14px;
+}
+
+.delete__btns > button {
+    border: none;
+    background-color: red;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.delete__btns > span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.delete__btns > button:hover {
+    background-color: rgba(255, 0, 0, 0.623);
+}

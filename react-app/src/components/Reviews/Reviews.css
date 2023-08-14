@@ -135,3 +135,30 @@
     max-height: 200px;
     max-width: 200px;
 }
+
+.review__user-btns {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.review__user-edit {
+    font-size: 13px;
+    background: none;
+    border: 1px solid rgba(128, 128, 128, 0.356);
+    box-shadow: 1px 1px 1px rgba(128, 128, 128, 0.24);
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 8px;
+
+}
+
+.review__user-delete > button{
+    color: red;
+    border: none;
+    background: none;
+    border-left: 1px solid rgba(128, 128, 128, 0.295);
+    padding-left: 8px;
+    cursor: pointer;
+}

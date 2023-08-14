@@ -34,11 +34,14 @@ function Review({ review }) {
         )}
         {user?.id === review?.buyer_id ? (
           <div className='review__user-btns'>
-            <button onClick={sendToEditReview}>Edit</button>
-            <OpenModalButton
-              modalComponent={<DeleteModal type={'review'} feature={review} />}
-              buttonText='Delete'
-              />
+            <button onClick={sendToEditReview} className='review__user-edit'>Edit</button>
+            <div className='review__user-delete'>
+              <OpenModalButton
+                modalComponent={<DeleteModal type={'review'} feature={review} />}
+                buttonText='Delete'
+                />
+
+            </div>
           </div>
         ) : null}
     </div>

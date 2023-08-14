@@ -3,6 +3,7 @@ import { useModal } from '../../context/Modal'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { thunkDeleteReview } from '../../store/reviews'
+import './DeleteModal.css'
 
 function DeleteModal({ type, feature }) {
   const history = useHistory()
@@ -28,7 +29,7 @@ function DeleteModal({ type, feature }) {
 
   return (
     <div className='delete__container'>
-        <h4>Delete {type === 'review' ? ('Review') : ('Product')}</h4>
+        <h2>Delete {type === 'review' ? ('Review') : ('Product')}</h2>
         <span>Are you sure you want to delete your {type === 'review' ? ('review') : ('product')}?</span>
         <div className='delete__btns'>
             <span onClick={closeModal}>Cancel</span>
