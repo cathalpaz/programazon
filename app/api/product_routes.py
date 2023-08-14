@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 
 from ..models import db, Product, Review
-from ..forms import ProductForm, ReviewForm, UpdateProductForm
+from ..forms import ProductForm, UpdateProductForm, ReviewForm
 
 from .error_helpers import NotFoundError, ForbiddenError
 from .auth_routes import validation_errors_to_error_messages
@@ -161,4 +161,27 @@ def get_my_products():
 
 
 # CREATE review for product
-# @products.routes
+@products_routes.route("/<int:id>/reviews", methods=['POST'])
+@login_required
+def post_product_review(id):
+    product = Product.query.get(id)
+
+    if not product:
+        error = NotFoundError('Product Not Found')
+        return error.error_json()
+
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review = Review(
+            title = form.data["title"],
+            content = form.data["content"],
+            rating = form.data["rating"],
+            image = form.data["image"],
+            buyer_id = current_user.id,
+            product_id = product.id
+        )
+        db.session.add(review)
+        db.session.commit()
+        return {"review": review.to_dict()}, 201
+    return {"errors": validation_errors_to_error_messages(form.errors)}, 400
