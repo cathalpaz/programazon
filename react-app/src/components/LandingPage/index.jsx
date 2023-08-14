@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { thunkGetProducts } from "../../store/products";
 import Loading from "../Loading";
+import { useHistory } from 'react-router-dom';
 import "./LandingPage.css";
 
 function LandingPage() {
+    const history = useHistory()
     const dispatch = useDispatch()
     const allProducts = useSelector(state => Object.values(state.products.allProducts))
 
@@ -23,6 +25,11 @@ function LandingPage() {
     if (!allProducts.length) return (
         <Loading />
     )
+
+    const sendToProduct = (id) => {
+        history.push(`/products/${id}`)
+    }
+
 
     return (
         <div className="landing__container">
@@ -56,7 +63,7 @@ function LandingPage() {
                     <h3>Top Rated Products</h3>
                     <div className="landing__trending-products">
                         {topRatedProducts.map(product => (
-                            <div className="landing__trending-product" key={product?.id}>
+                            <div className="landing__trending-product" key={product?.id} onClick={(() => sendToProduct(product?.id))} >
                                 <img src={product?.image} alt="product" />
                                 <span>{product?.name}</span>
                             </div>
