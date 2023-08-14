@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../Loading';
 import { thunkGetSingleProduct } from '../../store/products';
 import { useParams, useHistory } from 'react-router-dom'
-import './CreateReview.css';
-import { thunkCreateReview } from '../../store/reviews';
+import { thunkCreateReview, thunkEditReview } from '../../store/reviews';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import './CreateReview.css';
 
 
 function CreateReview() {
@@ -21,8 +21,6 @@ function CreateReview() {
     review = location.state.review
 
   }
-
-  console.log('HERES REVIEW', review)
 
   const [rating, setRating] = useState(review?.rating ?? 0);
   const [title, setTitle] = useState(review?.title ?? "");
@@ -41,8 +39,7 @@ function CreateReview() {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
-    console.log('review submitted')
-    // const formData = new FormData()
+
     const newReview = {
         product_id: product?.id,
         buyer_id: user?.id,
@@ -51,17 +48,32 @@ function CreateReview() {
         rating,
         image
     }
-    const res = await dispatch(thunkCreateReview(newReview, product?.id))
-    console.log(res)
-
+    const editReview = {
+      id: review?.id,
+      product_id: product?.id,
+      buyer_id: user?.id,
+      title,
+      content,
+      rating,
+      image
+    }
+    
+    if (!review) {
+      await dispatch(thunkCreateReview(newReview, product?.id))
+    } else {
+      await dispatch(thunkEditReview(editReview))
+    }
     history.push(`/products/${product?.id}`)
-
   }
 
   return (
     <div className='review-form__container'>
         <div className='review-form__header'>
-            <h2>Create Review</h2>
+            {review ? (
+              <h2>Edit Review</h2>
+            ) : (
+              <h2>Create Review</h2>
+            )}
             <div className='review-form__header-info'>
                 <img src={product?.image} alt='product' />
                 <span>{product?.name}</span>

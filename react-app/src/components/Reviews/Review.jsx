@@ -1,21 +1,13 @@
 import dayjs from 'dayjs';
-import { useState } from 'react'
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { thunkGetUsers } from '../../store/users';
-import CreateReview from '../CreateReview';
+import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
 function Review({ review }) {
-  const dispatch = useDispatch()
   const history = useHistory()
 
   const user = useSelector(state => state.session.user);
-
-  const [components, setComponents] = useState(false)
-
 
   const sendToEditReview = () => {
     history.push(`/products/${review?.product_id}/review`, { review })
