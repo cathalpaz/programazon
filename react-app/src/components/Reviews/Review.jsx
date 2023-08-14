@@ -3,11 +3,13 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { thunkGetUsers } from '../../store/users';
+import OpenModalButton from '../OpenModalButton';
 
 
 function Review({ review }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session.user);
+
 
 
   console.log(review)

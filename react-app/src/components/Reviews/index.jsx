@@ -1,10 +1,13 @@
 import React from 'react'
 import Review from './Review'
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import './Reviews.css'
 
 function Reviews({ product }) {
   const history = useHistory()
+  const currentUser = useSelector(state => state.session.user)
+
 
   const ratingPercentage = (n) => {
     let count = 0
@@ -18,6 +21,9 @@ function Reviews({ product }) {
 
   const sendToReviewForm = () => {
     history.push(`/products/${product?.id}/review`)
+  }
+  const sendToLogin = () => {
+    history.push('/login')
   }
 
   return (
@@ -39,7 +45,11 @@ function Reviews({ product }) {
             <div className='reviews__create-review'>
                 <h4>Review this product</h4>
                 <span>Share your thoughts with other customers</span>
-                <button onClick={sendToReviewForm}>Write a customer review</button>
+                {currentUser ? (
+                    <button onClick={sendToReviewForm}>Write a customer review</button>
+                ) : (
+                    <button onClick={sendToLogin}>Write a customer review</button>
+                )}
             </div>
         </div>
         <div className='reviews__right'>

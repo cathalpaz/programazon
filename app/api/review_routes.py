@@ -50,10 +50,9 @@ def edit_review(id):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        review.title = form.data['title'],
-        review.content = form.data['content'],
-        review.rating = form.data['rating'],
-        review.image = form.data['image'],
+        for field in form.data:
+            if field != 'csrf_token' and field != 'file':
+                setattr(review, field, form.data[field])
 
         db.session.commit()
         return {"review": review.to_dict()}

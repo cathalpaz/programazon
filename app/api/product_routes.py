@@ -111,11 +111,12 @@ def edit_product(id):
         error = ForbiddenError('Not your product!')
         return error.error_json()
 
-    form = UpdateProductForm()
+    form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        if form.data['description']:
-            product.description = form.data['description']
+        for field in form.data:
+            if field != 'csrf_token' and field != 'file':
+                setattr(product, field, form.data[field])
 
 
         db.session.commit()
