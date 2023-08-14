@@ -1,8 +1,10 @@
 import React from 'react'
 import Review from './Review'
+import { useHistory } from 'react-router-dom'
 import './Reviews.css'
 
 function Reviews({ product }) {
+  const history = useHistory()
 
   const ratingPercentage = (n) => {
     let count = 0
@@ -12,6 +14,10 @@ function Reviews({ product }) {
         }
     }
     return Math.round(count / product?.reviews.length * 100)
+  }
+
+  const sendToReviewForm = () => {
+    history.push(`/products/${product?.id}/review`)
   }
 
   return (
@@ -33,7 +39,7 @@ function Reviews({ product }) {
             <div className='reviews__create-review'>
                 <h4>Review this product</h4>
                 <span>Share your thoughts with other customers</span>
-                <button>Write a customer review</button>
+                <button onClick={sendToReviewForm}>Write a customer review</button>
             </div>
         </div>
         <div className='reviews__right'>

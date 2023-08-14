@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage";
 import AllProducts from "./components/AllProducts";
 import ProductInfo from "./components/ProductInfo";
 import PostProduct from "./components/PostProduct";
+import CreateReview from "./components/CreateReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,10 @@ function App() {
           <Route exact path="/products/:productId" >
             <Navigation />
             <ProductInfo />
+          </Route>
+          <Route exact path="/products/:productId/review" >
+            <Navigation />
+            <CreateReview />
           </Route>
           <Route path="/login" >
             <LoginFormPage />

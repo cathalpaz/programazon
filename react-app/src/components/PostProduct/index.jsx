@@ -23,8 +23,8 @@ function PostProduct() {
   const handleSubmit = async(e) => {
     e.preventDefault()
     console.log('submitted')
-    const formData = new FormData()
-    console.log(typeof(formData))
+    // const formData = new FormData()
+    // console.log(typeof(formData))
     const newProduct = {
       name,
       price,
