@@ -1,18 +1,28 @@
 import dayjs from 'dayjs';
-import React from 'react'
+import { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { thunkGetUsers } from '../../store/users';
-import OpenModalButton from '../OpenModalButton';
+import CreateReview from '../CreateReview';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 
 function Review({ review }) {
   const dispatch = useDispatch()
+  const history = useHistory()
+
   const user = useSelector(state => state.session.user);
 
+  const [components, setComponents] = useState(false)
 
 
-  console.log(review)
+  const sendToEditReview = () => {
+    history.push(`/products/${review?.product_id}/review`, { review })
+  }
+
+
+  // console.log(review)
   return (
     <div className='review__container'>
         <div className='review__header'>
@@ -31,7 +41,7 @@ function Review({ review }) {
         )}
         {user?.id === review?.buyer_id ? (
           <div className='review__user-btns'>
-            <button>Edit</button>
+            <button onClick={sendToEditReview}>Edit</button>
             <span>Delete</span>
           </div>
         ) : null}

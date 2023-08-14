@@ -10,6 +10,7 @@ import AllProducts from "./components/AllProducts";
 import ProductInfo from "./components/ProductInfo";
 import PostProduct from "./components/PostProduct";
 import CreateReview from "./components/CreateReview";
+import EditReview from "./components/EditReview";
 
 function App() {
   const dispatch = useDispatch();

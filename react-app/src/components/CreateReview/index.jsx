@@ -5,6 +5,7 @@ import { thunkGetSingleProduct } from '../../store/products';
 import { useParams, useHistory } from 'react-router-dom'
 import './CreateReview.css';
 import { thunkCreateReview } from '../../store/reviews';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 function CreateReview() {
@@ -12,15 +13,21 @@ function CreateReview() {
   const dispatch = useDispatch()
   const { productId } = useParams()
   const history = useHistory()
-
   const product = useSelector(state => state.products.singleProduct.product)
 
-  console.log(product)
+  const location = useLocation()
+  let review = null
+  if (location.state) {
+    review = location.state.review
 
-  const [rating, setRating] = useState(0);
-  const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
-  const [content, setContent] = useState("");
+  }
+
+  console.log('HERES REVIEW', review)
+
+  const [rating, setRating] = useState(review?.rating ?? 0);
+  const [title, setTitle] = useState(review?.title ?? "");
+  const [image, setImage] = useState(review?.image ?? "");
+  const [content, setContent] = useState(review?.content ?? "");
   const [errors, setErrors] = useState({});
 
 
@@ -31,7 +38,7 @@ function CreateReview() {
   if (!product) {
     return <Loading />
   }
-  console.log('ERRORS', errors)
+
   const handleSubmit = async(e) => {
     e.preventDefault()
     console.log('review submitted')
