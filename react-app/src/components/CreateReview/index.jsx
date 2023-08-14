@@ -57,7 +57,7 @@ function CreateReview() {
       rating,
       image
     }
-    
+
     if (!review) {
       await dispatch(thunkCreateReview(newReview, product?.id))
     } else {
@@ -68,11 +68,12 @@ function CreateReview() {
 
   return (
     <div className='review-form__container'>
+      <div className='review-form__content'>
         <div className='review-form__header'>
             {review ? (
-              <h2>Edit Review</h2>
+              <h1>Edit Review</h1>
             ) : (
-              <h2>Create Review</h2>
+              <h1>Create Review</h1>
             )}
             <div className='review-form__header-info'>
                 <img src={product?.image} alt='product' />
@@ -80,8 +81,8 @@ function CreateReview() {
             </div>
         </div>
         <form onSubmit={handleSubmit}>
-            <div className='review-form__rating'>
-                <label for="rating">Overall Rating</label>
+            <div className='review-form__input'>
+                <label htmlFor="rating">Overall Rating</label>
                 <input
                     type='number'
                     id='rating'
@@ -91,8 +92,8 @@ function CreateReview() {
                     max={5}
                     />
             </div>
-            <div className='review-form__title'>
-                <label for='title'>Add a headline</label>
+            <div className='review-form__input'>
+                <label htmlFor='title'>Add a headline</label>
                 <input
                     id='title'
                     type='text'
@@ -101,8 +102,8 @@ function CreateReview() {
                     placeholder="What's most import to know?"
                     />
             </div>
-            <div className='review-form__image'>
-                <label for='image'>Add a photo or video</label>
+            <div className='review-form__input'>
+                <label htmlFor='image'>Add a photo or video</label>
                 <span>Shoppers find images and videos more helpful than text alone</span>
                 <input
                     id='image'
@@ -111,8 +112,8 @@ function CreateReview() {
                     onChange={e => setImage(e.target.value)}
                     />
             </div>
-            <div className='review-form__content'>
-                <label for='content'>Add a written review</label>
+            <div className='review-form__input'>
+                <label htmlFor='content'>Add a written review</label>
                 <textarea
                     id='content'
                     type='text'
@@ -121,8 +122,12 @@ function CreateReview() {
                     placeholder='What did you like or dislike? What did you use this product for?'
                     />
             </div>
-            <button type='submit'>Submit</button>
+            <div className='review__submit'>
+              <button type='submit'>Submit</button>
+            </div>
         </form>
+
+      </div>
     </div>
   )
 }
