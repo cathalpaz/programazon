@@ -17,7 +17,7 @@ function Review({ review }) {
         <div className='review__verified'>Verified Purchase</div>
         <p>{review?.content}</p>
         {review?.image && (
-            <img src={review?.image} />
+            <img src={review?.image} alt='review' />
         )}
     </div>
   )

@@ -1,6 +1,7 @@
 // TYPES
 const GET_PRODUCTS = 'products/getProducts';
 const GET_SINGLE_PRODUCT = 'products/getSingleProduct';
+const CREATE_PRODUCT = 'products/createProduct';
 
 
 
@@ -20,6 +21,12 @@ const actionGetSingleProduct = (product) => {
     }
 }
 
+const actionCreateProduct = (product) => {
+    return {
+        type: CREATE_PRODUCT,
+        payload: product
+    }
+}
 
 
 // THUNKS
@@ -48,6 +55,23 @@ export const thunkGetSingleProduct = (id) => async(dispatch) => {
 
 }
 
+export const thunkCreateProduct = (product) => async(dispatch) => {
+    const res = await fetch('/api/products/new', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+    })
+    console.log(res);
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(actionCreateProduct(data.product))
+        return data
+    } else {
+        const errData = await res.json();
+        return errData;
+    }
+}
+
 
 // REDUCER
 const initialState = { allProducts: {}, singleProduct: {} };
@@ -64,6 +88,12 @@ const productReducer = (state = initialState, action) => {
         }
         case GET_SINGLE_PRODUCT: {
             return { ...state, singleProduct: action.payload }
+        }
+        case CREATE_PRODUCT: {
+            const newState = { ...state }
+            const allProducts = { ...state.allProducts, [action.payload.id]: action.payload, };
+            newState.allProducts = allProducts
+            return newState
         }
         default:
             return state

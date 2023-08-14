@@ -92,7 +92,7 @@ def post_product():
         )
         db.session.add(product)
         db.session.commit()
-        return product.to_dict(), 201
+        return {"product": product.to_dict()}, 201
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
