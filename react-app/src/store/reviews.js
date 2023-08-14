@@ -1,6 +1,7 @@
 // TYPES
 const CREATE_REVIEW = 'reviews/createReview';
 const EDIT_REVIEW = 'reviews/editReview';
+const DELETE_REVIEW = 'reviews/deleteReview';
 
 
 // ACTIONS
@@ -14,6 +15,12 @@ const actionEditReview = (review) => {
     return {
         type: EDIT_REVIEW,
         payload: review
+    }
+}
+const actionDeleteReview = (reviewId) => {
+    return {
+        type: DELETE_REVIEW,
+        payload: reviewId
     }
 }
 
@@ -47,6 +54,19 @@ export const thunkEditReview = (review) => async(dispatch) => {
         return errData;
     }
 }
+export const thunkDeleteReview = (reviewId) => async(dispatch) => {
+    const res = await fetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(actionDeleteReview(reviewId))
+        return data
+    } else {
+        const errData = await res.json();
+        return errData;
+    }
+}
 
 
 // REDUCER
@@ -62,6 +82,13 @@ const reviewReducer = (state = initialState, action) => {
         case EDIT_REVIEW: {
             const newState = { ...state }
             newState.productReviews[action.payload.id] = action.payload
+            return newState
+        }
+        case DELETE_REVIEW: {
+            const newState = { ...state }
+            console.log('state: ', newState);
+            console.log('payload:', action.payload);
+            delete newState.productReviews[action.payload]
             return newState
         }
         default:

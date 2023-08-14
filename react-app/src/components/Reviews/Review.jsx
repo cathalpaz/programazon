@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-
+import OpenModalButton from '../OpenModalButton';
+import DeleteModal from '../DeleteModal';
 
 
 function Review({ review }) {
@@ -34,7 +35,10 @@ function Review({ review }) {
         {user?.id === review?.buyer_id ? (
           <div className='review__user-btns'>
             <button onClick={sendToEditReview}>Edit</button>
-            <span>Delete</span>
+            <OpenModalButton
+              modalComponent={<DeleteModal type={'review'} feature={review} />}
+              buttonText='Delete'
+              />
           </div>
         ) : null}
     </div>
