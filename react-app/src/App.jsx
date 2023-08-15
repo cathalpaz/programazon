@@ -9,7 +9,7 @@ import LandingPage from "./components/LandingPage";
 import AllProducts from "./components/AllProducts";
 import ProductInfo from "./components/ProductInfo";
 import ProductForm from "./components/ProductForm";
-import CreateReview from "./components/CreateReview";
+import ReviewForm from "./components/ReviewForm";
 import UserProducts from "./components/UserProducts";
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
           </Route>
           <Route exact path="/products/:productId/review" >
             <Navigation />
-            <CreateReview />
+            <ReviewForm />
           </Route>
           <Route path="/login" >
             <LoginFormPage />

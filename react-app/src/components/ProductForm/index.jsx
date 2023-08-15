@@ -23,20 +23,10 @@ function ProductForm() {
   const [image, setImage] = useState(product?.image ?? '');
   const [errors, setErrors] = useState({});
 
-  console.log(errors)
-
   const handleSubmit = async(e) => {
     e.preventDefault()
 
     let data = null
-
-    let value = parseFloat(price)
-    console.log('UOO', value)
-    if (value !== value.toFixed(2)) {
-      console.log('WRONG')
-
-      // return
-    }
 
     if (!product) {
       const newProduct = {

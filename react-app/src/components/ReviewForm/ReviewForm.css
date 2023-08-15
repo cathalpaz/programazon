@@ -69,6 +69,11 @@
     box-shadow: 0 0 3px 2px rgba(228, 121, 17, 0.5);
 }
 
+.review-form__input > span {
+    font-size: 14px;
+    color: #565659;
+}
+
 .review-form__input > textarea {
     padding: 3px 7px;
     font-size: 14px;
@@ -95,4 +100,17 @@
 
 .review__submit > button:hover {
     background-color: #dbba16;
+}
+
+.review-errors {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 10px;
+
+}
+
+.review-errors > span {
+    font-size: 16px;
+    font-style: italic;
+    padding: 0 2px;
 }

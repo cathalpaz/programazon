@@ -2,24 +2,22 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../Loading';
 import { thunkGetSingleProduct } from '../../store/products';
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, useLocation} from 'react-router-dom'
 import { thunkCreateReview, thunkEditReview } from '../../store/reviews';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import './CreateReview.css';
+import './ReviewForm.css';
 
 
-function CreateReview() {
-  const user = useSelector(state => state.session.user);
+function ReviewForm() {
   const dispatch = useDispatch()
-  const { productId } = useParams()
   const history = useHistory()
+  const user = useSelector(state => state.session.user);
+  const { productId } = useParams()
   const product = useSelector(state => state.products.singleProduct.product)
 
   const location = useLocation()
   let review = null
   if (location.state) {
     review = location.state.review
-
   }
 
   const [rating, setRating] = useState(review?.rating ?? 0);
@@ -28,6 +26,7 @@ function CreateReview() {
   const [content, setContent] = useState(review?.content ?? "");
   const [errors, setErrors] = useState({});
 
+  console.log(errors)
 
   useEffect(() => {
     dispatch(thunkGetSingleProduct(productId))
@@ -40,30 +39,35 @@ function CreateReview() {
   const handleSubmit = async(e) => {
     e.preventDefault()
 
-    const newReview = {
+    let data = null
+
+    if (!review) {
+      const newReview = {
         product_id: product?.id,
         buyer_id: user?.id,
         title,
         content,
         rating,
         image
-    }
-    const editReview = {
-      id: review?.id,
-      product_id: product?.id,
-      buyer_id: user?.id,
-      title,
-      content,
-      rating,
-      image
-    }
-
-    if (!review) {
-      await dispatch(thunkCreateReview(newReview, product?.id))
+      }
+      data = await dispatch(thunkCreateReview(newReview, product?.id))
     } else {
-      await dispatch(thunkEditReview(editReview))
+      const editReview = {
+        id: review?.id,
+        product_id: product?.id,
+        buyer_id: user?.id,
+        title,
+        content,
+        rating,
+        image
+      }
+      data = await dispatch(thunkEditReview(editReview))
     }
-    history.push(`/products/${product?.id}`)
+    if (data && data.errors) {
+      setErrors(data.errors)
+    } else {
+      history.push(`/products/${product?.id}`)
+    }
   }
 
   return (
@@ -101,6 +105,7 @@ function CreateReview() {
                     onChange={e => setTitle(e.target.value)}
                     placeholder="What's most import to know?"
                     />
+                {errors.title && <p className="review-errors"><span> ! </span>{errors.title}</p>}
             </div>
             <div className='review-form__input'>
                 <label htmlFor='image'>Add a photo or video</label>
@@ -111,6 +116,8 @@ function CreateReview() {
                     value={image}
                     onChange={e => setImage(e.target.value)}
                     />
+                {errors.image && <p className="review-errors"><span> ! </span>{errors.image}</p>}
+
             </div>
             <div className='review-form__input'>
                 <label htmlFor='content'>Add a written review</label>
@@ -121,6 +128,7 @@ function CreateReview() {
                     onChange={e => setContent(e.target.value)}
                     placeholder='What did you like or dislike? What did you use this product for?'
                     />
+                {errors.content && <p className="review-errors"><span> ! </span>{errors.content}</p>}
             </div>
             <div className='review__submit'>
               <button type='submit'>{review ? 'Submit Changes' : 'Submit'}</button>
@@ -132,4 +140,4 @@ function CreateReview() {
   )
 }
 
-export default CreateReview
+export default ReviewForm
