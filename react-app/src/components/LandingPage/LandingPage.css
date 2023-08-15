@@ -71,6 +71,26 @@
     padding: 8px 0;
 }
 
+.landing__trending-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 10px;
+}
+
+.landing__trending-header > span {
+    font-size: 13px;
+    color: #0066c0;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.landing__trending-header > span:hover {
+    text-decoration: underline;
+    color: #f5ab4a;
+}
+
 .landing__trending-products {
     display: flex;
     flex-direction: row;

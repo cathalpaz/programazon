@@ -29,6 +29,9 @@ function LandingPage() {
     const sendToProduct = (id) => {
         history.push(`/products/${id}`)
     }
+    const sendToAllProducts = () => {
+        history.push('/products')
+    }
 
 
     return (
@@ -60,7 +63,10 @@ function LandingPage() {
             </div>
             <div className="landing__trending-container">
                 <div className="landing__trending">
-                    <h3>Top Rated Products</h3>
+                    <div className="landing__trending-header">
+                        <h3>Top Rated Products</h3>
+                        <span onClick={sendToAllProducts}>Shop all products</span>
+                    </div>
                     <div className="landing__trending-products">
                         {topRatedProducts.map(product => (
                             <div className="landing__trending-product" key={product?.id} onClick={(() => sendToProduct(product?.id))} >

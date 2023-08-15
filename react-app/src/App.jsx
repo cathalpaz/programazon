@@ -10,6 +10,7 @@ import AllProducts from "./components/AllProducts";
 import ProductInfo from "./components/ProductInfo";
 import PostProduct from "./components/PostProduct";
 import CreateReview from "./components/CreateReview";
+import UserProducts from "./components/UserProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,10 @@ function App() {
           <Route exact path="/products/new" >
             <Navigation />
             <PostProduct />
+          </Route>
+          <Route path='/products/my-products'>
+            <Navigation />
+            <UserProducts />
           </Route>
           <Route exact path="/products/:productId" >
             <Navigation />

@@ -20,6 +20,10 @@ function Account({ user }) {
     dispatch(logout());
   };
 
+  const sendToUserProducts = () => {
+    history.push('/products/my-products')
+  }
+
   return (
     <div>
       {!user ? (
@@ -33,7 +37,7 @@ function Account({ user }) {
         <div className="account__container">
           <div className="account__info">
             <h4>Your Products</h4>
-            <span>Product List</span>
+            <span onClick={sendToUserProducts}>Product List</span>
           </div>
           <div className="account__info account__right">
             <h4>Your Account</h4>

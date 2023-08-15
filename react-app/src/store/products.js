@@ -2,6 +2,7 @@
 const GET_PRODUCTS = 'products/getProducts';
 const GET_SINGLE_PRODUCT = 'products/getSingleProduct';
 const CREATE_PRODUCT = 'products/createProduct';
+const GET_USER_PRODUCTS = 'products/getUserProducts';
 
 
 
@@ -25,6 +26,13 @@ const actionCreateProduct = (product) => {
     return {
         type: CREATE_PRODUCT,
         payload: product
+    }
+}
+
+const actionGetUserProducts = (products) => {
+    return {
+        type: GET_USER_PRODUCTS,
+        payload: products
     }
 }
 
@@ -72,9 +80,21 @@ export const thunkCreateProduct = (product) => async(dispatch) => {
     }
 }
 
+export const thunkGetUserProducts = () => async(dispatch) => {
+    const res = await fetch(`/api/products/current`)
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(actionGetUserProducts(data))
+        return data
+    } else {
+        const errData = await res.json();
+        return errData;
+    }
+}
+
 
 // REDUCER
-const initialState = { allProducts: {}, singleProduct: {} };
+const initialState = { allProducts: {}, singleProduct: {}, userProducts: {} };
 
 const productReducer = (state = initialState, action) => {
     switch(action.type)
@@ -93,6 +113,13 @@ const productReducer = (state = initialState, action) => {
             const newState = { ...state }
             const allProducts = { ...state.allProducts, [action.payload.id]: action.payload, };
             newState.allProducts = allProducts
+            return newState
+        }
+        case GET_USER_PRODUCTS: {
+            const newState = { ...state }
+            for (const product of action.payload.products) {
+                newState.userProducts[product.id] = product
+            }
             return newState
         }
         default:
