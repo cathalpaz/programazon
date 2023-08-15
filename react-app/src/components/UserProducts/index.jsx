@@ -28,6 +28,9 @@ function UserProducts() {
   const sendToProduct = (id) => {
     history.push(`/products/${id}`)
   }
+  const sendToEditProduct = (product) => {
+    history.push('/products/new', { product })
+  }
 
   return (
     <div className='user-products__container'>
@@ -49,7 +52,7 @@ function UserProducts() {
                 <p>Remaining Stock: {product.stock_quantity}</p>
               </div>
               <div className='user-product__edit'>
-                <button>Edit Product</button>
+                <button onClick={(() => sendToEditProduct(product))}>Edit Product</button>
               </div>
             </div>
             <div className='user-product__footer'>

@@ -1,21 +1,28 @@
 import { useState } from 'react'
 import "./PostProduct.css"
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { thunkCreateProduct } from '../../store/products';
+import { useHistory, useLocation } from 'react-router-dom';
+import { thunkCreateProduct, thunkEditProduct } from '../../store/products';
 
 function PostProduct() {
   const dispatch = useDispatch();
   const history = useHistory()
   const user = useSelector(state => state.session.user);
 
+  const location = useLocation()
+  let product = null
+  if (location.state) {
+    product = location.state.product
+  }
 
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState(0.99);
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
-  const [stock, setStock] = useState('');
-  const [image, setImage] = useState('');
+  console.log(product)
+
+  const [name, setName] = useState(product?.name ?? '');
+  const [price, setPrice] = useState(product?.price ?? 0.99);
+  const [description, setDescription] = useState(product?.description ?? '');
+  const [category, setCategory] = useState(product?.category ?? '');
+  const [stock, setStock] = useState(product?.stock_quantity ?? '');
+  const [image, setImage] = useState(product?.image ?? '');
   const [errors, setErrors] = useState({});
 
   console.log(errors)
@@ -34,18 +41,24 @@ function PostProduct() {
       image,
       seller_id: user?.id
     }
-    // formData.append("name", name)
-    // console.log('formdata:', formData)
-    // console.log(Object.entries(newProduct))
-    // for (let [k, v] of Object.entries(newProduct)) formData.append(k, v);
-    // console.log('obj:', newProduct)
-    const res = await dispatch(thunkCreateProduct(newProduct))
-    if (res.errors) {
-      setErrors(res.errors)
-    } else {
-      history.push(`/products/${res?.id}`)
+    const editProduct = {
+      id: product?.id,
+      name,
+      price,
+      description,
+      category,
+      stock_quantity: stock,
+      image
     }
+    let res = null
+    if (!product) {
+      res = await dispatch(thunkCreateProduct(newProduct))
+    } else {
+      res = await dispatch(thunkEditProduct(editProduct))
+    }
+    history.push(`/products/my-products`)
   }
+
   return (
     <div className='post-product__container'>
       <div className='post_product__header'>

@@ -4,6 +4,7 @@ const GET_SINGLE_PRODUCT = 'products/getSingleProduct';
 const CREATE_PRODUCT = 'products/createProduct';
 const GET_USER_PRODUCTS = 'products/getUserProducts';
 const DELETE_PRODUCT = 'products/deleteProduct';
+const EDIT_PRODUCT = 'products/editProduct';
 
 
 
@@ -36,6 +37,12 @@ const actionDeleteProduct = (productId) => {
     return {
         type: DELETE_PRODUCT,
         payload: productId
+    }
+}
+const actionEditProduct = (product) => {
+    return {
+        type: EDIT_PRODUCT,
+        payload: product
     }
 }
 
@@ -74,6 +81,7 @@ export const thunkCreateProduct = (product) => async(dispatch) => {
     if (res.ok) {
         const data = await res.json();
         dispatch(actionCreateProduct(data.product))
+        // dispatch(actionGetSingleProduct(data.product.id))
         return data
     } else {
         const errData = await res.json();
@@ -101,6 +109,21 @@ export const thunkDeleteProduct = (productId) => async(dispatch) => {
         return data
     } else {
         const errData = await res.json();
+        return errData;
+    }
+}
+export const thunkEditProduct = (product) => async(dispatch) => {
+    const res = await fetch(`/api/products/${product.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(product)
+    })
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(actionEditProduct(data.product))
+    } else {
+        const errData = await res.json();
+        console.log('hi', errData);
         return errData;
     }
 }
@@ -139,6 +162,12 @@ const productReducer = (state = initialState, action) => {
             const newState = { ...state }
             delete newState.userProducts[action.payload]
             delete newState.allProducts[action.payload]
+            return newState
+        }
+        case EDIT_PRODUCT: {
+            const newState = { ...state }
+            newState.allProducts[action.payload.id] = action.payload
+            newState.userProducts[action.payload.id] = action.payload
             return newState
         }
         default:

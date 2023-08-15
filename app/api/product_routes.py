@@ -119,7 +119,7 @@ def edit_product(id):
 
 
         db.session.commit()
-        return {"product", product.to_dict()}
+        return {"product": product.to_dict()}
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
