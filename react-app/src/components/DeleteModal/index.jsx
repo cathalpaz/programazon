@@ -29,12 +29,19 @@ function DeleteModal({ type, feature }) {
 
   return (
     <div className='delete__container'>
-        <h2>Delete {type === 'review' ? ('Review') : ('Product')}</h2>
-        <span>Are you sure you want to delete your {type === 'review' ? ('review') : ('product')}?</span>
-        <div className='delete__btns'>
-            <span onClick={closeModal}>Cancel</span>
-            <button onClick={handleDelete}>Confirm Delete</button>
-        </div>
+      <div className='delete__header'>
+        <h4>Delete this {type === 'review' ? ('review') : ('product')}</h4>
+        <i className="fa-solid fa-x" onClick={closeModal}></i>
+      </div>
+      {type === 'review' ? (
+        <span>Your review will no longer appear to other users. Are you sure you want to delete?</span>
+      ) : (
+        <span>Your product will no longer be available to purchase by other users. Are you sure you want to delete?</span>
+      )}
+      <div className='delete__btns'>
+        <button className='delete__close' onClick={closeModal}>Cancel</button>
+        <button className='delete__delete' onClick={handleDelete}>Confirm Delete</button>
+      </div>
     </div>
   )
 }
