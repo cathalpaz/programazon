@@ -40,7 +40,6 @@ function Review({ review }) {
                 modalComponent={<DeleteModal type={'review'} feature={review} />}
                 buttonText='Delete'
                 />
-
             </div>
           </div>
         ) : null}

@@ -4,6 +4,8 @@ import { thunkGetUserProducts } from '../../store/products';
 import Loading from '../Loading'
 import dayjs from 'dayjs';
 import { useHistory } from 'react-router-dom'
+import OpenModalButton from '../OpenModalButton';
+import DeleteModal from '../DeleteModal';
 import './UserProducts.css'
 
 
@@ -51,7 +53,10 @@ function UserProducts() {
               </div>
             </div>
             <div className='user-product__footer'>
-              <span>Delete Product</span>
+              <OpenModalButton
+                  modalComponent={<DeleteModal type={'product'} feature={product} />}
+                  buttonText='Delete Product'
+                  />
             </div>
           </div>
         ))}

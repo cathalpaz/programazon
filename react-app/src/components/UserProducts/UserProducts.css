@@ -97,15 +97,17 @@
     border-top: 1px solid rgba(128, 128, 128, 0.295);
 }
 
-.user-product__footer > span {
+.user-product__footer > button {
     display: flex;
     align-items: center;
     font-size: 14px;
     color: #007185;
     cursor: pointer;
+    background: none;
+    border: none;
 }
 
-.user-product__footer > span:hover {
+.user-product__footer > button:hover {
     text-decoration: underline;
     color: #f5ab4a;
 }

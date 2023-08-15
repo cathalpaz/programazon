@@ -86,8 +86,6 @@ const reviewReducer = (state = initialState, action) => {
         }
         case DELETE_REVIEW: {
             const newState = { ...state }
-            console.log('state: ', newState);
-            console.log('payload:', action.payload);
             delete newState.productReviews[action.payload]
             return newState
         }

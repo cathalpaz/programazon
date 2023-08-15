@@ -3,7 +3,7 @@ const GET_PRODUCTS = 'products/getProducts';
 const GET_SINGLE_PRODUCT = 'products/getSingleProduct';
 const CREATE_PRODUCT = 'products/createProduct';
 const GET_USER_PRODUCTS = 'products/getUserProducts';
-
+const DELETE_PRODUCT = 'products/deleteProduct';
 
 
 
@@ -14,25 +14,28 @@ const actionGetProducts = (products) => {
         payload: products
     }
 }
-
 const actionGetSingleProduct = (product) => {
     return {
         type: GET_SINGLE_PRODUCT,
         payload: product
     }
 }
-
 const actionCreateProduct = (product) => {
     return {
         type: CREATE_PRODUCT,
         payload: product
     }
 }
-
 const actionGetUserProducts = (products) => {
     return {
         type: GET_USER_PRODUCTS,
         payload: products
+    }
+}
+const actionDeleteProduct = (productId) => {
+    return {
+        type: DELETE_PRODUCT,
+        payload: productId
     }
 }
 
@@ -49,7 +52,6 @@ export const thunkGetProducts = () => async(dispatch) => {
         return errData;
     }
 }
-
 export const thunkGetSingleProduct = (id) => async(dispatch) => {
     const res = await fetch(`/api/products/${id}`)
     if (res.ok) {
@@ -62,7 +64,6 @@ export const thunkGetSingleProduct = (id) => async(dispatch) => {
     }
 
 }
-
 export const thunkCreateProduct = (product) => async(dispatch) => {
     const res = await fetch('/api/products/new', {
         method: 'POST',
@@ -79,12 +80,24 @@ export const thunkCreateProduct = (product) => async(dispatch) => {
         return errData;
     }
 }
-
 export const thunkGetUserProducts = () => async(dispatch) => {
     const res = await fetch(`/api/products/current`)
     if (res.ok) {
         const data = await res.json()
         dispatch(actionGetUserProducts(data))
+        return data
+    } else {
+        const errData = await res.json();
+        return errData;
+    }
+}
+export const thunkDeleteProduct = (productId) => async(dispatch) => {
+    const res = await fetch(`/api/products/${productId}`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(actionDeleteProduct(productId))
         return data
     } else {
         const errData = await res.json();
@@ -120,6 +133,12 @@ const productReducer = (state = initialState, action) => {
             for (const product of action.payload.products) {
                 newState.userProducts[product.id] = product
             }
+            return newState
+        }
+        case DELETE_PRODUCT: {
+            const newState = { ...state }
+            delete newState.userProducts[action.payload]
+            delete newState.allProducts[action.payload]
             return newState
         }
         default:

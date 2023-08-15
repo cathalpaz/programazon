@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { thunkDeleteReview } from '../../store/reviews'
 import './DeleteModal.css'
+import { thunkDeleteProduct } from '../../store/products'
 
 function DeleteModal({ type, feature }) {
   const history = useHistory()
@@ -21,7 +22,8 @@ function DeleteModal({ type, feature }) {
         history.push(`/products/${productId}`)
         window.location.reload();
     } else {
-        console.log('delete product')
+        dispatch(thunkDeleteProduct(feature?.id))
+        history.push('/products/my-products')
         closeModal()
     }
   }
