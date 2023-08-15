@@ -26,7 +26,6 @@ function ReviewForm() {
   const [content, setContent] = useState(review?.content ?? "");
   const [errors, setErrors] = useState({});
 
-  console.log(errors)
 
   useEffect(() => {
     dispatch(thunkGetSingleProduct(productId))
@@ -34,6 +33,9 @@ function ReviewForm() {
 
   if (!product) {
     return <Loading />
+  }
+  if (!user) {
+    history.push('/')
   }
 
   const handleSubmit = async(e) => {

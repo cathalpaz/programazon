@@ -62,7 +62,7 @@ function ProductInfo() {
           {product?.stock_quantity > 0 ? (
             <p className='product__buy-in-stock'>In Stock <span>Only {product?.stock_quantity} left in stock.</span></p>
           ) : <p className='product_buy-no-stock'>Out of Stock</p>}
-          <span>More information</span>
+          <span>More information coming soon</span>
         </div>
       </div>
       <Reviews product={product} />

@@ -27,7 +27,7 @@ function Footer() {
             <div className='content__links'>
                 <a href="https://www.linkedin.com/in/cathal-paz-052239263/" rel="noreferrer" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
                 <a href="https://github.com/cathalpaz" target="_blank" rel="noreferrer"><i className="fa-brands fa-github"></i></a>
-                <a href="https://www.amazon.com/" target="_blank" rel="noreferrer"><i class="fa-solid fa-user"></i></a>
+                <a href="https://www.amazon.com/" target="_blank" rel="noreferrer"><i className="fa-solid fa-user"></i></a>
             </div>
             <div className='footer__logo'>
                 <img src='/images/programazon.png' />

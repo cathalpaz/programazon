@@ -10,18 +10,19 @@ function Account({ user }) {
   const handleLogin = () => {
     history.push("/login");
   };
-
   const handleSignUp = () => {
     history.push("/signup");
   };
-
   const handleLogOut = (e) => {
     e.preventDefault();
+    history.push('/')
     dispatch(logout());
   };
-
   const sendToUserProducts = () => {
     history.push('/products/my-products')
+  }
+  const comingSoon = () => {
+    alert('Coming soon!')
   }
 
   return (
@@ -43,11 +44,11 @@ function Account({ user }) {
             <h4>Your Account</h4>
             <div className="account__info-right">
               <div className="account__info">
-                <span>Account</span>
+                <span onClick={comingSoon}>Account</span>
                 <p>{user?.email}</p>
                 <p>{user?.address}</p>
               </div>
-              <span>Orders</span>
+              <span onClick={comingSoon}>Orders</span>
               <span onClick={handleLogOut}>Sign Out</span>
             </div>
           </div>

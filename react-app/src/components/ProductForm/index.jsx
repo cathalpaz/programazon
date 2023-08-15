@@ -9,6 +9,10 @@ function ProductForm() {
   const history = useHistory()
   const user = useSelector(state => state.session.user);
 
+  if (!user) {
+    history.push('/')
+  }
+
   const location = useLocation()
   let product = null
   if (location.state) {

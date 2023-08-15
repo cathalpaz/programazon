@@ -26,9 +26,11 @@ function Navigation(){
 	const sendToLogin = () => {
 		history.push('/login')
 	}
-
 	const sendToPostProduct = () => {
 		history.push('/products/new')
+	}
+	const comingSoon = () => {
+		alert('Coming soon!')
 	}
 
 
@@ -49,7 +51,7 @@ function Navigation(){
 					<p>Looking to sell?</p>
 					{sessionUser ? <span onClick={sendToPostProduct}>Click to start</span> : <span onClick={sendToLogin}>Sign in to start</span>}
 				</div>
-				<div className='nav__search-bar'>
+				<div className='nav__search-bar' onClick={comingSoon}>
 					<div>All</div>
 					<input
 						className='search-input'
@@ -75,11 +77,11 @@ function Navigation(){
 						{showComponent && <Account user={sessionUser} />}
 					</div>
 				)}
-				<div className='nav__box'>
+				<div className='nav__box' onClick={comingSoon}>
 					<p>Returns</p>
 					<span>& Orders</span>
 				</div>
-				<div className='nav__cart'>
+				<div className='nav__cart' onClick={comingSoon}>
 					<p>0</p>
 					<span>Cart</span>
 				</div>

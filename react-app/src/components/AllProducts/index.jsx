@@ -29,10 +29,10 @@ function AllProducts() {
       </div>
       <div className='products__content'>
         <div className='products__content-left'>
-          <p>Delivery</p>
+          {/* <p>Delivery</p>
           <span>Get It by Tomorrow</span>
           <p>Customer Reviews</p>
-          <p>Brands</p>
+          <p>Brands</p> */}
         </div>
         <div className='products__list'>
           <h3>Results</h3>

@@ -9,18 +9,15 @@ import DeleteModal from '../DeleteModal';
 import './UserProducts.css'
 
 
-
 function UserProducts() {
   const history = useHistory()
   const dispatch = useDispatch()
-  const sessionUser = useSelector(state => state.session.user);
   const userProducts = useSelector(state => Object.values(state.products.userProducts))
 
   useEffect(() => {
     dispatch(thunkGetUserProducts())
-  }, dispatch)
+  }, [dispatch])
 
-  console.log(userProducts)
   if (!userProducts.length) return (
     <Loading />
   )
