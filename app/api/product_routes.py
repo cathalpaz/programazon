@@ -97,7 +97,6 @@ def post_product():
 
 
 # UPDATE product
-# TODO: EDIT SO MORE COLUMNS CAN BE CHANGED
 @products_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_product(id):
@@ -120,7 +119,7 @@ def edit_product(id):
 
 
         db.session.commit()
-        return product.to_dict()
+        return {"product", product.to_dict()}
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 

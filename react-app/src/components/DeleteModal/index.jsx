@@ -11,12 +11,9 @@ function DeleteModal({ type, feature }) {
   const dispatch = useDispatch()
   const { closeModal } = useModal()
   const productId = feature?.product_id
-  console.log(feature)
 
   const handleDelete = () => {
     if (type === 'review') {
-        console.log('delete review')
-        // DISPATCH THUNK HERE
         dispatch(thunkDeleteReview(feature?.id))
         closeModal()
         history.push(`/products/${productId}`)
