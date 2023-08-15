@@ -8,7 +8,7 @@ import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import AllProducts from "./components/AllProducts";
 import ProductInfo from "./components/ProductInfo";
-import PostProduct from "./components/PostProduct";
+import ProductForm from "./components/ProductForm";
 import CreateReview from "./components/CreateReview";
 import UserProducts from "./components/UserProducts";
 
@@ -29,7 +29,7 @@ function App() {
           </Route>
           <Route exact path="/products/new" >
             <Navigation />
-            <PostProduct />
+            <ProductForm />
           </Route>
           <Route path='/products/my-products'>
             <Navigation />

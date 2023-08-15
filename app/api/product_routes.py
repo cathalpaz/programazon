@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from flask_login import login_required, current_user
 
 from ..models import db, Product, Review
-from ..forms import ProductForm, UpdateProductForm, ReviewForm
+from ..forms import ProductForm, ReviewForm
 
 from .error_helpers import NotFoundError, ForbiddenError
 from .auth_routes import validation_errors_to_error_messages

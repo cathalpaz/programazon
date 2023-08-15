@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import "./PostProduct.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { thunkCreateProduct, thunkEditProduct } from '../../store/products';
-import './PostProduct.css'
+import './ProductForm.css'
 
-function PostProduct() {
+function ProductForm() {
   const dispatch = useDispatch();
   const history = useHistory()
   const user = useSelector(state => state.session.user);
@@ -15,8 +14,6 @@ function PostProduct() {
   if (location.state) {
     product = location.state.product
   }
-
-  console.log(product)
 
   const [name, setName] = useState(product?.name ?? '');
   const [price, setPrice] = useState(product?.price ?? 0.99);
@@ -30,34 +27,46 @@ function PostProduct() {
 
   const handleSubmit = async(e) => {
     e.preventDefault()
-    console.log('submitted')
-    // const formData = new FormData()
-    // console.log(typeof(formData))
-    const newProduct = {
-      name,
-      price,
-      description,
-      category,
-      stock_quantity: stock,
-      image,
-      seller_id: user?.id
+
+    let data = null
+
+    let value = parseFloat(price)
+    console.log('UOO', value)
+    if (value !== value.toFixed(2)) {
+      console.log('WRONG')
+
+      // return
     }
-    const editProduct = {
-      id: product?.id,
-      name,
-      price,
-      description,
-      category,
-      stock_quantity: stock,
-      image
-    }
-    let res = null
+
     if (!product) {
-      res = await dispatch(thunkCreateProduct(newProduct))
+      const newProduct = {
+        name,
+        price,
+        description,
+        category,
+        stock_quantity: stock,
+        image,
+        seller_id: user?.id
+      }
+      data = await dispatch(thunkCreateProduct(newProduct))
     } else {
-      res = await dispatch(thunkEditProduct(editProduct))
+      const editProduct = {
+        id: product?.id,
+        name,
+        price,
+        description,
+        category,
+        stock_quantity: stock,
+        image
+      }
+      data = await dispatch(thunkEditProduct(editProduct))
     }
-    history.push(`/products/my-products`)
+
+    if (data && data.errors) {
+      setErrors(data.errors)
+    } else {
+      history.push(`/products/my-products`)
+    }
   }
 
   return (
@@ -81,6 +90,7 @@ function PostProduct() {
                 maxLength={100}
                 />
             </div>
+            {errors.name && <p className="form-errors"><span> ! </span>{errors.name}</p>}
             <div className='product-form__line'>
               <label>Retail Price*</label>
               <div className='product-form__price'>
@@ -90,11 +100,10 @@ function PostProduct() {
                 type='number'
                 value={price}
                 onChange={e => setPrice(e.target.value)}
-                min={0.99}
-                max={9999}
                 />
               </div>
             </div>
+            {errors.price && <p className="form-errors"><span> ! </span>{errors.price}</p>}
             <div className='product-form__line'>
               <label>Category*</label>
               <select
@@ -110,6 +119,7 @@ function PostProduct() {
                 <option value="Other">Other</option>
               </select>
             </div>
+            {errors.category && <p className="form-errors"><span> ! </span>{errors.category}</p>}
             <div className='product-form__line'>
               <label>Stock Quantity*</label>
               <input
@@ -121,6 +131,7 @@ function PostProduct() {
                 max={20}
                 />
             </div>
+            {errors.stock_quantity && <p className="form-errors"><span> ! </span>{errors.stock_quantity}</p>}
             <div className='product-form__line'>
               <label>Product Description*</label>
               <textarea
@@ -131,6 +142,7 @@ function PostProduct() {
                 placeholder='At least 1-3 sentences'
                 />
             </div>
+            {errors.description && <p className="form-errors"><span> ! </span>{errors.description}</p>}
             <div className='product-form__line'>
               <label>Image URL*</label>
               <input
@@ -140,6 +152,7 @@ function PostProduct() {
                 onChange={e => setImage(e.target.value)}
                 />
             </div>
+            {errors.image && <p className="form-errors"><span> ! </span>{errors.image}</p>}
             <div className='product-form__submit'>
               <button type='submit'>{product ? ('Save Product') : ('List Product')}</button>
             </div>
@@ -150,4 +163,4 @@ function PostProduct() {
   )
 }
 
-export default PostProduct
+export default ProductForm
