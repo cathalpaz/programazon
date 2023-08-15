@@ -68,7 +68,7 @@ function PostProduct() {
           <span>seller central</span>
         </div>
         <div className='product-form'>
-          <span>Start Selling</span>
+          <span>{product ? ("Edit Product") : ("Start Selling")}</span>
           <p>Please ensure that all the information you submit is accurate.</p>
           <form onSubmit={handleSubmit}>
             <div className='product-form__line'>
