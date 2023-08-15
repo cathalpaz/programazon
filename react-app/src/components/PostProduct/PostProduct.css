@@ -1,1 +1,136 @@
+.post-product__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
+.post-product__content {
+    max-width: 900px;
+    padding: 35px 15px;
+}
+
+.post-product__header {
+    display: flex;
+}
+
+.post-product__header > img {
+    width: 200px;
+}
+
+.post-product__header > span {
+    font-size: 28px;
+}
+
+.product-form {
+    margin-top: 15px;
+    border: 1px solid #888c8c;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.product-form > span {
+    color: #d8b710;
+    font-size: 28px;
+}
+
+.product-form > p {
+    font-size: 14px;
+    padding: 8px 0 12px 0;
+}
+
+.product-form > form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 100px 0 0;
+}
+
+.product-form__line {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    gap: 2rem;
+    margin: 12px 0;
+    align-items: center;
+}
+
+.product-form__line > label {
+    display: flex;
+    justify-self: flex-end;
+}
+
+.line__long, .product-form__line > select {
+    height: 30px;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid #888c8c;
+}
+
+.product-form__line > input, .product-form__line > div > input, .product-form__line > textarea {
+    padding-left: 5px;
+}
+
+.line__long {
+    width: 450px;
+}
+
+.product-form__price {
+    display: flex;
+    align-items: center;
+}
+
+.product-form__price > span {
+    background-color: #f0f0f0;
+    border: 1px solid #888c8c;
+    height: 30px;
+    width: 25px;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    border-right: none;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    padding-top: 3px;
+    padding-left: 6.5px;
+}
+
+.product-form__price > input {
+    outline: none;
+    border: 1px solid #888c8c;
+    height: 30px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.product-form__price-input {
+    width: fit-content;
+}
+
+.product-form__quantity {
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid #888c8c;
+    outline: none;
+}
+
+.product-form__desc {
+    height: 80px;
+    padding: 6px;
+}
+
+.product-form__submit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.product-form__submit > button {
+    border: none;
+    background-color: #FFD814;
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.product-form__submit > button:hover {
+    background-color: #dbba16;
+}

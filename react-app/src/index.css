@@ -6,6 +6,11 @@
     font-family: "Amazon Ember", Arial, sans-serif;
 }
 
+textarea {
+    resize: vertical;
+    max-width: 100%;
+}
+
 @font-face {
     font-family: "Amazon Ember";
     font-weight: 400;
