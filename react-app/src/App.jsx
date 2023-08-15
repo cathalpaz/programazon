@@ -11,6 +11,7 @@ import ProductInfo from "./components/ProductInfo";
 import ProductForm from "./components/ProductForm";
 import ReviewForm from "./components/ReviewForm";
 import UserProducts from "./components/UserProducts";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
           <Route exact path='/'>
             <Navigation />
             <LandingPage />
+            <Footer />
           </Route>
           <Route exact path="/products/new" >
             <Navigation />
@@ -38,6 +40,7 @@ function App() {
           <Route exact path="/products/:productId" >
             <Navigation />
             <ProductInfo />
+            <Footer />
           </Route>
           <Route exact path="/products/:productId/review" >
             <Navigation />
@@ -52,6 +55,7 @@ function App() {
           <Route path="/products">
             <Navigation />
             <AllProducts />
+            <Footer />
           </Route>
         </Switch>
       )}

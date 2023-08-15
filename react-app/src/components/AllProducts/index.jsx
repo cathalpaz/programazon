@@ -18,11 +18,9 @@ function AllProducts() {
     <Loading />
   )
 
-  const sendToProduct = (id) => [
+  const sendToProduct = (id) => {
     history.push(`/products/${id}`)
-
-  ]
-
+  }
 
   return (
     <div className='products__container'>
