@@ -8,9 +8,9 @@ function Reviews({ product }) {
   const history = useHistory()
   const currentUser = useSelector(state => state.session.user)
 
-
   const ratingPercentage = (n) => {
     let count = 0
+    if (!product?.reviews.length) return 0
     for (let review of product?.reviews) {
         if (review.rating === n) {
             count += 1

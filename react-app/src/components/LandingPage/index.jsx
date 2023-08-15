@@ -14,13 +14,8 @@ function LandingPage() {
         dispatch(thunkGetProducts())
     }, [dispatch])
 
-    // const productArray = Object.values(allProducts)
     allProducts.sort((a, b) => b.avg_rating - a.avg_rating)
-
-
     const topRatedProducts = allProducts.slice(0, 5)
-    console.log('top5', topRatedProducts)
-
 
     if (!allProducts.length) return (
         <Loading />
@@ -32,32 +27,41 @@ function LandingPage() {
     const sendToAllProducts = () => {
         history.push('/products')
     }
+    const sendToCategory = () => {
+        alert('Feature coming soon!')
+    }
+
+    const truncateString = (s) => {
+        if (s.length < 29) return s
+        return s.substring(0, 29) + "..."
+    }
+
 
 
     return (
         <div className="landing__container">
             <div className="landing__banner">
-                <img src="/images/landing.jpg" alt="landing" />
+                <img src="https://m.media-amazon.com/images/I/61dRybvH4lL._SX3000_.jpg" alt="landing" />
                 <div className="landing__categories">
                     <div className="landing__category">
-                        <h3>Ready for anything</h3>
+                        <h3>Gadget galore</h3>
                         <img src="/images/accessories.jpg" alt="accessories" />
-                        <span>Shop accessories</span>
+                        <span onClick={sendToCategory}>Shop accessories</span>
                     </div>
                     <div className="landing__category">
-                        <h3>Ready for anything</h3>
-                        <img src="/images/accessories.jpg" alt="accessories" />
-                        <span>Shop accessories</span>
+                        <h3>Ready for learning</h3>
+                        <img src="https://www.nist.gov/sites/default/files/images/2019/09/25/tech_transfer.jpg" alt="courses" />
+                        <span onClick={sendToCategory}>Shop courses/tutorials</span>
                     </div>
                     <div className="landing__category">
-                        <h3>Ready for anything</h3>
-                        <img src="/images/accessories.jpg" alt="accessories" />
-                        <span>Shop accessories</span>
+                        <h3>Trending credentials</h3>
+                        <img src="https://www.savannahtech.edu/wp-content/uploads/2020/05/Professional-Certification-Web-Image-1.png" alt="licenses" />
+                        <span onClick={sendToCategory}>Shop licenses</span>
                     </div>
                     <div className="landing__category">
-                        <h3>Ready for anything</h3>
-                        <img src="/images/accessories.jpg" alt="accessories" />
-                        <span>Shop accessories</span>
+                        <h3>Fashion you'll love</h3>
+                        <img src="https://images.vexels.com/media/users/3/289764/raw/284597fe88376cd76609d9d5c7e7dd1f-i-love-coding-t-shirt-design.jpg" alt="merchandise" />
+                        <span onClick={sendToCategory}>Shop merchandise</span>
                     </div>
                 </div>
             </div>
@@ -70,8 +74,11 @@ function LandingPage() {
                     <div className="landing__trending-products">
                         {topRatedProducts.map(product => (
                             <div className="landing__trending-product" key={product?.id} onClick={(() => sendToProduct(product?.id))} >
-                                <img src={product?.image} alt="product" />
-                                <span>{product?.name}</span>
+                                <div className="landing-product__image">
+                                    <img src={product?.image} alt="product" />
+
+                                </div>
+                                <span>{truncateString(product?.name)}</span>
                             </div>
                         ))}
                     </div>

@@ -8,17 +8,19 @@ function CategoryHeader() {
   const sendToAll = () => {
     history.push('/products')
   }
-
+  const sendToCategory = () => {
+    alert('Feature coming soon!')
+  }
 
 
   return (
     <div className='category__container'>
       <span onClick={sendToAll}>All</span>
-      <span>Accessories</span>
-      <span>Courses/Tutorials</span>
-      <span>Licenses</span>
-      <span>Merchandise</span>
-      <span>Other</span>
+      <span onClick={sendToCategory}>Accessories</span>
+      <span onClick={sendToCategory}>Courses/Tutorials</span>
+      <span onClick={sendToCategory}>Licenses</span>
+      <span onClick={sendToCategory}>Merchandise</span>
+      <span onClick={sendToCategory}>Other</span>
     </div>
   )
 }
