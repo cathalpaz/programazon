@@ -1,0 +1,111 @@
+.user-products__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-products__content {
+    max-width: 1000px;
+    padding: 35px 15px;
+}
+
+.user-products__content > span {
+    font-size: 28px;
+    padding-bottom: 10px;
+}
+
+.user-product {
+    border: 1px solid rgba(128, 128, 128, 0.295);
+    border-radius: 6px;
+    margin: 15px 0;
+    padding: 12px 0 0 0;
+}
+
+.user-product__header {
+    padding: 0 12px;
+}
+
+.user-product__header > h3 {
+    font-size: 18px;
+}
+
+.user-product__header > span {
+    font-size: 14px;
+}
+
+.user-product__info {
+    display: grid;
+    grid-template-columns: 0.5fr 3fr 1fr;
+    gap: 0.5rem;
+    padding: 0 12px;
+
+}
+
+.user-product__image {
+    width: 150px;
+    height: 90px;
+}
+
+.user-product__image > img {
+    max-width: 150px;
+    max-height: 150px;
+    padding: 8px;
+}
+
+.user-product__middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+}
+
+.user-product__middle > span {
+    font-size: 15px;
+    color: #007185;
+    cursor: pointer;
+}
+
+.user-product__middle > span:hover {
+    text-decoration: underline;
+    color: #f5ab4a;
+}
+
+.user-product__middle > p {
+    font-size: 14px;
+}
+
+.user-product__edit > button {
+    width: 100%;
+    font-size: 13px;
+    padding: 4px;
+    background: none;
+    border: 1px solid rgba(128, 128, 128, 0.356);
+    box-shadow: 1px 1px 1px rgba(128, 128, 128, 0.24);
+    cursor: pointer;
+    height: 30px;
+    border-radius: 8px;
+
+}
+
+.user-product__edit > button:hover {
+    background-color: rgba(228, 228, 228, 0.322);
+}
+
+.user-product__footer {
+    padding: 8px 12px;
+    border-top: 1px solid rgba(128, 128, 128, 0.295);
+}
+
+.user-product__footer > span {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #007185;
+    cursor: pointer;
+}
+
+.user-product__footer > span:hover {
+    text-decoration: underline;
+    color: #f5ab4a;
+}
