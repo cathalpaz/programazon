@@ -19,14 +19,11 @@ function AllProducts() {
     setSearchQuery(queryParamValue || null);
 
   }, []);
-  console.log(searchQuery)
 
   useEffect(() => {
     if (!searchQuery) {
-      console.log('yo')
       dispatch(thunkGetProducts())
     } else {
-      console.log('this')
       dispatch(thunkFilterGetProducts(searchQuery))
     }
   }, [dispatch, searchQuery])
@@ -55,7 +52,14 @@ function AllProducts() {
           <p>Brands</p> */}
         </div>
         <div className='products__list'>
-          <h3>Results</h3>
+          {!productArray.length ? (
+            <>
+              <h3>No results</h3>
+              <div>Try checking your spelling or use more general terms.</div>
+            </>
+          ) : (
+            <h3>Results</h3>
+          )}
           {productArray.map(product => (
             <div className='products__product' key={product.id}>
               <div className='product__img'>

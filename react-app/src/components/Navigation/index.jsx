@@ -39,7 +39,6 @@ function Navigation(){
 		if (event.key === 'Enter') {
 			history.push(`/products?q=${searchFilter}`)
 			window.location.reload();
-
 		}
 	}
 	const comingSoon = () => {

@@ -27,16 +27,27 @@ function LandingPage() {
     const sendToAllProducts = () => {
         history.push('/products')
     }
-    const sendToCategory = () => {
-        alert('Feature coming soon!')
+    const sendToAccessories = () => {
+        history.push(`/products?q=accessories`)
+        window.location.reload();
+    }
+      const sendToCourses = () => {
+        history.push(`/products?q=courses/tutorials`)
+        window.location.reload();
+    }
+      const sendToLicenses = () => {
+        history.push(`/products?q=licenses`)
+        window.location.reload();
+    }
+      const sendToMerchandise = () => {
+        history.push(`/products?q=merchandise`)
+        window.location.reload();
     }
 
     const truncateString = (s) => {
         if (s.length < 29) return s
         return s.substring(0, 29) + "..."
     }
-
-
 
     return (
         <div className="landing__container">
@@ -46,22 +57,22 @@ function LandingPage() {
                     <div className="landing__category">
                         <h3>Gadget galore</h3>
                         <img src="/images/accessories.jpg" alt="accessories" />
-                        <span onClick={sendToCategory}>Shop accessories</span>
+                        <span onClick={sendToAccessories}>Shop accessories</span>
                     </div>
                     <div className="landing__category">
                         <h3>Ready for learning</h3>
                         <img src="https://www.nist.gov/sites/default/files/images/2019/09/25/tech_transfer.jpg" alt="courses" />
-                        <span onClick={sendToCategory}>Shop courses/tutorials</span>
+                        <span onClick={sendToCourses}>Shop courses/tutorials</span>
                     </div>
                     <div className="landing__category">
                         <h3>Trending credentials</h3>
                         <img src="https://www.savannahtech.edu/wp-content/uploads/2020/05/Professional-Certification-Web-Image-1.png" alt="licenses" />
-                        <span onClick={sendToCategory}>Shop licenses</span>
+                        <span onClick={sendToLicenses}>Shop licenses</span>
                     </div>
                     <div className="landing__category">
                         <h3>Fashion you'll love</h3>
                         <img src="https://images.vexels.com/media/users/3/289764/raw/284597fe88376cd76609d9d5c7e7dd1f-i-love-coding-t-shirt-design.jpg" alt="merchandise" />
-                        <span onClick={sendToCategory}>Shop merchandise</span>
+                        <span onClick={sendToMerchandise}>Shop merchandise</span>
                     </div>
                 </div>
             </div>

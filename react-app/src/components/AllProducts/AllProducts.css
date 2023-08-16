@@ -1,6 +1,7 @@
 .products__container {
     height: fit-content;
     margin-bottom: 30px;
+    min-height: 60vh;
 }
 
 .products__header {
