@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CategoryHeader from './CategoryHeader';
 import Account from './Account';
-import './Navigation.css';
 import { useHistory } from 'react-router-dom';
+import './Navigation.css';
 
 function Navigation(){
 	const history = useHistory()
@@ -22,12 +22,25 @@ function Navigation(){
 	const handleMenu = () => {
 		setShowComponent(!showComponent);
 	}
-
 	const sendToLogin = () => {
 		history.push('/login')
 	}
 	const sendToPostProduct = () => {
 		history.push('/products/new')
+	}
+
+	const [searchFilter, setSearchFilter] = useState('')
+
+	const handleSubmitSearch = () => {
+		history.push(`/products?q=${searchFilter}`)
+		window.location.reload();
+	}
+	const handleEnterSearch = (event) => {
+		if (event.key === 'Enter') {
+			history.push(`/products?q=${searchFilter}`)
+			window.location.reload();
+
+		}
 	}
 	const comingSoon = () => {
 		alert('Coming soon!')
@@ -51,14 +64,17 @@ function Navigation(){
 					<p>Looking to sell?</p>
 					{sessionUser ? <span onClick={sendToPostProduct}>Click to start</span> : <span onClick={sendToLogin}>Sign in to start</span>}
 				</div>
-				<div className='nav__search-bar' onClick={comingSoon}>
+				<div className='nav__search-bar'>
 					<div>All</div>
 					<input
 						className='search-input'
 						placeholder='Search Programazon'
 						// set up useStates
+						value={searchFilter}
+						onChange={e => setSearchFilter(e.target.value)}
+						onKeyPress={handleEnterSearch}
 					/>
-					<i className="fa-solid fa-magnifying-glass search-icon"></i>
+					<i className="fa-solid fa-magnifying-glass search-icon" onClick={handleSubmitSearch}></i>
 				</div>
 				<div className='nav__lang'>
 					<img src='/images/flag.png' alt='lang'/>

@@ -1,18 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Loading from '../Loading'
 import { useDispatch, useSelector } from 'react-redux'
-import { thunkGetProducts } from '../../store/products'
-import { useHistory } from 'react-router-dom'
+import { thunkFilterGetProducts, thunkGetProducts } from '../../store/products'
+import { useHistory, useLocation, useParams } from 'react-router-dom'
 import './AllProducts.css'
 
 function AllProducts() {
   const dispatch = useDispatch()
   const history = useHistory()
+  const filteredProducts = useSelector(state => Object.values(state.products.filteredProducts))
   const allProducts = useSelector(state => Object.values(state.products.allProducts))
 
+  const [searchQuery, setSearchQuery] = useState('');
+
   useEffect(() => {
-    dispatch(thunkGetProducts())
-  }, [dispatch])
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const queryParamValue = urlSearchParams.get('q');
+    setSearchQuery(queryParamValue || null);
+
+  }, []);
+  console.log(searchQuery)
+
+  useEffect(() => {
+    if (!searchQuery) {
+      console.log('yo')
+      dispatch(thunkGetProducts())
+    } else {
+      console.log('this')
+      dispatch(thunkFilterGetProducts(searchQuery))
+    }
+  }, [dispatch, searchQuery])
+
+  const productArray = searchQuery ? filteredProducts : allProducts
 
   if (!allProducts.length) return (
     <Loading />
@@ -22,10 +41,11 @@ function AllProducts() {
     history.push(`/products/${id}`)
   }
 
+
   return (
     <div className='products__container'>
       <div className='products__header'>
-        <p>1 - 8 of {allProducts.length} results for <span>"All"</span></p>
+        <p>1 - {productArray.length} of {productArray.length} results for <span>"{searchQuery ? searchQuery : "all"}"</span></p>
       </div>
       <div className='products__content'>
         <div className='products__content-left'>
@@ -36,7 +56,7 @@ function AllProducts() {
         </div>
         <div className='products__list'>
           <h3>Results</h3>
-          {allProducts.map(product => (
+          {productArray.map(product => (
             <div className='products__product' key={product.id}>
               <div className='product__img'>
                 <img src={product?.image} alt='product' onClick={(() => sendToProduct(product?.id))} />

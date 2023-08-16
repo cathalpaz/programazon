@@ -16,7 +16,12 @@ products_routes = Blueprint('products', __name__, url_prefix="/products")
 # GET all products
 @products_routes.route("")
 def get_products():
-    products = Product.query.all()
+    query = request.args.get('q', '')
+
+    products = Product.query.filter(or_(
+        Product.name.contains(query),
+        Product.category.contains(query)
+    )).all()
     for i in range(len(products)):
         reviews = Review.query.filter(Review.product_id == products[i].id).all()
 

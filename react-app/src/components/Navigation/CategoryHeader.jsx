@@ -7,20 +7,37 @@ function CategoryHeader() {
   // SEND TO CATEGORIES:
   const sendToAll = () => {
     history.push('/products')
+    window.location.reload();
   }
-  const sendToCategory = () => {
-    alert('Feature coming soon!')
+  const sendToAccessories = () => {
+    history.push(`/products?q=accessories`)
+    window.location.reload();
   }
-
+  const sendToCourses = () => {
+    history.push(`/products?q=courses/tutorials`)
+    window.location.reload();
+  }
+  const sendToLicenses = () => {
+    history.push(`/products?q=licenses`)
+    window.location.reload();
+  }
+  const sendToMerchandise = () => {
+    history.push(`/products?q=merchandise`)
+    window.location.reload();
+  }
+  const sendToOther = () => {
+    history.push(`/products?q=other`)
+    window.location.reload();
+  }
 
   return (
     <div className='category__container'>
       <span onClick={sendToAll}>All</span>
-      <span onClick={sendToCategory}>Accessories</span>
-      <span onClick={sendToCategory}>Courses/Tutorials</span>
-      <span onClick={sendToCategory}>Licenses</span>
-      <span onClick={sendToCategory}>Merchandise</span>
-      <span onClick={sendToCategory}>Other</span>
+      <span onClick={sendToAccessories}>Accessories</span>
+      <span onClick={sendToCourses}>Courses/Tutorials</span>
+      <span onClick={sendToLicenses}>Licenses</span>
+      <span onClick={sendToMerchandise}>Merchandise</span>
+      <span onClick={sendToOther}>Other</span>
     </div>
   )
 }

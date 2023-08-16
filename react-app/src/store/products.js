@@ -5,6 +5,7 @@ const CREATE_PRODUCT = 'products/createProduct';
 const GET_USER_PRODUCTS = 'products/getUserProducts';
 const DELETE_PRODUCT = 'products/deleteProduct';
 const EDIT_PRODUCT = 'products/editProduct';
+const SEARCH_PRODUCTS = 'products/searchProducts';
 
 
 
@@ -45,6 +46,12 @@ const actionEditProduct = (product) => {
         payload: product
     }
 }
+const actionSearchProducts = (products) => {
+    return {
+        type: SEARCH_PRODUCTS,
+        payload: products
+    }
+}
 
 
 // THUNKS
@@ -59,6 +66,19 @@ export const thunkGetProducts = () => async(dispatch) => {
         return errData;
     }
 }
+export const thunkFilterGetProducts = (query) => async(dispatch) => {
+    const res = await fetch(`/api/products?q=${query}`);
+    if (res.ok) {
+        const data = await res.json();
+        console.log('EREEE', data);
+        dispatch(actionSearchProducts(data));
+        return data;
+    } else {
+        const errData = await res.json();
+        return errData;
+    }
+}
+
 export const thunkGetSingleProduct = (id) => async(dispatch) => {
     const res = await fetch(`/api/products/${id}`)
     if (res.ok) {
@@ -127,10 +147,22 @@ export const thunkEditProduct = (product) => async(dispatch) => {
         return errData;
     }
 }
+// export const thunkSearchProducts = (query) => async(dispatch) => {
+//     const res = await fetch(`/api/products/search?q=${query}`)
+//     if (res.ok) {
+//         const data = res.json()
+//         dispatch(actionSearchProducts(data))
+//         return data
+//     } else {
+//         const errData = await res.json();
+//         console.log('hi', errData);
+//         return errData;
+//     }
+// }
 
 
 // REDUCER
-const initialState = { allProducts: {}, singleProduct: {}, userProducts: {} };
+const initialState = { allProducts: {}, singleProduct: {}, userProducts: {}, filteredProducts: {} };
 
 const productReducer = (state = initialState, action) => {
     switch(action.type)
@@ -139,6 +171,14 @@ const productReducer = (state = initialState, action) => {
             const newState = { ...state }
             for (const product of action.payload.products) {
                 newState.allProducts[product.id] = product
+                // newState.filteredProducts[product.id] = product
+            }
+            return newState
+        }
+        case SEARCH_PRODUCTS: {
+            const newState = { ...state }
+            for (const product of action.payload.products) {
+                newState.filteredProducts[product.id] = product
             }
             return newState
         }
