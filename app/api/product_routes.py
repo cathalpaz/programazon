@@ -6,6 +6,7 @@ from ..forms import ProductForm, ReviewForm
 
 from .error_helpers import NotFoundError, ForbiddenError
 from .auth_routes import validation_errors_to_error_messages
+from sqlalchemy import or_
 
 
 # TODO: ADD AWS TO IMAGES, POST AND PUT
@@ -185,3 +186,17 @@ def post_product_review(id):
         db.session.commit()
         return {"review": review.to_dict()}, 201
     return {"errors": validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+# SEARCH FILTER
+@products_routes.route("/search")
+def search_products():
+    query = request.args.get('q', '')
+
+    products = Product.query.filter(or_(
+        Product.name.contains(query),
+        Product.category.contains(query)
+    )).all()
+
+    return {"products": [product.to_dict() for product in products]}
