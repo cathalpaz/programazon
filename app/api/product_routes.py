@@ -6,7 +6,7 @@ from ..forms import ProductForm, ReviewForm
 
 from .error_helpers import NotFoundError, ForbiddenError
 from .auth_routes import validation_errors_to_error_messages
-from sqlalchemy import or_
+from sqlalchemy import or_, func
 
 from .aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
@@ -19,9 +19,11 @@ products_routes = Blueprint('products', __name__, url_prefix="/products")
 def get_products():
     query = request.args.get('q', '')
 
+
+
     products = Product.query.filter(or_(
-        Product.name.contains(query),
-        Product.category.contains(query)
+        func.lower(Product.name).contains(func.lower(query)),
+        func.lower(Product.category).contains(func.lower(query)),
     )).all()
     for i in range(len(products)):
         reviews = Review.query.filter(Review.product_id == products[i].id).all()
