@@ -132,8 +132,8 @@
 
 .review__container > img {
     margin: 8px 0;
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 150px;
+    max-width: 150px;
 }
 
 .review__user-btns {

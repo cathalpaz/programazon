@@ -45,11 +45,14 @@
 .user-product__image {
     width: 150px;
     height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-product__image > img {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 100%;
+    max-height: 100%;
     padding: 8px;
 }
 

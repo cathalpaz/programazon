@@ -32,6 +32,7 @@ function UserProducts() {
   return (
     <div className='user-products__container'>
       <div className='user-products__content'>
+
         <span>Your Products</span>
         {userProducts.map(product => (
           <div key={product.id} className='user-product'>

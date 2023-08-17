@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { thunkGetProducts } from "../../store/products";
+import { thunkGetProducts, thunkGetUserProducts } from "../../store/products";
 import Loading from "../Loading";
 import { useHistory } from 'react-router-dom';
 import "./LandingPage.css";
@@ -12,6 +12,7 @@ function LandingPage() {
 
     useEffect(() => {
         dispatch(thunkGetProducts())
+        dispatch(thunkGetUserProducts())
     }, [dispatch])
 
     allProducts.sort((a, b) => b.avg_rating - a.avg_rating)

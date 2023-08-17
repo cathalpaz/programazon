@@ -1,6 +1,6 @@
 .landing__container {
     background-color: #E3E6E6;
-    /* height: 200vh; */
+    height: 130vh;
     display: flex;
     flex-direction: column;
     align-items: center;
