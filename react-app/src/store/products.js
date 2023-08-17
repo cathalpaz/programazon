@@ -144,18 +144,6 @@ export const thunkEditProduct = (product, productId) => async(dispatch) => {
         return errData;
     }
 }
-// export const thunkSearchProducts = (query) => async(dispatch) => {
-//     const res = await fetch(`/api/products/search?q=${query}`)
-//     if (res.ok) {
-//         const data = res.json()
-//         dispatch(actionSearchProducts(data))
-//         return data
-//     } else {
-//         const errData = await res.json();
-//         console.log('hi', errData);
-//         return errData;
-//     }
-// }
 
 
 // REDUCER
@@ -173,11 +161,12 @@ const productReducer = (state = initialState, action) => {
             return newState
         }
         case SEARCH_PRODUCTS: {
-            const newState = { ...state }
+
+            const newFiltered = {}
             for (const product of action.payload.products) {
-                newState.filteredProducts[product.id] = product
+                newFiltered[product.id] = product
             }
-            return newState
+            return {...state, filteredProducts: newFiltered}
         }
         case GET_SINGLE_PRODUCT: {
             return { ...state, singleProduct: action.payload }
@@ -189,11 +178,11 @@ const productReducer = (state = initialState, action) => {
             return newState
         }
         case GET_USER_PRODUCTS: {
-            const newState = { ...state }
+            const newUserProducts = {}
             for (const product of action.payload.products) {
-                newState.userProducts[product.id] = product
+                newUserProducts[product.id] = product
             }
-            return newState
+            return {...state, userProducts: newUserProducts}
         }
         case DELETE_PRODUCT: {
             const newState = { ...state }

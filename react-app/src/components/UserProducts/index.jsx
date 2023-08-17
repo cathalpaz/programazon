@@ -18,7 +18,7 @@ function UserProducts() {
     dispatch(thunkGetUserProducts())
   }, [dispatch])
 
-  if (!userProducts.length) return (
+  if (!userProducts) return (
     <Loading />
   )
 

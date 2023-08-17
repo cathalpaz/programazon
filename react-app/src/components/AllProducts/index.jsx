@@ -14,19 +14,20 @@ function AllProducts() {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const queryParamValue = urlSearchParams.get('q');
-    setSearchQuery(queryParamValue || null);
-
-  }, []);
-
-  useEffect(() => {
     if (!searchQuery) {
       dispatch(thunkGetProducts())
     } else {
       dispatch(thunkFilterGetProducts(searchQuery))
     }
   }, [dispatch, searchQuery])
+
+  useEffect(() => {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const queryParamValue = urlSearchParams.get('q');
+    setSearchQuery(queryParamValue || null);
+
+  }, [searchQuery]);
+
 
   const productArray = searchQuery ? filteredProducts : allProducts
 
