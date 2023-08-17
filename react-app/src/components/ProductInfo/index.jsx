@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { thunkGetSingleProduct } from '../../store/products'
 import Loading from '../Loading'
 import Reviews from '../Reviews'
@@ -9,6 +9,7 @@ import './ProductInfo.css'
 
 function ProductInfo() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const { productId } = useParams()
   const product = useSelector(state => state.products.singleProduct.product)
   const currentUser = useSelector(state => state.session.user)
@@ -24,6 +25,11 @@ function ProductInfo() {
 
   const descriptionList = product?.description.split('. ')
 
+  const sendToCategory = (category) => {
+    history.push(`/products?q=${category}`)
+    window.location.reload()
+  }
+
   // console.log(product)
   return (
     <div className='product__container'>
@@ -31,7 +37,7 @@ function ProductInfo() {
         <img src={product?.image} alt='product' />
         <div className='product__display-info'>
           <span className='product__name'>{product?.name}</span>
-          <p className='product__category'>View more {product?.category}</p>
+          <p className='product__category' onClick={(() => sendToCategory(product?.category))} >View more {product?.category}</p>
           <div className='product__display-reviews'>
             <span>{product?.avg_rating}</span>
             <span className='product__stars'><Stars rating={product?.avg_rating} /></span>

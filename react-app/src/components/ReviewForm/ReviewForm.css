@@ -146,3 +146,8 @@
     border-radius: 8px;
 
 }
+
+.review__star {
+    font-size: 24px;
+    cursor: pointer;
+}

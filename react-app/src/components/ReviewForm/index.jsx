@@ -40,6 +40,7 @@ function ReviewForm() {
   }
 
   const handleSubmit = async(e) => {
+
     e.preventDefault()
 
     const formData = new FormData()
@@ -72,6 +73,10 @@ function ReviewForm() {
     }
   };
 
+  const handleStarClick = (value) => {
+    setRating(value)
+  }
+
   return (
     <div className='review-form__container'>
       <div className='review-form__content'>
@@ -89,14 +94,31 @@ function ReviewForm() {
         <form onSubmit={handleSubmit}>
             <div className='review-form__input'>
                 <label htmlFor="rating">Overall Rating</label>
-                <input
+                {/* <input
                     type='number'
                     id='rating'
                     value={rating}
                     onChange={e => setRating(e.target.value)}
                     min={1}
                     max={5}
-                    />
+                    /> */}
+                  <div>
+                    {[1, 2, 3, 4, 5].map(value => (
+                      <span
+                        key={value}
+                        className='product__stars review__star'
+                        onClick={() => handleStarClick(value)}
+                      >
+                        {value <= rating ? (
+                          <i className="fa-solid fa-star"></i>
+                        ): (
+                          <i className="fa-regular fa-star"></i>
+                        )}
+                      </span>
+                    ))}
+                {errors.rating && <p className="review-errors"><span> ! </span>{errors.rating}</p>}
+
+                  </div>
             </div>
             <div className='review-form__input'>
                 <label htmlFor='title'>Add a headline</label>
