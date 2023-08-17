@@ -6,7 +6,7 @@ function Stars({ rating }) {
 
 
   return (
-    <span className='star-rating'>
+    <span className='star-rating product__stars'>
         {roundedRating === 5 && (
             <span><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i></span>
         )}

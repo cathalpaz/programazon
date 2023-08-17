@@ -37,11 +37,11 @@ function Reviews({ product }) {
             </div>
             <p>{product?.reviews?.length} global ratings</p>
             <div className='reviews__rating-percent'>
-                <span>5 star - {ratingPercentage(5)}%</span>
-                <span>4 star - {ratingPercentage(4)}%</span>
-                <span>3 star - {ratingPercentage(3)}%</span>
-                <span>2 star - {ratingPercentage(2)}%</span>
-                <span>1 star - {ratingPercentage(1)}%</span>
+                <span>5 star(s) <Stars rating={5} /> {ratingPercentage(5)}%</span>
+                <span>4 star(s) <Stars rating={4} /> {ratingPercentage(4)}%</span>
+                <span>3 star(s) <Stars rating={3} /> {ratingPercentage(3)}%</span>
+                <span>2 star(s) <Stars rating={2} /> {ratingPercentage(2)}%</span>
+                <span>1 star(s) <Stars rating={1} /> {ratingPercentage(1)}%</span>
             </div>
             <div className='reviews__create-review'>
                 <h4>Review this product</h4>

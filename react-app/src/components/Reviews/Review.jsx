@@ -21,7 +21,7 @@ function Review({ review }) {
     <div className='review__container'>
         <div className='review__header'>
             <img src='https://images-na.ssl-images-amazon.com/images/S/amazon-avatars-global/default._CR0,0,1024,1024_SX48_.png' alt='user' />
-            <span>Name</span>
+            <span>{review?.buyer}</span>
         </div>
         <div className='review__subheader'>
             <p className='product__stars'><Stars rating={review?.rating} /></p>
