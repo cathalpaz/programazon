@@ -85,14 +85,20 @@
 .product__right-rating {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
     align-items: center;
     margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.product__right-rating > span {
+    font-size: 14px;
+    padding-left: 4px;
 }
 
 .product__right-rating > p {
     font-size: 14px;
     color: #007185;
+    padding-left: 12px;
 }
 
 .product__right-price {

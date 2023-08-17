@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { thunkGetSingleProduct } from '../../store/products'
 import Loading from '../Loading'
 import Reviews from '../Reviews'
+import Stars from '../Stars'
 import './ProductInfo.css'
 
 function ProductInfo() {
@@ -33,7 +34,7 @@ function ProductInfo() {
           <p className='product__category'>View more {product?.category}</p>
           <div className='product__display-reviews'>
             <span>{product?.avg_rating}</span>
-            <span className='product__stars'> 1 2 3 4 5 </span>
+            <span className='product__stars'><Stars rating={product?.avg_rating} /></span>
             <p>{product?.reviews?.length} rating(s)</p>
           </div>
           <div className='product__price'><p>$</p><span>{product?.price}</span></div>

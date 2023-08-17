@@ -2,6 +2,7 @@ import React from 'react'
 import Review from './Review'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Stars from '../Stars'
 import './Reviews.css'
 
 function Reviews({ product }) {
@@ -31,7 +32,7 @@ function Reviews({ product }) {
         <div className='reviews__left'>
             <h3>Customer reviews</h3>
             <div className='reviews__rating'>
-                <p>gold stars</p>
+                <p className='product__stars'><Stars rating={product?.avg_rating} /></p>
                 <p>{product?.avg_rating} out of 5</p>
             </div>
             <p>{product?.reviews?.length} global ratings</p>
