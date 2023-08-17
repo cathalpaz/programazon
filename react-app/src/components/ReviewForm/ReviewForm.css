@@ -114,3 +114,35 @@
     font-style: italic;
     padding: 0 2px;
 }
+
+.form__file-input {
+    display: none;
+}
+
+.form__file-upload {
+    margin-top: 10px;
+    width: 90px;
+    height: 90px;
+    border: 2px dashed #aab7b8;
+    font-size: 24px;
+    color: #aab7b8;
+    cursor: pointer;
+    background: #aab7b821;
+    border-radius: 8px;
+}
+
+.form__file-pic {
+    margin-top: 10px;
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
+    border: none;
+
+}
+
+.form__file-pic > img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+
+}

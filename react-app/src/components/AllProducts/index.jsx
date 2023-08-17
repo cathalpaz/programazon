@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Loading from '../Loading'
 import { useDispatch, useSelector } from 'react-redux'
 import { thunkFilterGetProducts, thunkGetProducts } from '../../store/products'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import './AllProducts.css'
 
 function AllProducts() {

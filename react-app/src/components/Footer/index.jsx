@@ -30,7 +30,7 @@ function Footer() {
                 <a href="https://www.amazon.com/" target="_blank" rel="noreferrer"><i className="fa-solid fa-user"></i></a>
             </div>
             <div className='footer__logo'>
-                <img src='/images/programazon.png' />
+                <img src='/images/programazon.png' alt='logo' />
                 <span>© by Cathal Paz</span>
             </div>
         </div>

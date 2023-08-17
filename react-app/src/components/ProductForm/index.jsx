@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { thunkCreateProduct, thunkEditProduct } from '../../store/products';
@@ -6,7 +6,8 @@ import './ProductForm.css'
 
 function ProductForm() {
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
+  const fileRef = useRef()
   const user = useSelector(state => state.session.user);
 
   if (!user) {
@@ -27,8 +28,6 @@ function ProductForm() {
   const [image, setImage] = useState(product?.image ?? '');
   const [errors, setErrors] = useState({});
 
-  const [imageLoading, setImageLoading] = useState(false);
-
   const handleSubmit = async(e) => {
     e.preventDefault()
 
@@ -46,8 +45,6 @@ function ProductForm() {
     formData.append('stock_quantity', stock)
     formData.append('image', image)
 
-    setImageLoading(true)
-
     let data = null
     if (!product) {
 
@@ -62,6 +59,13 @@ function ProductForm() {
       history.push(`/products/my-products`)
     }
   }
+
+  const handleImageUpload = (e) => {
+    e.preventDefault();
+    if (fileRef.current) {
+      fileRef.current.click();
+    }
+  };
 
   return (
     <div className='post-product__container'>
@@ -139,8 +143,14 @@ function ProductForm() {
             {errors.description && <p className="form-errors"><span> ! </span>{errors.description}</p>}
             <div className='product-form__line'>
               <label>Image*</label>
+              {!image || product ? (
+                  <button className='form__file-upload' onClick={handleImageUpload}><i class="fa-solid fa-plus"></i></button>
+                ) : (
+                  <button className='form__file-pic'><img src={URL.createObjectURL(image)} alt='preview' /></button>
+                )}
               <input
-                // className='line__long'
+                ref={fileRef}
+                className='form__file-input'
                 type='file'
                 accept='image/*'
                 onChange={e => setImage(e.target.files[0])}
@@ -149,7 +159,6 @@ function ProductForm() {
             {errors.image && <p className="form-errors"><span> ! </span>{errors.image}</p>}
             <div className='product-form__submit'>
               <button type='submit'>{product ? ('Save Product') : ('List Product')}</button>
-              {(imageLoading)&& <p>Loading...</p>}
             </div>
           </form>
         </div>

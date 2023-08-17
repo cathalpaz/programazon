@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Loading from '../Loading';
 import { thunkGetSingleProduct } from '../../store/products';
@@ -10,6 +10,7 @@ import './ReviewForm.css';
 function ReviewForm() {
   const dispatch = useDispatch()
   const history = useHistory()
+  const fileRef = useRef()
   const user = useSelector(state => state.session.user);
   const { productId } = useParams()
   const product = useSelector(state => state.products.singleProduct.product)
@@ -53,25 +54,8 @@ function ReviewForm() {
     let data = null
 
     if (!review) {
-      const newReview = {
-        product_id: product?.id,
-        buyer_id: user?.id,
-        title,
-        content,
-        rating,
-        image
-      }
       data = await dispatch(thunkCreateReview(formData, product?.id))
     } else {
-      const editReview = {
-        id: review?.id,
-        product_id: product?.id,
-        buyer_id: user?.id,
-        title,
-        content,
-        rating,
-        image
-      }
       data = await dispatch(thunkEditReview(formData, review?.id))
     }
     if (data && data.errors) {
@@ -80,6 +64,13 @@ function ReviewForm() {
       history.push(`/products/${product?.id}`)
     }
   }
+
+  const handleImageUpload = (e) => {
+    e.preventDefault();
+    if (fileRef.current) {
+      fileRef.current.click();
+    }
+  };
 
   return (
     <div className='review-form__container'>
@@ -121,14 +112,21 @@ function ReviewForm() {
             <div className='review-form__input'>
                 <label htmlFor='image'>Add a photo or video</label>
                 <span>Shoppers find images and videos more helpful than text alone</span>
+
+                {!image || review ? (
+                  <button className='form__file-upload' onClick={handleImageUpload}><i class="fa-solid fa-plus"></i></button>
+                ) : (
+                  <button className='form__file-pic'><img src={URL.createObjectURL(image)} alt='preview' /></button>
+                )}
                 <input
                     id='image'
+                    ref={fileRef}
+                    className='form__file-input'
                     type='file'
                     accept='image/*'
                     onChange={e => setImage(e.target.files[0])}
                     />
                 {errors.image && <p className="review-errors"><span> ! </span>{errors.image}</p>}
-
             </div>
             <div className='review-form__input'>
                 <label htmlFor='content'>Add a written review</label>
