@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, SubmitField, FloatField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, NumberRange, ValidationError
+from ..api.aws_helpers import ALLOWED_EXTENSIONS
 
 
 categories = [
@@ -34,5 +36,5 @@ class ProductForm(FlaskForm):
     description = TextAreaField('Description', validators=[DataRequired()])
     category = StringField('Category', validators=[DataRequired(), validate_category])
     stock_quantity = IntegerField('Stock Quantity', validators=[DataRequired(), NumberRange(min=1, max=20)])
-    image = StringField('Image', validators=[DataRequired(), validate_image])
+    image = FileField('Image File', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     submit = SubmitField('Submit')

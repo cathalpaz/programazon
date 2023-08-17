@@ -94,8 +94,8 @@ export const thunkGetSingleProduct = (id) => async(dispatch) => {
 export const thunkCreateProduct = (product) => async(dispatch) => {
     const res = await fetch('/api/products/new', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(product)
+        // headers: { 'Content-Type': 'application/json' },
+        body: product
     })
     console.log(res);
     if (res.ok) {
@@ -132,18 +132,17 @@ export const thunkDeleteProduct = (productId) => async(dispatch) => {
         return errData;
     }
 }
-export const thunkEditProduct = (product) => async(dispatch) => {
-    const res = await fetch(`/api/products/${product.id}`, {
+export const thunkEditProduct = (product, productId) => async(dispatch) => {
+    const res = await fetch(`/api/products/${productId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(product)
+        // headers: { 'Content-Type': 'application/json' },
+        body: product
     })
     if (res.ok) {
         const data = await res.json()
         dispatch(actionEditProduct(data.product))
     } else {
         const errData = await res.json();
-        console.log('hi', errData);
         return errData;
     }
 }

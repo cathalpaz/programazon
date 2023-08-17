@@ -8,6 +8,7 @@ from .error_helpers import NotFoundError, ForbiddenError
 from .auth_routes import validation_errors_to_error_messages
 from sqlalchemy import or_
 
+from .aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
 # TODO: ADD AWS TO IMAGES, POST AND PUT
 
@@ -87,13 +88,24 @@ def post_product():
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+
+        image = form.data['image']
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        print(upload)
+
+        if "url" not in upload:
+            return {"errors": "URL not in upload"}
+
+        url = upload["url"]
+
         product = Product(
             name = form.data['name'],
             price = form.data['price'],
             description = form.data['description'],
             seller_id = current_user.id,
             category = form.data['category'],
-            image = form.data['image'],
+            image = url,
             stock_quantity = form.data['stock_quantity']
         )
         db.session.add(product)
@@ -119,13 +131,27 @@ def edit_product(id):
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        for field in form.data:
-            if field != 'csrf_token' and field != 'file':
-                setattr(product, field, form.data[field])
+        product.name = form.data['name']
+        product.price = form.data['price']
+        product.description = form.data['description']
+        product.category = form.data['category']
+        product.stock_quantity = form.data['stock_quantity']
+        product.seller_id = current_user.id
 
+        image = form.data.get("image")
+        if image:
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                return {"errors": "URL not in upload"}
+
+            url = upload["url"]
+            product.image = url
 
         db.session.commit()
         return {"product": product.to_dict()}
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 

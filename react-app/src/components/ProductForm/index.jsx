@@ -27,33 +27,44 @@ function ProductForm() {
   const [image, setImage] = useState(product?.image ?? '');
   const [errors, setErrors] = useState({});
 
+  const [imageLoading, setImageLoading] = useState(false);
+
   const handleSubmit = async(e) => {
     e.preventDefault()
 
-    let data = null
+    const formData = new FormData()
+    formData.append('name', name)
+    formData.append('price', price)
+    formData.append('description', description)
+    formData.append('category', category)
+    formData.append('stock_quantity', stock)
+    formData.append('image', image)
 
+    setImageLoading(true)
+
+    let data = null
     if (!product) {
-      const newProduct = {
-        name,
-        price,
-        description,
-        category,
-        stock_quantity: stock,
-        image,
-        seller_id: user?.id
-      }
-      data = await dispatch(thunkCreateProduct(newProduct))
+      // const newProduct = {
+      //   name,
+      //   price,
+      //   description,
+      //   category,
+      //   stock_quantity: stock,
+      //   image,
+      //   seller_id: user?.id
+      // }
+      data = await dispatch(thunkCreateProduct(formData))
     } else {
-      const editProduct = {
-        id: product?.id,
-        name,
-        price,
-        description,
-        category,
-        stock_quantity: stock,
-        image
-      }
-      data = await dispatch(thunkEditProduct(editProduct))
+      // const editProduct = {
+      //   id: product?.id,
+      //   name,
+      //   price,
+      //   description,
+      //   category,
+      //   stock_quantity: stock,
+      //   image
+      // }
+      data = await dispatch(thunkEditProduct(formData, product.id))
     }
 
     if (data && data.errors) {
@@ -73,7 +84,7 @@ function ProductForm() {
         <div className='product-form'>
           <span>{product ? ("Edit Product") : ("Start Selling")}</span>
           <p>Please ensure that all the information you submit is accurate.</p>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} encType='multipart/form-data'>
             <div className='product-form__line'>
               <label>Product Name*</label>
               <input
@@ -140,15 +151,16 @@ function ProductForm() {
             <div className='product-form__line'>
               <label>Image URL*</label>
               <input
-                className='line__long'
-                type='url'
-                value={image}
-                onChange={e => setImage(e.target.value)}
+                // className='line__long'
+                type='file'
+                accept='image/*'
+                onChange={e => setImage(e.target.files[0])}
                 />
             </div>
             {errors.image && <p className="form-errors"><span> ! </span>{errors.image}</p>}
             <div className='product-form__submit'>
               <button type='submit'>{product ? ('Save Product') : ('List Product')}</button>
+              {(imageLoading)&& <p>Loading...</p>}
             </div>
           </form>
         </div>
