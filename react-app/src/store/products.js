@@ -70,7 +70,6 @@ export const thunkFilterGetProducts = (query) => async(dispatch) => {
     const res = await fetch(`/api/products?q=${query}`);
     if (res.ok) {
         const data = await res.json();
-        console.log('EREEE', data);
         dispatch(actionSearchProducts(data));
         return data;
     } else {
@@ -97,7 +96,6 @@ export const thunkCreateProduct = (product) => async(dispatch) => {
         // headers: { 'Content-Type': 'application/json' },
         body: product
     })
-    console.log(res);
     if (res.ok) {
         const data = await res.json();
         dispatch(actionCreateProduct(data.product))

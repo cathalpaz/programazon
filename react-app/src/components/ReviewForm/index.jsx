@@ -136,7 +136,7 @@ function ReviewForm() {
                 <span>Shoppers find images and videos more helpful than text alone</span>
 
                 {!image || review ? (
-                  <button className='form__file-upload' onClick={handleImageUpload}><i class="fa-solid fa-plus"></i></button>
+                  <button className='form__file-upload' onClick={handleImageUpload}><i className="fa-solid fa-plus"></i></button>
                 ) : (
                   <button className='form__file-pic'><img src={URL.createObjectURL(image)} alt='preview' /></button>
                 )}

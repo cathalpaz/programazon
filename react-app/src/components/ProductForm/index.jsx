@@ -144,7 +144,7 @@ function ProductForm() {
             <div className='product-form__line'>
               <label>Image*</label>
               {!image || product ? (
-                  <button className='form__file-upload' onClick={handleImageUpload}><i class="fa-solid fa-plus"></i></button>
+                  <button className='form__file-upload' onClick={handleImageUpload}><i className="fa-solid fa-plus"></i></button>
                 ) : (
                   <button className='form__file-pic'><img src={URL.createObjectURL(image)} alt='preview' /></button>
                 )}
