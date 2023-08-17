@@ -7,6 +7,8 @@ from ..forms import ReviewForm
 from .error_helpers import NotFoundError, ForbiddenError
 from .auth_routes import validation_errors_to_error_messages
 
+from .aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
+
 
 
 # TODO: ADD AWS TO IMAGES, POST AND PUT
@@ -51,8 +53,19 @@ def edit_review(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         for field in form.data:
-            if field != 'csrf_token' and field != 'file':
+            if field != 'csrf_token' and field != 'image':
                 setattr(review, field, form.data[field])
+
+        image = form.data.get("image")
+        if image:
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                return {"errors": "URL not in upload"}
+
+            url = upload["url"]
+            review.image = url
 
         db.session.commit()
         return {"review": review.to_dict()}

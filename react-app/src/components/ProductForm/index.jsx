@@ -32,6 +32,12 @@ function ProductForm() {
   const handleSubmit = async(e) => {
     e.preventDefault()
 
+    if (!image) {
+      e = {}
+      e.image = 'Image required'
+      setErrors(e)
+    }
+
     const formData = new FormData()
     formData.append('name', name)
     formData.append('price', price)
@@ -44,26 +50,9 @@ function ProductForm() {
 
     let data = null
     if (!product) {
-      // const newProduct = {
-      //   name,
-      //   price,
-      //   description,
-      //   category,
-      //   stock_quantity: stock,
-      //   image,
-      //   seller_id: user?.id
-      // }
+
       data = await dispatch(thunkCreateProduct(formData))
     } else {
-      // const editProduct = {
-      //   id: product?.id,
-      //   name,
-      //   price,
-      //   description,
-      //   category,
-      //   stock_quantity: stock,
-      //   image
-      // }
       data = await dispatch(thunkEditProduct(formData, product.id))
     }
 
@@ -149,7 +138,7 @@ function ProductForm() {
             </div>
             {errors.description && <p className="form-errors"><span> ! </span>{errors.description}</p>}
             <div className='product-form__line'>
-              <label>Image URL*</label>
+              <label>Image*</label>
               <input
                 // className='line__long'
                 type='file'

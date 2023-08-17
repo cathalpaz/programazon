@@ -29,8 +29,8 @@ const actionDeleteReview = (reviewId) => {
 export const thunkCreateReview = (review, productId) => async(dispatch) => {
     const res = await fetch(`/api/products/${productId}/reviews`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(review)
+        // headers: { 'Content-Type': 'application/json' },
+        body: review
     })
     if (res.ok) {
         const data = await res.json()
@@ -40,11 +40,11 @@ export const thunkCreateReview = (review, productId) => async(dispatch) => {
         return errData;
     }
 }
-export const thunkEditReview = (review) => async(dispatch) => {
-    const res = await fetch(`/api/reviews/${review.id}`, {
+export const thunkEditReview = (review, reviewId) => async(dispatch) => {
+    const res = await fetch(`/api/reviews/${reviewId}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(review)
+        // headers: { 'Content-Type': 'application/json' },
+        body: review
     })
     if (res.ok) {
         const data = await res.json()

@@ -205,11 +205,24 @@ def post_product_review(id):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+
+        url = None
+        image = form.data['image']
+        if image:
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            print(upload)
+
+            if "url" not in upload:
+                return {"errors": "URL not in upload"}
+
+            url = upload["url"]
+
         review = Review(
             title = form.data["title"],
             content = form.data["content"],
             rating = form.data["rating"],
-            image = form.data["image"],
+            image = url,
             buyer_id = current_user.id,
             product_id = product.id
         )

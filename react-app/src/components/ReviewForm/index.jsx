@@ -41,6 +41,15 @@ function ReviewForm() {
   const handleSubmit = async(e) => {
     e.preventDefault()
 
+    const formData = new FormData()
+    formData.append('title', title)
+    formData.append('content', content)
+    formData.append('rating', rating)
+    if (image) {
+      formData.append('image', image)
+    }
+
+
     let data = null
 
     if (!review) {
@@ -52,7 +61,7 @@ function ReviewForm() {
         rating,
         image
       }
-      data = await dispatch(thunkCreateReview(newReview, product?.id))
+      data = await dispatch(thunkCreateReview(formData, product?.id))
     } else {
       const editReview = {
         id: review?.id,
@@ -63,7 +72,7 @@ function ReviewForm() {
         rating,
         image
       }
-      data = await dispatch(thunkEditReview(editReview))
+      data = await dispatch(thunkEditReview(formData, review?.id))
     }
     if (data && data.errors) {
       setErrors(data.errors)
@@ -114,9 +123,9 @@ function ReviewForm() {
                 <span>Shoppers find images and videos more helpful than text alone</span>
                 <input
                     id='image'
-                    type='text'
-                    value={image}
-                    onChange={e => setImage(e.target.value)}
+                    type='file'
+                    accept='image/*'
+                    onChange={e => setImage(e.target.files[0])}
                     />
                 {errors.image && <p className="review-errors"><span> ! </span>{errors.image}</p>}
 

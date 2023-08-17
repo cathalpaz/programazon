@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, SubmitField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, NumberRange, ValidationError
+from ..api.aws_helpers import ALLOWED_EXTENSIONS
 
 
 def validate_image(form, field):
@@ -15,5 +17,5 @@ class ReviewForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired(), Length(max=2000)])
     rating = IntegerField('Rating', validators=[DataRequired(), NumberRange(min=1, max=5)])
-    image = StringField('Image', validators=[validate_image])
+    image = FileField('Image File', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     submit = SubmitField('Submit')
