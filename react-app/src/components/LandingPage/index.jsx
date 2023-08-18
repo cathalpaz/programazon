@@ -15,6 +15,8 @@ function LandingPage() {
         dispatch(thunkGetUserProducts())
     }, [dispatch])
 
+    const newestProducts = allProducts.slice(-5).reverse()
+    console.log(newestProducts)
     allProducts.sort((a, b) => b.avg_rating - a.avg_rating)
     const topRatedProducts = allProducts.slice(0, 5)
 
@@ -78,7 +80,7 @@ function LandingPage() {
                 </div>
             </div>
             <div className="landing__trending-container">
-                <div className="landing__trending">
+                <div className="landing__trending first">
                     <div className="landing__trending-header">
                         <h3>Top Rated Products</h3>
                         <span onClick={sendToAllProducts}>Shop all products</span>
@@ -88,7 +90,22 @@ function LandingPage() {
                             <div className="landing__trending-product" key={product?.id} onClick={(() => sendToProduct(product?.id))} >
                                 <div className="landing-product__image">
                                     <img src={product?.image} alt="product" />
-
+                                </div>
+                                <span>{truncateString(product?.name)}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="landing__trending">
+                    <div className="landing__trending-header">
+                        <h3>Newest Products</h3>
+                        <span onClick={sendToAllProducts}>Shop all products</span>
+                    </div>
+                    <div className="landing__trending-products">
+                        {newestProducts.map(product => (
+                            <div className="landing__trending-product" key={product?.id} onClick={(() => sendToProduct(product?.id))} >
+                                <div className="landing-product__image">
+                                    <img src={product?.image} alt="product" />
                                 </div>
                                 <span>{truncateString(product?.name)}</span>
                             </div>

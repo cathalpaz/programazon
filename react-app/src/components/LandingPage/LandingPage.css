@@ -1,6 +1,6 @@
 .landing__container {
     background-color: #E3E6E6;
-    height: 130vh;
+    /* height: 130vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,17 +55,28 @@
 }
 
 .landing__trending-container {
-    margin-top: 250px;
+    /* margin-top: 250px;
     max-width: 1210px;
     width: 100%;
     background-color: white;
-    padding: 0 20px;
-    width:97%;
+    padding: 0 20px; */
+
     margin-bottom: 50px;
+}
+
+.first {
+    margin-top: 250px;
+
 }
 
 .landing__trending {
     padding: 8px 0;
+    margin-bottom: 45px;
+    /* background-color: white; */
+    max-width: 1210px;
+    width: 100%;
+    background-color: white;
+    padding: 0 20px;
 }
 
 .landing__trending-header {
