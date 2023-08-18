@@ -173,7 +173,7 @@ const productReducer = (state = initialState, action) => {
         }
         case CREATE_PRODUCT: {
             const newState = { ...state }
-            const allProducts = { ...state.allProducts, [action.payload.id]: action.payload, };
+            const allProducts = { ...state.allProducts, [action.payload.id]: action.payload };
             newState.allProducts = allProducts
             return newState
         }
