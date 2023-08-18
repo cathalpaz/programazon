@@ -98,7 +98,7 @@ export const thunkCreateProduct = (product) => async(dispatch) => {
     })
     if (res.ok) {
         const data = await res.json();
-        dispatch(actionCreateProduct(data.product))
+        dispatch(actionCreateProduct(data))
         // dispatch(actionGetSingleProduct(data.product.id))
         return data
     } else {
