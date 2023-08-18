@@ -16,7 +16,6 @@ function LandingPage() {
     }, [dispatch])
 
     const newestProducts = allProducts.slice(-5).reverse()
-    console.log(newestProducts)
     allProducts.sort((a, b) => b.avg_rating - a.avg_rating)
     const topRatedProducts = allProducts.slice(0, 5)
 
