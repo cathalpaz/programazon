@@ -173,8 +173,12 @@ const productReducer = (state = initialState, action) => {
         }
         case CREATE_PRODUCT: {
             const newState = { ...state }
+            console.log('NEWSTATE BEFORE:', newState);
+            console.log('ACTION:', action);
+
             const allProducts = { ...state.allProducts, [action.payload.id]: action.payload };
             newState.allProducts = allProducts
+            console.log('NEWSTATE AFTER:', newState);
             return newState
         }
         case GET_USER_PRODUCTS: {
