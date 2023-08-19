@@ -47,6 +47,7 @@ function LandingPage() {
     }
 
     const truncateString = (s) => {
+        if (!s) return
         if (s.length < 29) return s
         return s.substring(0, 29) + "..."
     }
