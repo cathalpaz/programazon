@@ -27,7 +27,7 @@ class Product(db.Model):
     seller = db.relationship('User', back_populates='products')
 
     # relationship to reviews
-    reviews = db.relationship('Review', back_populates= 'product')
+    reviews = db.relationship('Review', back_populates= 'product', cascade="all, delete-orphan")
 
     # relationship to cart items
     cart_items = db.relationship('CartItem', back_populates='product')

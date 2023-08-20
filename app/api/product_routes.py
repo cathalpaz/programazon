@@ -173,8 +173,6 @@ def delete_product(id):
         error = ForbiddenError('Not your product!')
         return error.error_json()
 
-    for review in product.reviews:
-        db.session.delete(review)
     remove_file_from_s3(product.image)
     db.session.delete(product)
     db.session.commit()

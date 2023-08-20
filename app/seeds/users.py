@@ -4,16 +4,27 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password', address='123 Demo Ave')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', address='69 Brook St')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', address='20 Silk Rd')
+    demo = User(username='Demo', email='demo@aa.io', password='password', address='123 Demo Ave')
+    marnie = User(username='marnie', email='marnie@aa.io', password='password', address='69 Brook St')
+    bobbie = User(username='bobbie', email='bobbie@aa.io', password='password', address='20 Silk Rd')
+    alice = User(username='alice', email='alice@aa.io', password='password', address='123 Main St')
+    jason = User(username='jason', email='jason@aa.io', password='password', address='456 Elm Ave')
+    claire = User(username='claire', email='claire@aa.io', password='password', address='789 Oak Ln')
+    daniel = User(username='daniel', email='daniel@aa.io', password='password', address='101 Pine Rd')
+    emma = User(username='emma', email='emma@aa.io', password='password', address='202 Maple Dr')
+    finn = User(username='finn', email='finn@aa.io', password='password', address='303 Willow Rd')
+    grace = User(username='grace', email='grace@aa.io', password='password', address='404 Cedar Ave')
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(alice)
+    db.session.add(jason)
+    db.session.add(claire)
+    db.session.add(daniel)
+    db.session.add(emma)
+    db.session.add(finn)
+    db.session.add(grace)
     db.session.commit()
 
 

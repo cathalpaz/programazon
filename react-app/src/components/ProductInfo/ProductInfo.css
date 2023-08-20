@@ -1,9 +1,14 @@
-.product__display-container > img {
-    display: block;
-    width: 100%;
-    height: auto;
+.product__display-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.product__display-img > img {
     padding: 12px;
-    margin-top: 60px;
+    min-width: 300px;
+    max-width: 440px;
 }
 
 .prime-logo {

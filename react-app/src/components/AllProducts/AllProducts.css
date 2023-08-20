@@ -54,6 +54,8 @@
     padding: 0 8px;
     justify-content: center;
     cursor: pointer;
+    width: 196px;
+    height: 198px;
     background-color: #e3e6e634;
 }
 

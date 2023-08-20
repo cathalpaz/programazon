@@ -34,7 +34,9 @@ function ProductInfo() {
   return (
     <div className='product__container'>
       <div className='product__display-container'>
-        <img src={product?.image} alt='product' />
+        <div className='product__display-img'>
+          <img src={product?.image} alt='product' />
+        </div>
         <div className='product__display-info'>
           <span className='product__name'>{product?.name}</span>
           <p className='product__category' onClick={(() => sendToCategory(product?.category))} >View more {product?.category}</p>
