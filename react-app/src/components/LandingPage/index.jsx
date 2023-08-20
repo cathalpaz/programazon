@@ -9,11 +9,14 @@ function LandingPage() {
     const history = useHistory()
     const dispatch = useDispatch()
     const allProducts = useSelector(state => Object.values(state.products.allProducts))
+    const user = useSelector(state => state.session.user)
 
     useEffect(() => {
         dispatch(thunkGetProducts())
-        dispatch(thunkGetUserProducts())
-    }, [dispatch])
+        if (user) {
+            dispatch(thunkGetUserProducts())
+        }
+    }, [dispatch, user])
 
     const newestProducts = allProducts.slice(-5).reverse()
     allProducts.sort((a, b) => b.avg_rating - a.avg_rating)

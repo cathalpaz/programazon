@@ -12,8 +12,8 @@ function Footer() {
 
   return (
     <div className='footer__container'>
-        <div className='footer__to-top'>
-            <span onClick={scrollToTop}>Back to top</span>
+        <div className='footer__to-top' onClick={scrollToTop}>
+            <span>Back to top</span>
         </div>
         <div className='footer__content'>
             <div className='content__tech'>
