@@ -142,6 +142,8 @@ def edit_product(id):
 
         image = form.data.get("image")
         if image:
+
+            remove_file_from_s3(product.image)
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
 
@@ -171,6 +173,9 @@ def delete_product(id):
         error = ForbiddenError('Not your product!')
         return error.error_json()
 
+    for review in product.reviews:
+        db.session.delete(review)
+    remove_file_from_s3(product.image)
     db.session.delete(product)
     db.session.commit()
 

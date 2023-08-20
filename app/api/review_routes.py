@@ -58,6 +58,8 @@ def edit_review(id):
 
         image = form.data.get("image")
         if image:
+            if review.image:
+                remove_file_from_s3(review.image)
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
 
@@ -82,6 +84,8 @@ def delete_review(id):
         error = NotFoundError('Review Not Found')
         return error.error_json()
 
+    if review.image:
+        remove_file_from_s3(review.image)
     db.session.delete(review)
     db.session.commit()
     return {"message": "Successfully Deleted"}
