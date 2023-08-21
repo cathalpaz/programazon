@@ -20,7 +20,7 @@ function Account({ user }) {
   };
   const sendToUserProducts = () => {
     history.push('/products/my-products')
-    window.location.reload()
+    // window.location.reload()
   }
   const comingSoon = () => {
     alert('Coming soon!')

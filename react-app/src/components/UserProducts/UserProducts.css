@@ -114,3 +114,27 @@
     text-decoration: underline;
     color: #f5ab4a;
 }
+
+
+.user-no-products {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 1rem;
+    min-width: 800px;
+}
+
+.user-no-products > span {
+    font-size: 16px;
+    display: flex;
+}
+
+.user-no-products > span > p {
+    padding-left: 5px;
+    color: #007185;
+    cursor: pointer;
+}
+
+.user-no-products > span > p:hover {
+    text-decoration: underline;
+}
