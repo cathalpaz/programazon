@@ -1,0 +1,31 @@
+.err-page__container {
+    padding: 30px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.err-page__header {
+    font-size: 150px;
+    font-weight: 0;
+    color: gray;
+}
+
+.err-page__sub {
+    font-size: 40px;
+    color: gray;
+}
+
+.err-page__link {
+    font-size: 24px;
+    color: gray;
+    display: flex;
+}
+
+.err-page__link > p {
+    color: #0066c0;
+    padding-left: 5px;
+    cursor: pointer;
+}

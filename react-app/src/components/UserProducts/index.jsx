@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkGetProducts, thunkGetUserProducts } from '../../store/products';
-import Loading from '../Loading'
+import { thunkGetProducts } from '../../store/products';
 import dayjs from 'dayjs';
 import { useHistory } from 'react-router-dom'
 import OpenModalButton from '../OpenModalButton';
@@ -15,7 +14,7 @@ function UserProducts() {
   const user = useSelector(state => state.session.user)
   const allProducts = useSelector(state => Object.values(state.products.allProducts))
 
-  const myProducts = allProducts.filter(product => product.seller_id == user.id)
+  const myProducts = allProducts.filter(product => product.seller_id === user.id)
 
   useEffect(() => {
     dispatch(thunkGetProducts())

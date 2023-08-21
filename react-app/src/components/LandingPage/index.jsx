@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { thunkGetProducts, thunkGetUserProducts } from "../../store/products";
+import { thunkGetProducts } from "../../store/products";
 import Loading from "../Loading";
 import { useHistory } from 'react-router-dom';
 import "./LandingPage.css";
@@ -13,9 +13,6 @@ function LandingPage() {
 
     useEffect(() => {
         dispatch(thunkGetProducts())
-        if (user) {
-            dispatch(thunkGetUserProducts())
-        }
     }, [dispatch, user])
 
     const newestProducts = allProducts.slice(-5).reverse()

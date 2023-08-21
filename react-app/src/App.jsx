@@ -12,6 +12,7 @@ import ProductForm from "./components/ProductForm";
 import ReviewForm from "./components/ReviewForm";
 import UserProducts from "./components/UserProducts";
 import Footer from "./components/Footer";
+import Page404 from "./components/404Page";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,10 @@ function App() {
             <Navigation />
             <AllProducts />
             <Footer />
+          </Route>
+          <Route>
+            <Navigation />
+            <Page404 />
           </Route>
         </Switch>
       )}
