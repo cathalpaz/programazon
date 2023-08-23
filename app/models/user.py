@@ -24,9 +24,6 @@ class User(db.Model, UserMixin):
     # relationship to reviews
     reviews_written = db.relationship('Review', back_populates='buyer')
 
-    # relationship to cart items
-    cart_items = db.relationship('CartItem', back_populates='buyer')
-
     # relationship to carts
     carts = db.relationship('Cart', back_populates='user')
 

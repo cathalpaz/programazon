@@ -31,5 +31,6 @@ class Cart(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'total_price': self.total_price,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'cart_items': [cart_item.to_dict() for cart_item in self.cart_items],
         }

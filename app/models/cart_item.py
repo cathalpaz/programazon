@@ -13,13 +13,11 @@ class CartItem(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), nullable=False)
     quantity = db.Column(db.Integer)
     subtotal = db.Column(db.Numeric(precision=6, scale=2), nullable=False)
+        # product price * quantity
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
 
     # RELATIONSHIPS
-
-    # relationship to owner
-    buyer = db.relationship('User', back_populates='cart_items')
 
     # relationship to products
     product = db.relationship('Product', back_populates='cart_items')
