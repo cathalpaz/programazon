@@ -35,6 +35,9 @@ class Product(db.Model):
     # relationship to purchase items
     purchase_items = db.relationship('PurchaseItem', back_populates='product')
 
+    # relationship to order items
+    order_items = db.relationship('OrderItem', back_populates='product')
+
 
     def to_dict(self):
         return {
