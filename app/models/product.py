@@ -32,9 +32,6 @@ class Product(db.Model):
     # relationship to cart items
     cart_items = db.relationship('CartItem', back_populates='product')
 
-    # relationship to purchase items
-    purchase_items = db.relationship('PurchaseItem', back_populates='product')
-
     # relationship to order items
     order_items = db.relationship('OrderItem', back_populates='product')
 
