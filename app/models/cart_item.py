@@ -33,6 +33,7 @@ class CartItem(db.Model):
             'id': self.id,
             'cart_id': self.cart_id,
             'product_id': self.product_id,
+            'product': self.product.to_dict(),
             'quantity': self.quantity,
             'subtotal': self.subtotal
         }

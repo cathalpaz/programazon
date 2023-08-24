@@ -44,5 +44,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'address': self.address
+            'address': self.address,
+            'cart': self.carts[0].to_dict() if self.carts else None
         }
