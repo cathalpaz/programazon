@@ -27,6 +27,9 @@ class User(db.Model, UserMixin):
     # relationship to carts
     carts = db.relationship('Cart', back_populates='user')
 
+    # relationship to orders
+    orders = db.relationship('Order', back_populates='user')
+
 
     @property
     def password(self):
@@ -45,5 +48,6 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'address': self.address,
-            'cart': self.carts[0].to_dict() if self.carts else None
+            'cart': self.carts[0].to_dict() if self.carts else None,
+            'orders': self.orders[0].to_dict() if self.orders else None
         }

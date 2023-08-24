@@ -9,10 +9,14 @@ class Order(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('carts.id')), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
 
     # RELATIONSHIPS
+
+    # relationship to user
+    user = db.relationship('User', back_populates='orders')
 
     # relationship to cart
     cart = db.relationship('Cart', back_populates='orders')
@@ -24,6 +28,7 @@ class Order(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
+            'user_id': self.user_id,
             'cart_id': self.cart_id,
             'created_at': self.created_at
         }
