@@ -5,7 +5,6 @@ from sqlalchemy.sql import text
 def seed_orders():
     order1 = Order(
         user_id = 1,
-        cart_id = 1
     )
 
     db.session.add(order1)

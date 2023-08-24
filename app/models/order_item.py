@@ -24,12 +24,12 @@ class OrderItem(db.Model):
 
 
 
-
     def to_dict(self):
         return {
             'id': self.id,
             'order_id': self.order_id,
             'product_id': self.product_id,
+            'product': self.product.to_dict(),
             'quantity': self.quantity,
             'subtotal': self.subtotal
         }

@@ -20,10 +20,10 @@ class Cart(db.Model):
     user = db.relationship('User', back_populates='carts')
 
     # relationship to cart items
-    cart_items = db.relationship('CartItem', back_populates='cart')
+    cart_items = db.relationship('CartItem', back_populates='cart', cascade="all, delete-orphan")
 
     # relationship to orders
-    orders = db.relationship('Order', back_populates='cart')
+    # orders = db.relationship('Order', back_populates='cart')
 
 
     def to_dict(self):
