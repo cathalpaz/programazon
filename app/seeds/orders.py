@@ -3,13 +3,14 @@ from sqlalchemy.sql import text
 
 
 def seed_orders():
-    order1 = Order(
-        user_id = 1,
-    )
+    # order1 = Order(
+    #     user_id = 1,
+    # )
 
-    db.session.add(order1)
+    # db.session.add(order1)
 
-    db.session.commit()
+    # db.session.commit()
+    pass
 
 
 def undo_orders():

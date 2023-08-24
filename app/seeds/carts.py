@@ -3,14 +3,15 @@ from sqlalchemy.sql import text
 
 
 def seed_carts():
-    cart1 = Cart(
-        user_id = 1,
-        total_price = 90
-    )
+    # cart1 = Cart(
+    #     user_id = 1,
+    #     total_price = 90
+    # )
 
-    db.session.add(cart1)
+    # db.session.add(cart1)
 
-    db.session.commit()
+    # db.session.commit()
+    pass
 
 
 def undo_carts():

@@ -3,24 +3,25 @@ from sqlalchemy.sql import text
 
 
 def seed_cart_items():
-    cart_item1 = CartItem(
-        cart_id = 1,
-        product_id = 2,
-        quantity = 1,
-        subtotal = 30
-    )
-    cart_item2 = CartItem(
-        cart_id = 1,
-        product_id = 3,
-        quantity = 3,
-        subtotal = 60
-    )
+    # cart_item1 = CartItem(
+    #     cart_id = 1,
+    #     product_id = 2,
+    #     quantity = 1,
+    #     subtotal = 30
+    # )
+    # cart_item2 = CartItem(
+    #     cart_id = 1,
+    #     product_id = 3,
+    #     quantity = 3,
+    #     subtotal = 60
+    # )
 
 
-    db.session.add(cart_item1)
-    db.session.add(cart_item2)
+    # db.session.add(cart_item1)
+    # db.session.add(cart_item2)
 
-    db.session.commit()
+    # db.session.commit()
+    pass
 
 def undo_cart_items():
     if environment == "production":
