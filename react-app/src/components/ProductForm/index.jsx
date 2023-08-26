@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { thunkCreateProduct, thunkEditProduct } from '../../store/products';
+import { thunkCreateProduct, thunkEditProduct, thunkGetProducts } from '../../store/products';
 import './ProductForm.css'
 
 function ProductForm() {
@@ -49,8 +49,10 @@ function ProductForm() {
     if (!product) {
 
       data = await dispatch(thunkCreateProduct(formData))
+      dispatch(thunkGetProducts())
     } else {
       data = await dispatch(thunkEditProduct(formData, product.id))
+      dispatch(thunkGetProducts())
     }
 
     if (data && data.errors) {
