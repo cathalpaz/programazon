@@ -13,6 +13,7 @@ import ReviewForm from "./components/ReviewForm";
 import UserProducts from "./components/UserProducts";
 import Footer from "./components/Footer";
 import Page404 from "./components/404Page";
+import Cart from "./components/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +58,10 @@ function App() {
             <Navigation />
             <AllProducts />
             <Footer />
+          </Route>
+          <Route path='/cart'>
+            <Navigation />
+            <Cart />
           </Route>
           <Route>
             <Navigation />

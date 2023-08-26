@@ -1,14 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import CategoryHeader from './CategoryHeader';
 import Account from './Account';
 import { useHistory } from 'react-router-dom';
+import { thunkGetCart } from '../../store/cart';
 import './Navigation.css';
 
 function Navigation(){
 	const history = useHistory()
+	const dispatch = useDispatch();
 	const sessionUser = useSelector(state => state.session.user);
+	const cart = useSelector(state => (state.cart));
 	const componentRef = useRef(null);
 
 	const [showComponent, setShowComponent] = useState(false);
@@ -28,6 +31,9 @@ function Navigation(){
 	const sendToPostProduct = () => {
 		history.push('/products/new')
 	}
+	const sendToCart = () => {
+		history.push('/cart')
+	}
 
 	const [searchFilter, setSearchFilter] = useState('')
 
@@ -45,6 +51,9 @@ function Navigation(){
 		alert('Coming soon!')
 	}
 
+	useEffect(() => {
+		dispatch(thunkGetCart())
+	}, [dispatch])
 
 	useEffect(() => {
 		document.addEventListener('click', handleClickOutside);
@@ -96,8 +105,8 @@ function Navigation(){
 					<p>Returns</p>
 					<span>& Orders</span>
 				</div>
-				<div className='nav__cart' onClick={comingSoon}>
-					<p>0</p>
+				<div className='nav__cart' onClick={sendToCart}>
+					<p>{cart.cart_items ? cart.cart_items.length : "0"}</p>
 					<span>Cart</span>
 				</div>
 
