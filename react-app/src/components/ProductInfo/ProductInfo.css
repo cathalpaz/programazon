@@ -169,6 +169,11 @@
     color: #b12704;
 }
 
+.product__buy-no-stock {
+    color: #b12704;
+    padding-top: 8px;
+}
+
 .product__buy-quantity {
     width: 60px;
     border-radius: 6px;
@@ -216,4 +221,8 @@
 
 .product__buy-extra-secure {
     color: #007185;
+}
+
+.disabled {
+    cursor: not-allowed;
 }

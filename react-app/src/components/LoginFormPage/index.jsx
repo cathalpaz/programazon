@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './LoginForm.css';
 import { useHistory } from "react-router-dom";
+import { thunkGetCart } from "../../store/cart";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function LoginFormPage() {
     const data = await dispatch(login(credential, password));
     if (data && data.errors) {
       setErrors(data.errors);
+    } else {
+      await dispatch(thunkGetCart())
+      window.location.reload()
     }
   };
 

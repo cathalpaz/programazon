@@ -11,7 +11,7 @@ function Navigation(){
 	const history = useHistory()
 	const dispatch = useDispatch();
 	const sessionUser = useSelector(state => state.session.user);
-	const cart = useSelector(state => (state.cart));
+	const cartItems = useSelector(state => (Object.values(state.cart.items)));
 	const componentRef = useRef(null);
 
 	const [showComponent, setShowComponent] = useState(false);
@@ -106,15 +106,13 @@ function Navigation(){
 					<span>& Orders</span>
 				</div>
 				<div className='nav__cart' onClick={sendToCart}>
-					<p>{cart.cart_items ? cart.cart_items.length : "0"}</p>
+					{sessionUser ? (
+						<p>{cartItems ? cartItems.length : "0"}</p>
+					) : (
+						<p>0</p>
+					)}
 					<span>Cart</span>
 				</div>
-
-				{/* {isLoaded && (
-					<div>
-						<ProfileButton user={sessionUser} />
-					</div>
-				)} */}
 			</div>
 			<div className='nav__cat-header'>
 				<CategoryHeader />

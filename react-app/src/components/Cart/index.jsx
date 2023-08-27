@@ -7,21 +7,20 @@ function Cart() {
     const dispatch = useDispatch()
     const cart = useSelector(state => (state.cart))
 
+    const cartItems = Object.values(cart.items)
+
     useEffect(() => {
         dispatch(thunkGetCart())
     }, [dispatch])
 
-    console.log(cart)
-
-
     return (
         <div className='cart__container'>
-            {cart.cart_items ? (
+            {cartItems.length ? (
                 <div className='cart__content'>
                     <div className='cart__left'>
                         <span>Shopping Cart</span>
                         <div className='cart__items'>
-                            {cart.cart_items?.map(item => (
+                            {cartItems.map(item => (
                                 <div className='cart__item' key={item.id}>
                                     <div className='item__left'>
                                         <img src={item.product.image} alt={item.product.name} />
@@ -42,11 +41,11 @@ function Cart() {
                             ))}
                         </div>
                         <div className='cart__total'>
-                            <p>Subtotal ({cart.cart_items?.length} items): <span>${cart.total_price}</span></p>
+                            <p>Subtotal ({cartItems?.length} items): <span>${cart.total}</span></p>
                         </div>
                     </div>
                     <div className='cart__right'>
-                        <p>Subtotal ({cart.cart_items?.length} items): <span>${cart.total_price}</span></p>
+                        <p>Subtotal ({cartItems?.length} items): <span>${cart.total}</span></p>
                     </div>
                 </div>
             ) : (

@@ -12,10 +12,10 @@ const actionGetCart = (cart) => {
         payload: cart
     }
 }
-const actionAddToCart = (cart) => {
+const actionAddToCart = (cart_item) => {
     return {
         type: ADD_TO_CART,
-        payload: cart
+        payload: cart_item
     }
 }
 
@@ -45,7 +45,7 @@ export const thunkAddToCart = (quantity, productId) => async(dispatch) => {
     const res = await fetch(`/api/products/${productId}/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(quantity)
+        body: JSON.stringify({quantity})
     })
     if (res.ok) {
         const data = await res.json();
@@ -59,20 +59,22 @@ export const thunkAddToCart = (quantity, productId) => async(dispatch) => {
 
 
 // REDUCER
-const initialState = {  };
+const initialState = { items: {}, total: 0 };
 
 const cartReducer = (state = initialState, action) => {
     switch(action.type) {
         case GET_CART: {
-            // const newState = { cart: action.payload.cart };
-            // for (let item of action.payload.cart.cart_items) {
-            //     newState.cartItems[item.id] = item;
-            // }
-            // return newState;
-            return { ...state, ...action.payload.cart}
+            const newState = { ...state };
+            for (const item of action.payload.cart.cart_items) {
+                newState.items[item.id] = item;
+            }
+            newState.total = action.payload.cart.total_price;
+            return newState;
         }
         case ADD_TO_CART: {
-            const newState = action.payload.cart;
+            const newState = { ...state };
+            newState.items[action.payload.cart_item.id] = action.payload.cart_item;
+            newState.total += action.payload.cart_item.subtotal;
             return newState;
         }
         default:

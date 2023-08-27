@@ -296,10 +296,10 @@ def add_product_to_cart(id):
             item.subtotal += cart_item.subtotal
 
             db.session.commit()
-            return {"cart": current_user.carts[0].to_dict()}
+            return {"cart_item": item.to_dict()}
 
 
     db.session.add(cart_item)
     db.session.commit()
 
-    return {"cart": current_user.carts[0].to_dict()}
+    return {"cart_item": cart_item.to_dict()}

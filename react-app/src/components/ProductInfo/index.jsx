@@ -32,16 +32,16 @@ function ProductInfo() {
     window.location.reload()
   }
 
-  const addToCart = () => {
+  const addToCart = async(e) => {
     if (!currentUser) {
       history.push('/login')
     } else {
-      console.log(quantity, parseInt(productId))
-      dispatch(thunkAddToCart(quantity, parseInt(productId)))
+      await dispatch(thunkAddToCart(quantity, product.id))
       history.push('/cart')
     }
   }
 
+  const disabled = product?.stock_quantity <= 0
 
   // console.log(product)
   return (
@@ -82,18 +82,20 @@ function ProductInfo() {
             <p className='product__buy-address'><i className="fa-solid fa-location-dot"></i><span>Deliver to {currentUser?.username} - {currentUser?.address}</span></p>
           ) : null}
           {product?.stock_quantity > 0 ? (
+            <>
             <p className='product__buy-in-stock'>In Stock <span>Only {product?.stock_quantity} left in stock.</span></p>
-          ) : <p className='product_buy-no-stock'>Out of Stock</p>}
-          <select
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-            className='product__buy-quantity'
-            >
-            {Array.from({ length: product?.stock_quantity }, (_, i) => i + 1).map((num) => (
-              <option key={num} value={num}>Qty: {num}</option>
-            ))}
-          </select>
-          <button className='product__buy-button' onClick={addToCart}>Add to Cart</button>
+            <select
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              className='product__buy-quantity'
+              >
+              {Array.from({ length: product?.stock_quantity }, (_, i) => i + 1).map((num) => (
+                <option key={num} value={num}>Qty: {num}</option>
+              ))}
+            </select>
+            </>
+          ) : <p className='product__buy-no-stock'>Out of Stock</p>}
+          <button className={disabled ? 'product__buy-button disabled' : 'product__buy-button'} onClick={addToCart} disabled={disabled}>Add to Cart</button>
           <div className='product__buy-extra'>
             <div className='product__buy-extra-left'>
               <span>Payment</span>
