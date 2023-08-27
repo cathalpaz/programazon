@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { thunkGetCart } from '../../store/cart'
 import './Cart.css'
 
 function Cart() {
     const dispatch = useDispatch()
     const cart = useSelector(state => (state.cart))
+
+    useEffect(() => {
+        dispatch(thunkGetCart())
+    }, [dispatch])
 
     console.log(cart)
 

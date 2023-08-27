@@ -6,6 +6,7 @@ import Loading from '../Loading'
 import Reviews from '../Reviews'
 import Stars from '../Stars'
 import './ProductInfo.css'
+import { thunkAddToCart } from '../../store/cart'
 
 function ProductInfo() {
   const dispatch = useDispatch()
@@ -29,6 +30,16 @@ function ProductInfo() {
   const sendToCategory = (category) => {
     history.push(`/products?q=${category}`)
     window.location.reload()
+  }
+
+  const addToCart = () => {
+    if (!currentUser) {
+      history.push('/login')
+    } else {
+      console.log(quantity, parseInt(productId))
+      dispatch(thunkAddToCart(quantity, parseInt(productId)))
+      history.push('/cart')
+    }
   }
 
 
@@ -75,14 +86,14 @@ function ProductInfo() {
           ) : <p className='product_buy-no-stock'>Out of Stock</p>}
           <select
             value={quantity}
-            onchange={(e) => setQuantity(e.target.value)}
+            onChange={(e) => setQuantity(e.target.value)}
             className='product__buy-quantity'
             >
             {Array.from({ length: product?.stock_quantity }, (_, i) => i + 1).map((num) => (
               <option key={num} value={num}>Qty: {num}</option>
             ))}
           </select>
-          <button className='product__buy-button'>Add to Cart</button>
+          <button className='product__buy-button' onClick={addToCart}>Add to Cart</button>
           <div className='product__buy-extra'>
             <div className='product__buy-extra-left'>
               <span>Payment</span>

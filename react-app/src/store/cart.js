@@ -42,7 +42,7 @@ export const thunkGetCart = () => async(dispatch) => {
 }
 
 export const thunkAddToCart = (quantity, productId) => async(dispatch) => {
-    const res = await fetch(`/api/products/${productId}/add}`, {
+    const res = await fetch(`/api/products/${productId}/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(quantity)
@@ -72,8 +72,7 @@ const cartReducer = (state = initialState, action) => {
             return { ...state, ...action.payload.cart}
         }
         case ADD_TO_CART: {
-            const newState = { ...state };
-            newState.cartItems = action.payload.cart.cart_items;
+            const newState = action.payload.cart;
             return newState;
         }
         default:
