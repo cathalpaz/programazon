@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import { thunkGetSingleProduct } from '../../store/products'
@@ -14,6 +14,7 @@ function ProductInfo() {
   const product = useSelector(state => state.products.singleProduct.product)
   const currentUser = useSelector(state => state.session.user)
   // console.log(currentUser)
+  const [quantity, setQuantity] = useState(1)
 
   useEffect(() => {
     dispatch(thunkGetSingleProduct(productId))
@@ -29,6 +30,7 @@ function ProductInfo() {
     history.push(`/products?q=${category}`)
     window.location.reload()
   }
+
 
   // console.log(product)
   return (
@@ -71,7 +73,28 @@ function ProductInfo() {
           {product?.stock_quantity > 0 ? (
             <p className='product__buy-in-stock'>In Stock <span>Only {product?.stock_quantity} left in stock.</span></p>
           ) : <p className='product_buy-no-stock'>Out of Stock</p>}
-          <span>More information coming soon</span>
+          <select
+            value={quantity}
+            onchange={(e) => setQuantity(e.target.value)}
+            className='product__buy-quantity'
+            >
+            {Array.from({ length: product?.stock_quantity }, (_, i) => i + 1).map((num) => (
+              <option key={num} value={num}>Qty: {num}</option>
+            ))}
+          </select>
+          <button className='product__buy-button'>Add to Cart</button>
+          <div className='product__buy-extra'>
+            <div className='product__buy-extra-left'>
+              <span>Payment</span>
+              <span>Ships from</span>
+              <span>Sold by</span>
+            </div>
+            <div>
+              <span className='product__buy-extra-secure'>Secure transaction</span>
+              <span>Programazon</span>
+              <span>Programazon</span>
+            </div>
+          </div>
         </div>
       </div>
       <Reviews product={product} />
