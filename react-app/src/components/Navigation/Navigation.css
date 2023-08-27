@@ -222,3 +222,19 @@
 .category__container > span {
   cursor: pointer;
 }
+
+.nav__cart {
+  cursor: pointer;
+}
+
+.nav__cart > p {
+  color: #f08804;
+  font-size: 18px;
+}
+
+.nav__cart > img {
+  max-height: 30px;
+  max-width: 30px;
+  display:inline-block;
+  transform:translatex(-12px) translatey(-8px);
+}

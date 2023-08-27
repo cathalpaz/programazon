@@ -111,7 +111,7 @@ function Navigation(){
 					) : (
 						<p>0</p>
 					)}
-					<span>Cart</span>
+					<img src='/images/cart.png' />
 				</div>
 			</div>
 			<div className='nav__cat-header'>
