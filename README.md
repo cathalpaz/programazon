@@ -42,8 +42,8 @@ Programazon is an Amazon inspired e-commerce site tailored to tech needs, stream
 ## API Endpoints
 | Method   | URL                                      | Description                              |
 | -------- | ---------------------------------------- | ---------------------------------------- |
-| `GET`    | `/api/auth/login`                        | Retrieve all posts.                      |
-| `POST`   | `/api/posts`                             | Create a new post.                       |
+| `POST`    | `/api/auth/login`                        | Logs in user, Recieve body containing credential & password                     |
+| `POST`   | `/api/auth/signup`                        | Signs up user, Recieve body containing username, email, password & address                      |
 | `GET`    | `/api/posts/28`                          | Retrieve post #28.                       |
 | `PATCH`  | `/api/posts/28`                          | Update data in post #28.                 |
 | `POST`   | `/api/posts/28/comments`                 | Add comment to post #28.                 |
