@@ -44,6 +44,26 @@ Programazon is an Amazon inspired e-commerce site tailored to tech needs, stream
 | -------- | ---------------------------------------- | ---------------------------------------- |
 | `POST`    | `/api/auth/login`                        | Logs in user, Recieve body containing credential & password                     |
 | `POST`   | `/api/auth/signup`                        | Signs up user, Recieve body containing username, email, password & address                      |
-| `GET`    | `/api/posts/28`                          | Retrieve post #28.                       |
-| `PATCH`  | `/api/posts/28`                          | Update data in post #28.                 |
-| `POST`   | `/api/posts/28/comments`                 | Add comment to post #28.                 |
+| `GET`    | `/api/auth/logout`                          | Logs out user                      |
+| `GET`  | `/api/users`                          | Fetches all users                 |
+| `GET`   | `/api/users/:userId`                 | Fetches single user                |
+| `GET`   | `/api/products?=`                 | Fetches all products, takes optional query string                |
+| `GET`   | `/api/products/:productId`                 | Fetches single product                |
+| `GET`   | `/api/products/:productId/reviews`                 | Fetches reviews for single product              |
+| `POST`   | `/api/products/new`                 | Creates new product, Recieve body containing name, price, description, category, image, stock_quantity    |
+| `PUT`   | `/api/products/:productId`                 | Updates product, Recieve body containing name, price, description, category, image, stock_quantity     |
+| `DELETE`   | `/api/products/:productId`                 | Deletes product     |
+| `GET`   | `/api/products/current`                 | Fetches users' created products     |
+| `GET`   | `/api/reviews`                 | Fetches all reviews |
+| `GET`   | `/api/reviews/:reviewId`                 | Fetches single review     |
+| `POST`   | `/api/products/:productId/reviews`     | Creates product review, Recieve body containing title, content, and rating     |
+| `PUT`   | `/api/reviews/:reviewId`     | Updates product review, Recieves body containing title, content, and rating |
+| `DELETE`   | `/api/reviews/:reviewId`     | Deletes review |
+| `GET`   | `/api/carts`     | Fetches user cart |
+| `POST`   | `/api/products/:productId/cart`     | Adds product to user cart, Recieves body containing quantity |
+| `DELETE`   | `/api/carts/:productId`     | Removes product from cart |
+| `PUT`   | `/api/carts`     | Updates quantity of product in cart, Recieves body containing quantity |
+| `GET`   | `/api/orders`     | Fetches all users' orders |
+| `POST`   | `/api/orders`     | Purchases all items in cart |
+
+
