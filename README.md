@@ -40,14 +40,10 @@ Programazon is an Amazon inspired e-commerce site tailored to tech needs, stream
 </a>
 
 ## API Endpoints
-| REQUEST | PURPOSE | Return Value
-| ------- |:-------:|
-| POST /api/auth/login | Login User | {
-                                        "address": "123 Demo Ave",
-                                        "cart": null,
-                                        "email": "demo@aa.io",
-                                        "id": 1,
-                                       "orders": null,
-                                        "username": "Demo"
-                                      }
-| GET /api/tickets/:ticketId/ | This fetch will get a single ticket based on the given ticketId |
+| Method   | URL                                      | Description                              |
+| -------- | ---------------------------------------- | ---------------------------------------- |
+| `GET`    | `/api/auth/login`                        | Retrieve all posts.                      |
+| `POST`   | `/api/posts`                             | Create a new post.                       |
+| `GET`    | `/api/posts/28`                          | Retrieve post #28.                       |
+| `PATCH`  | `/api/posts/28`                          | Update data in post #28.                 |
+| `POST`   | `/api/posts/28/comments`                 | Add comment to post #28.                 |
