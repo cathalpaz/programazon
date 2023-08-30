@@ -2,7 +2,7 @@
 
 Programazon is an Amazon inspired e-commerce site tailored to tech needs, streamlining the process of selling items. Built with Flask, SQLAlchemy, React, Redux, and AWS, users experience an enhanced interface for selling, purchasing, and reviewing products, along with the capability to update their cart.
 
-###[LIVE LINK](https://programazon.onrender.com/)
+[LIVE LINK](https://programazon.onrender.com/)
 
 ![programazon](https://github.com/cathalpaz/programazon/assets/124412635/3e6da445-113e-41dc-a834-be3ae2f2724f)
 
@@ -40,3 +40,14 @@ Programazon is an Amazon inspired e-commerce site tailored to tech needs, stream
 </a>
 
 ## API Endpoints
+| REQUEST | PURPOSE | Return Value
+| ------- |:-------:|
+| POST /api/auth/login | Login User | {
+                                        "address": "123 Demo Ave",
+                                        "cart": null,
+                                        "email": "demo@aa.io",
+                                        "id": 1,
+                                       "orders": null,
+                                        "username": "Demo"
+                                      }
+| GET /api/tickets/:ticketId/ | This fetch will get a single ticket based on the given ticketId |
