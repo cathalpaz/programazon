@@ -29,6 +29,9 @@ Programazon is an Amazon inspired e-commerce site tailored to tech needs, stream
 
 ## Screenshots/GIFs
 
+![programazon1](https://github.com/cathalpaz/programazon/assets/124412635/2ad80795-2089-403b-a6ce-2905c5c69c19)
+![programazon2](https://github.com/cathalpaz/programazon/assets/124412635/4027be91-dad1-42fd-9f5a-ef7c73c39d03)
+![programazon3](https://github.com/cathalpaz/programazon/assets/124412635/5a1d9c18-420f-4abf-9b41-c8bac74bf77f)
 
 ## Future goals/implementations
 * Enhance user customizability, such as modifying user addresses as well as incorporating support for multiple addresses per user.
