@@ -40,10 +40,13 @@ function Checkout() {
                         <img src={item.product.image} alt={item.product.name} />
                       </div>
                       <div className='checkout__item-right'>
-                        <span>{item.product.name}</span>
-                        <span>Price: ${item.product.price}</span>
-                        <span>Qty: {item.quantity}</span>
+                        <span className='checkout__item-title'>{item.product.name}</span>
+                        <p className='checkout__item-price'><span>${item.product.price}</span> Prime FREE Delivery</p>
+                        <p>& FREE Returns</p>
+                        <p className='checkout__item-quantity'>Quantity: <span>{item.quantity}</span></p>
+                        <span className='checkout__item-sold'>Sold by: Programazon</span>
                       </div>
+                      <div></div>
                     </div>
                   </div>
                 ))}
@@ -51,7 +54,29 @@ function Checkout() {
             </div>
           </div>
           <div className='checkout__right'>
-            <button className='cart__checkout'>Place your order</button>
+            <div className='checkout__right-header'>
+              <button className='cart__checkout'>Place your order</button>
+              <p>By placing your order, you agree to Programazon's conditions and understand this a totally fake cart.</p>
+            </div>
+            <div className='checkout__right-summary'>
+              <h3>Order Summary</h3>
+              <div className='checkout__right-summary-content'>
+                <div className='checkout__right-summary-left'>
+                  <p>Items ({Object.values(cart.items).length}):</p>
+                  <p className='space'>Shipping & handling:</p>
+                  <p>Total before tax:</p>
+                  <p>Estimated tax to be collected:</p>
+                  <span>Order Total:</span>
+                </div>
+                <div className='checkout__right-summary-right'>
+                  <p>${cart.total}</p>
+                  <p className='checkout__right-summary-right-border space'>$2.00</p>
+                  <p>${parseFloat(cart.total) + 2}</p>
+                  <p>$5.00</p>
+                  <span>${parseFloat(cart.total) + 7}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
