@@ -32,7 +32,11 @@ function Navigation(){
 		history.push('/products/new')
 	}
 	const sendToCart = () => {
-		history.push('/cart')
+		if (!sessionUser) {
+			history.push('/login')
+		} else {
+			history.push('/cart')
+		}
 	}
 
 	const [searchFilter, setSearchFilter] = useState('')

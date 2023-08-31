@@ -14,6 +14,7 @@ import UserProducts from "./components/UserProducts";
 import Footer from "./components/Footer";
 import Page404 from "./components/404Page";
 import Cart from "./components/Cart";
+import Checkout from "./components/Cart/Checkout";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +63,10 @@ function App() {
           <Route path='/cart'>
             <Navigation />
             <Cart />
+          </Route>
+          <Route path='/checkout'>
+            <Navigation />
+            <Checkout />
           </Route>
           <Route>
             <Navigation />

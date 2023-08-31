@@ -25,6 +25,9 @@ function Cart() {
         dispatch(thunkRemoveFromCart(productId))
         window.location.reload();
     }
+    const sendToCheckout = () => {
+        history.push('/checkout')
+    }
 
 
 
@@ -69,7 +72,7 @@ function Cart() {
                     </div>
                     <div className='cart__right'>
                         <p className='total'>Subtotal ({cartItems?.length} items): <span>${cart.total}</span></p>
-                        <button className='cart__checkout'>Proceed to checkout</button>
+                        <button className='cart__checkout' onClick={sendToCheckout}>Proceed to checkout</button>
                     </div>
                 </div>
             ) : (
