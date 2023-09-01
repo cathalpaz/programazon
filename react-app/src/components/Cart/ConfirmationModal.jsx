@@ -12,10 +12,12 @@ function ConfirmationModal() {
   const sendToOrders = () => {
     history.push('/orders')
     closeModal()
+    window.location.reload()
   }
   const handleOutsideClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
-      history.push('/')
+      history.push('/orders')
+      window.location.reload()
     }
   }
   useEffect(() => {

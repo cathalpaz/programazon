@@ -128,3 +128,12 @@
     border-radius: 8px;
 
 }
+
+.no-orders {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(128, 128, 128, 0.295);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 10px;
+}

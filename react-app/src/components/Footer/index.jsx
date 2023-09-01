@@ -16,18 +16,20 @@ function Footer() {
             <span>Back to top</span>
         </div>
         <div className='footer__content'>
+            <div className='content__links'>
+                <a href="https://cathalpaz.com/" target="_blank" rel="noreferrer"><i className="fa-solid fa-user"></i></a>
+                <a href="https://www.linkedin.com/in/cathal-paz-052239263/" rel="noreferrer" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/cathalpaz" target="_blank" rel="noreferrer"><i className="fa-brands fa-github"></i></a>
+            </div>
             <div className='content__tech'>
                 <span>Built with:</span>
                 <div>
-                    <span>tech here</span>
-                    <span>tech here</span>
-                    <span>tech here</span>
+                    <span>Flask</span>
+                    <span>SQLAlchemy</span>
+                    <span>React</span>
+                    <span>Redux</span>
+                    <span>AWS</span>
                 </div>
-            </div>
-            <div className='content__links'>
-                <a href="https://www.linkedin.com/in/cathal-paz-052239263/" rel="noreferrer" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/cathalpaz" target="_blank" rel="noreferrer"><i className="fa-brands fa-github"></i></a>
-                <a href="https://www.amazon.com/" target="_blank" rel="noreferrer"><i className="fa-solid fa-user"></i></a>
             </div>
             <div className='footer__logo'>
                 <img src='/images/programazon.png' alt='logo' />

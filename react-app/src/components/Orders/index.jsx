@@ -23,6 +23,9 @@ function Orders() {
   const sendToReviewProduct = (id) => {
     history.push(`/products/${id}/review`)
   }
+  const sendToAllProducts = () => {
+    history.push('/products')
+  }
 
   return (
     <div className='user-products__container'>
@@ -68,7 +71,10 @@ function Orders() {
                     </div>
                 </div>
             )) : (
-                <p>no orders</p>
+                <div className='user-no-products no-orders'>
+                    <span>You have no orders. You will see all your orders you have placed here.</span>
+                    <span>Shop for <p onClick={sendToAllProducts}>all products</p>?</span>
+                </div>
             )}
         </div>
     </div>

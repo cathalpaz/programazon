@@ -16,10 +16,13 @@ function Checkout() {
 
 
   console.log(cart)
+  if (!cart.total) {
+    history.push('/cart')
+  }
 
   const placeOrder = async(e) => {
     const res = await dispatch(thunkPlaceOrder())
-    dispatch(thunkGetCart())
+    await dispatch(thunkGetCart())
     if (res.ok) {
       history.push('/orders')
     }

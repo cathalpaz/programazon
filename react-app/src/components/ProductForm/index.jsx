@@ -50,6 +50,7 @@ function ProductForm() {
 
       data = await dispatch(thunkCreateProduct(formData))
       dispatch(thunkGetProducts())
+
     } else {
       data = await dispatch(thunkEditProduct(formData, product.id))
       dispatch(thunkGetProducts())
@@ -59,6 +60,7 @@ function ProductForm() {
       setErrors(data.errors)
     } else {
       history.push(`/products/my-products`)
+      window.location.reload()
     }
   }
 

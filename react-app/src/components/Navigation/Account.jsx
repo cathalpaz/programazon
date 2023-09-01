@@ -22,6 +22,9 @@ function Account({ user }) {
     history.push('/products/my-products')
     // window.location.reload()
   }
+  const sendToOrders = () => {
+    history.push('/orders')
+  }
   const comingSoon = () => {
     alert('Coming soon!')
   }
@@ -49,7 +52,7 @@ function Account({ user }) {
                 <p>{user?.email}</p>
                 <p>{user?.address}</p>
               </div>
-              <span onClick={comingSoon}>Orders</span>
+              <span onClick={sendToOrders}>Orders</span>
               <span onClick={handleLogOut}>Sign Out</span>
             </div>
           </div>
