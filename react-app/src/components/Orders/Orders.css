@@ -1,0 +1,130 @@
+.order__container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(128, 128, 128, 0.295);
+    border-radius: 8px;
+    margin: 8px 0 15px 0;
+    min-width: 750px;
+}
+
+.order__header {
+    background-color: #f0f0f0;
+    display: flex;
+    gap: 2rem;
+    padding: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 100%;
+}
+
+.order__header > span {
+    font-size: 14px;
+    color: #565959;
+    padding-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.order__header > div {
+    display: flex;
+    flex-direction: column;
+    color: #565959;
+}
+
+.order__header > div > span {
+    font-size: 14px;
+}
+
+.order__header > div > p {
+    font-size: 12px;
+}
+
+.order__title {
+    padding: 8px;
+}
+
+.order__title > h3 {
+    font-size: 18px;
+}
+
+.order__title > p {
+    font-size: 14px;
+}
+
+.order__products {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px 8px;
+}
+
+.order__product {
+    display: grid;
+    grid-template-columns: 0.5fr 3fr 1fr;
+    gap: 1rem;
+}
+
+.order__product-image {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order__product-image > img {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 8px;
+}
+
+.order__product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.order__product-info > span {
+    color: #007185;
+    font-size: 14px;
+    margin-right: 18px;
+}
+
+.order__product-info > span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #f5ab4a;
+}
+
+.order__product-info > p {
+    font-size: 12px;
+}
+
+.order__product-info > button {
+    margin-top: 5px;
+    width: fit-content;
+    padding: 0 8px;
+    font-size: 13px;
+    background: none;
+    border: 1px solid rgba(128, 128, 128, 0.356);
+    box-shadow: 1px 1px 1px rgba(128, 128, 128, 0.24);
+    cursor: pointer;
+    height: 30px;
+    border-radius: 8px;
+}
+
+.order__product-info > button:hover {
+    background-color: rgba(228, 228, 228, 0.322);
+}
+
+.order__product-review > button {
+    padding: 0 8px;
+    font-size: 13px;
+    background: none;
+    border: 1px solid rgba(128, 128, 128, 0.356);
+    box-shadow: 1px 1px 1px rgba(128, 128, 128, 0.24);
+    cursor: pointer;
+    height: 30px;
+    border-radius: 8px;
+
+}

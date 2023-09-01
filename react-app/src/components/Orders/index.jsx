@@ -2,10 +2,13 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { thunkGetOrders } from '../../store/orders'
 import dayjs from 'dayjs'
+import { useHistory } from 'react-router-dom'
+import './Orders.css'
 
 function Orders() {
-  const orders = useSelector(state => (Object.values(state.orders.orders)))
+  const orders = useSelector(state => (Object.values(state.orders.orders).reverse()))
   const dispatch = useDispatch()
+  const history = useHistory()
   const user = useSelector(state => state.session.user)
 
   useEffect(() => {
@@ -14,6 +17,13 @@ function Orders() {
 
   console.log(orders)
 
+  const sendToProduct = (id) => {
+    history.push(`/products/${id}`)
+  }
+  const sendToReviewProduct = (id) => {
+    history.push(`/products/${id}/review`)
+  }
+
   return (
     <div className='user-products__container'>
         <div className='user-products__content'>
@@ -21,6 +31,7 @@ function Orders() {
             {orders.length ? orders.map(order => (
                 <div className='order__container'>
                     <div className='order__header'>
+                        <span>ORDER #{order.id}</span>
                         <div>
                             <p>ORDER PLACED</p>
                             <span>{dayjs(order.created_at).format('MMMM D, YYYY')}</span>
@@ -30,10 +41,9 @@ function Orders() {
                             <span>${order.total_price}</span>
                         </div>
                         <div>
-                            <p>SHIP TO</p>
+                            <p>SHIPPED TO</p>
                             <span>{user.address}</span>
                         </div>
-                        <span>ORDER #{order.id}</span>
                     </div>
                     <div className='order__title'>
                         <h3>Delivered</h3>
@@ -46,12 +56,12 @@ function Orders() {
                                     <img src={item.product.image} alt='product' />
                                 </div>
                                 <div className='order__product-info'>
-                                    <span>{item.product.name}</span>
+                                    <span onClick={() => sendToProduct(item.product.id)}>{item.product.name}</span>
                                     <p>Ineligible for returns</p>
-                                    <button>View your item</button>
+                                    <button onClick={() => sendToProduct(item.product.id)}>View your item</button>
                                 </div>
                                 <div className='order__product-review'>
-                                    <button>Write a product review</button>
+                                    <button onClick={() => sendToReviewProduct(item.product.id)}>Write a product review</button>
                                 </div>
                             </div>
                         ))}
