@@ -1,12 +1,30 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import OpenModalButton from '../OpenModalButton'
+import ConfirmationModal from './ConfirmationModal'
+import { useDispatch } from 'react-redux'
+import { thunkPlaceOrder } from '../../store/orders'
+import { useHistory } from 'react-router-dom'
+import { thunkGetCart } from '../../store/cart'
+
 
 function Checkout() {
+  const dispatch = useDispatch()
+  const history = useHistory()
   const user = useSelector(state => (state.session.user))
   const cart = useSelector(state => (state.cart))
 
 
   console.log(cart)
+
+  const placeOrder = async(e) => {
+    const res = await dispatch(thunkPlaceOrder())
+    dispatch(thunkGetCart())
+    if (res.ok) {
+      history.push('/orders')
+    }
+  }
+
 
   return (
     <div className='checkout__container'>
@@ -55,7 +73,7 @@ function Checkout() {
           </div>
           <div className='checkout__right'>
             <div className='checkout__right-header'>
-              <button className='cart__checkout'>Place your order</button>
+              <OpenModalButton onButtonClick={placeOrder} className='cart__checkout' buttonText={'Place your order'} modalComponent={<ConfirmationModal />} />
               <p>By placing your order, you agree to Programazon's conditions and understand this a totally fake cart.</p>
             </div>
             <div className='checkout__right-summary'>

@@ -31,6 +31,7 @@ def buy_cart():
 
     new_order = Order(
         user_id = current_user.id,
+        total_price = current_cart.total_price + 7
     )
     db.session.add(new_order)
     db.session.commit()
@@ -43,6 +44,7 @@ def buy_cart():
         )
         db.session.add(new_order_item)
         db.session.commit()
+
 
     db.session.delete(current_cart)
     db.session.commit()

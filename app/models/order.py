@@ -10,6 +10,7 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('carts.id')), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    total_price = db.Column(db.Float, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 
 
@@ -29,6 +30,7 @@ class Order(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
+            'total_price': self.total_price,
             # 'cart_id': self.cart_id,
             'order_items': [order_item.to_dict() for order_item in self.order_items],
             'created_at': self.created_at

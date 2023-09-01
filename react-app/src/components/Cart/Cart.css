@@ -397,3 +397,61 @@
     padding: 5px 0;
     font-weight: 600;
 }
+
+.checkout__right-header > button {
+    border-radius: 6px;
+    border: none;
+    height: 30px;
+    background-color: #FFD814;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.checkout__right-header > button:hover {
+    background-color: #dbba16;
+}
+
+
+/* CONFIRMATION */
+.confirmation__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 18px;
+    width: 420px;
+    gap: 0.5rem;
+}
+
+.confirmation__container > h3 {
+    color: #007600;
+}
+
+.confirmation__container > h3 > i {
+    padding-right: 5px;
+}
+
+.confirmation-order {
+    font-size: 14px;
+}
+
+.confirmation-order > span {
+    color: #007185;
+    cursor: pointer;
+}
+
+.confirmation-deliver {
+    font-size: 14px;
+}
+
+.confirmation-deliver > span {
+    font-weight: 600;
+}
+
+.confirmation__container > div {
+    font-size: 14px;
+}
+
+.confirmation__container > div > span {
+    font-weight: 600;
+}

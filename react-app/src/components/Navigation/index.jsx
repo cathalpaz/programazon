@@ -6,6 +6,7 @@ import Account from './Account';
 import { useHistory } from 'react-router-dom';
 import { thunkGetCart } from '../../store/cart';
 import './Navigation.css';
+import { thunkGetOrders } from '../../store/orders';
 
 function Navigation(){
 	const history = useHistory()
@@ -37,6 +38,10 @@ function Navigation(){
 		} else {
 			history.push('/cart')
 		}
+	}
+	const sendToOrders = () => {
+		dispatch(thunkGetOrders())
+		history.push('/orders')
 	}
 
 	const [searchFilter, setSearchFilter] = useState('')
@@ -105,7 +110,7 @@ function Navigation(){
 						{showComponent && <Account user={sessionUser} />}
 					</div>
 				)}
-				<div className='nav__box' onClick={comingSoon}>
+				<div className='nav__box' onClick={sendToOrders}>
 					<p>Returns</p>
 					<span>& Orders</span>
 				</div>
