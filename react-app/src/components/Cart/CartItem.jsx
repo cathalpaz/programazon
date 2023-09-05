@@ -18,8 +18,6 @@ function CartItem({item}) {
     window.location.reload();
   }
 
-  console.log(item)
-
   let stockLength = item.quantity
   if (item.product.stock_quantity > item.quantity) {
     stockLength = item.product.stock_quantity

@@ -48,7 +48,7 @@ function Account({ user }) {
             <h4>Your Account</h4>
             <div className="account__info-right">
               <div className="account__info">
-                <span onClick={comingSoon}>Account</span>
+                <div>Account</div>
                 <p>{user?.email}</p>
                 <p>{user?.address}</p>
               </div>

@@ -187,17 +187,16 @@
   padding-left: 12px;
 }
 
-.account__info > span, .account__info-right > span {
+.account__info > span, .account__info-right > span, .account__info-right > div {
   font-size: 14px;
   color: #444;
-  cursor: pointer;
   line-height: 24px;
-
 }
 
 .account__info > span:hover, .account__info-right > span:hover {
   text-decoration: underline;
   color: #f5ab4a;
+  cursor: pointer;
 }
 
 .account__info > p {
