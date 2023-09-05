@@ -14,8 +14,6 @@ function Checkout() {
   const user = useSelector(state => (state.session.user))
   const cart = useSelector(state => (state.cart))
 
-
-  console.log(cart)
   if (!cart.total) {
     history.push('/cart')
   }
@@ -91,10 +89,10 @@ function Checkout() {
                 </div>
                 <div className='checkout__right-summary-right'>
                   <p>${cart.total}</p>
-                  <p className='checkout__right-summary-right-border space'>$2.00</p>
-                  <p>${parseFloat(cart.total) + 2}</p>
-                  <p>$5.00</p>
-                  <span>${parseFloat(cart.total) + 7}</span>
+                  <p className='checkout__right-summary-right-border space'>$5.00</p>
+                  <p>${(parseFloat(cart.total) + 5).toFixed(2)}</p>
+                  <p>${(parseFloat(cart.total) * 0.029).toFixed(2)}</p>
+                  <span>${(parseFloat(cart.total) + 5 + (parseFloat(cart.total) * 0.029)).toFixed(2)}</span>
                 </div>
               </div>
             </div>
