@@ -175,7 +175,7 @@
 }
 
 .product__buy-quantity {
-    width: 60px;
+    width: fit-content;
     border-radius: 6px;
     margin: 10px 0;
     border-color: #D5D9D9;

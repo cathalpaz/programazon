@@ -2,6 +2,7 @@
 const GET_CART = 'cart/getCart';
 const ADD_TO_CART = 'cart/addToCart';
 const REMOVE_FROM_CART = 'cart/removeFromCart';
+const UPDATE_CART = 'cart/updateCart';
 
 
 
@@ -24,6 +25,12 @@ const actionRemoveFromCart = (itemId) => {
     return {
         type: REMOVE_FROM_CART,
         payload: itemId
+    }
+}
+const updateCart = (cart_item) => {
+    return {
+        type: UPDATE_CART,
+        payload: cart_item
     }
 }
 
@@ -68,6 +75,21 @@ export const thunkRemoveFromCart = (productId) => async(dispatch) => {
         return errData;
     }
 }
+export const thunkUpdateCart = (quantity, productId) => async(dispatch) => {
+    const res = await fetch(`/api/carts/${productId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({quantity})
+    })
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(updateCart(data));
+        return data;
+    } else {
+        const errData = await res.json();
+        return errData;
+    }
+}
 
 // REDUCER
 const initialState = { items: {}, total: 0 };
@@ -92,6 +114,12 @@ const cartReducer = (state = initialState, action) => {
             const newState = { ...state };
             // newState.total -= action.payload.cart_item.subtotal;
             delete newState.items[action.payload];
+            return newState;
+        }
+        case UPDATE_CART: {
+            const newState = { ...state };
+            newState.items[action.payload.cart_item.id] = action.payload.cart_item;
+            newState.total = action.payload.cart_item.subtotal;
             return newState;
         }
         default:

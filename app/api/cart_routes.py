@@ -93,7 +93,7 @@ def update_cart_item(id):
         cart_item_to_update.quantity = form.data["quantity"]
         cart_item_to_update.subtotal = product.price * form.data["quantity"]
 
-        
+
         cart.total_price -= old_subtotal
         cart.total_price += cart_item_to_update.subtotal
 
@@ -102,6 +102,6 @@ def update_cart_item(id):
 
         db.session.commit()
 
-        return {"cart": cart.to_dict()}
+        return {"cart_item": cart_item_to_update.to_dict()}
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
