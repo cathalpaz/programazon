@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { thunkPlaceOrder } from '../../store/orders'
 import { useHistory } from 'react-router-dom'
 import { thunkGetCart } from '../../store/cart'
+import dayjs from 'dayjs'
 
 
 function Checkout() {
@@ -51,7 +52,7 @@ function Checkout() {
                 {Object.values(cart.items).map(item => (
                   <div className='checkout__item' key={item.id}>
                     <div className='checkout__item-header'>
-                      <h4>Delivery: Sept. 1, 2023</h4>
+                      <h4>Delivery: {dayjs().format('MMM D, YYYY')}</h4>
                       <p>Items shipped from Programazon</p>
                     </div>
                     <div className='checkout__item-content'>

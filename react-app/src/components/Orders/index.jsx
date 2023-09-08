@@ -11,11 +11,15 @@ function Orders() {
   const history = useHistory()
   const user = useSelector(state => state.session.user)
 
+  console.log(orders)
+  if (orders.length) {
+    console.log(orders[0].order_items[0].quantity)
+  }
+
   useEffect(() => {
     dispatch(thunkGetOrders())
 }, [dispatch])
 
-  console.log(orders)
 
   const sendToProduct = (id) => {
     history.push(`/products/${id}`)
@@ -32,7 +36,7 @@ function Orders() {
         <div className='user-products__content'>
             <span>Your Orders</span>
             {orders.length ? orders.map(order => (
-                <div className='order__container'>
+                <div className='order__container' key={order.id}>
                     <div className='order__header'>
                         <span>ORDER #{order.id}</span>
                         <div>
@@ -54,9 +58,12 @@ function Orders() {
                     </div>
                     <div className='order__products'>
                         {order.order_items.map(item => (
-                            <div className='order__product'>
+                            <div className='order__product' key={item.id}>
                                 <div className='order__product-image'>
-                                    <img src={item.product.image} alt='product' />
+                                    <img src={item.product.image} alt='product' onClick={() => sendToProduct(item.product.id)} />
+                                    {item.quantity > 1 ? (
+                                        <p className='order__item-quantity'>{item.quantity}</p>
+                                    ) : null}
                                 </div>
                                 <div className='order__product-info'>
                                     <span onClick={() => sendToProduct(item.product.id)}>{item.product.name}</span>

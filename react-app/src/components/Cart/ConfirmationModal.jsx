@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react'
 import { useModal } from '../../context/Modal'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import dayjs from 'dayjs'
 
 function ConfirmationModal() {
   const modalRef = useRef(null)
@@ -33,7 +34,7 @@ function ConfirmationModal() {
         <p className='confirmation-order'>Confirmation will be shown on <span onClick={sendToOrders}>your orders page</span>.</p>
         <p className='confirmation-deliver'><span>Delivering to {user.username}</span>, {user.address}</p>
         <div>
-            <span>Friday, Sept 1</span>
+            <span>{dayjs().format('dddd, MMM D')}</span>
             <p>Estimated delivery</p>
         </div>
     </div>
