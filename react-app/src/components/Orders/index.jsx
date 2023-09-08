@@ -11,11 +11,6 @@ function Orders() {
   const history = useHistory()
   const user = useSelector(state => state.session.user)
 
-  console.log(orders)
-  if (orders.length) {
-    console.log(orders[0].order_items[0].quantity)
-  }
-
   useEffect(() => {
     dispatch(thunkGetOrders())
 }, [dispatch])
