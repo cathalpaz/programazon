@@ -18,7 +18,7 @@ function Footer() {
         <div className='footer__content'>
             <div className='content__links'>
                 <a href="https://cathalpaz.com/" target="_blank" rel="noreferrer"><i className="fa-solid fa-user"></i></a>
-                <a href="https://www.linkedin.com/in/cathal-paz-052239263/" rel="noreferrer" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/cathal-paz/" rel="noreferrer" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
                 <a href="https://github.com/cathalpaz" target="_blank" rel="noreferrer"><i className="fa-brands fa-github"></i></a>
             </div>
             <div className='content__tech'>
