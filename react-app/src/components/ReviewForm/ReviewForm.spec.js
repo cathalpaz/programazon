@@ -12,11 +12,15 @@ test('Review Form', async({ page }) => {
     await expect(page.getByText('Hello, Demo')).toBeVisible();
 
 
-    // go to product review form
+    // navigate to product review form
     await page.locator('span').filter({ hasText: /^All$/ }).click();
     await page.getByText('Programmable Mechanical').click();
-    await page.getByRole('button', { name: 'Write a customer review' }).click();
 
+    // count original number of reviews
+    await page.waitForSelector('.review__container');
+    const reviewCount = await page.$$eval('.review__container', review => review.length)
+
+    await page.getByRole('button', { name: 'Write a customer review' }).click();
     await expect(page.getByText('Create Review')).toBeVisible();
 
 
@@ -35,6 +39,12 @@ test('Review Form', async({ page }) => {
     await page.getByRole('button', { name: 'Submit' }).click();
 
     await expect(page.getByText('Top reviews from customers')).toBeVisible();
+
+    // compare new count of reviews to original
+    await page.waitForTimeout(1000);
+    const updatedReviewCount = await page.$$eval('.review__container', review => review.length);
+
+    expect(updatedReviewCount).toBe(reviewCount + 1)
 
 
     await page.close();
